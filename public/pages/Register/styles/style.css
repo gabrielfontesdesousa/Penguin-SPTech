@@ -1,0 +1,290 @@
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+    html,
+    body,
+    div,
+    span,
+    applet,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    embed,
+    figure,
+    figcaption,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    output,
+    ruby,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font-family: 'Montserrat';
+    }
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+    display: block;
+    }
+    body {
+    line-height: 1;
+    }
+    ol,
+    ul {
+    list-style: none;
+    }
+    blockquote,
+    q {
+    quotes: none;
+    }
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+    content: '';
+    content: none;
+    }
+    table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    }
+    .main-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    }
+
+    /*CONTAINER DA IMAGEM*/
+    .container-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    }
+    .container-form {
+    width: 50%;
+    height: 100%;
+    }
+    .sub-container-image {
+    width: 97%;
+    height: 97%;
+    border-radius: 30px;
+    background-image: url('../../../../assets/c-cedric-photographe-LR_hS7ImlDM-unsplash\ 2.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    }
+    .navbar-image {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    justify-content: space-between;
+    }
+    .logo-container {
+    width: 20%;
+    height: 50%;
+    display: flex;
+    justify-content: end;
+    }
+    .navbar-image-links {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    }
+    .navbar-image-links ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+    }
+    .navbar-image-links ul li a {
+    color: white;
+    text-decoration: none;
+    }
+
+    /*CONTAINER DO FORMULÁRIO*/
+    .container-form {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    .sub-container-form {
+    width: 60%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    .sub-container-form-2 {
+    width: 100%;
+    height: 73%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .container-form-labels {
+    width: 100%;
+    height: 20%;
+    align-items: center;
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    }
+    .container-form-labels h1 {
+    font-size: 28px;
+    }
+    .container-form-labels p {
+    font-size: 18px;
+    color: #949494;
+    }
+    .container-form-inputs {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    }
+    .container-form-inputs section {
+    color: rgb(0, 0, 0);
+    width: 90%;
+    height: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-weight: 400;
+    font-size: 17px;
+    padding-bottom: 20px;
+    }
+    .container-form-inputs section input {
+        width: 100%;
+        border-radius: 10px;
+        outline: none;
+        border: 0;
+        text-indent: 15px;
+        background-color: #EFEFEF;
+        line-height: 40px;
+        padding: 5px 0px 5px;
+        box-sizing: border-box;
+
+    }
+    .container-form-inputs section input::placeholder{
+        font-family: 'Poppins';
+        font-size: 14px;
+    }
+    .container-form-buttons{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+        width: 90%;
+        height: 20%;
+    }
+    .container-form-buttons a  {
+        width: 100%;
+    }
+    .container-form-buttons a button {
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        padding: 12px 0px 12px;
+        background-color: rgb(0, 0, 0);
+        border: 0;
+        outline: none;
+        border-radius: 08px;
+        color: white;
+        transition: 300ms;
+    }
+    .container-form-buttons a button:hover {
+        background-color: rgb(44, 44, 44);
+    }
+
+
+
