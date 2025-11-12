@@ -6,6 +6,7 @@
     <title>Penguin Logistics</title>
     <link rel="stylesheet" href="../../css/Register/style.css" />
     <link rel="stylesheet" href="../../css/reset.css">
+    <script src="../../js/sessao.js"></script>
   </head>
 
   <body>
@@ -23,24 +24,36 @@
               <section>
                 <span>Email</span>
                 <br>
-                <input type="emal" placeholder="Ex: EmersonSheik@gmail.com" />
+                <input type="emal" placeholder="Ex: EmersonSheik@gmail.com" id="email_input"/>
+              </section>
+              <section>
+                <span>Nome Completo</span>
+                <br>
+                <input type="emal" placeholder="Ex: Emerson Sheik da Silva" id="nome_input"/>
+              </section>
+              <section>
+                <span>CPF ou CNPJ</span>
+                <br>
+                <input type="emal" placeholder="Ex: 549.345.930-90" id="cpfcnpj_input"/>
               </section>
               <section>
                 <span>Senha</span>
                 <br>
-                <input type="password" placeholder="********" />
+                <input type="password" placeholder="********" id="senha_input" />
               </section>
               <section>
                 <span>Confirme sua senha</span>
                 <br>
-                <input type="password" placeholder="********" />
+                <input type="password" placeholder="********" id="confirmacao_senha_input"/>
                 <br>
-                <span>Deve ter mais de 8 caracteres</span>
+                <div class="cardErro">
+                    <span id="mensagem_erro">Deve ter mais de 8 caracteres</span>
+                </div>
                 <br>
               </section>
             </div>
             <div class="container-form-buttons">
-              <a href=""><button>Entrar</button></a>
+              <a href=""><button onclick="cadastrar()">Entrar</button></a>
               <span>Ainda não tem uma conta? <a href="">Criar</a></span>
             </div>
           </div>
@@ -64,3 +77,103 @@
     </div>
   </body>
 </html>
+<script>
+
+
+  // Array para armazenar empresas cadastradas para validação de código de ativação
+
+  function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var cpfCnpjVar = cpfCnpj_input.value
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      cpfCnpjVar == "" ||
+      confirmacaoSenhaVar == ""
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        cpfServer: cpfCnpjVar,
+        senhaServer: senhaVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "../login/";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  // Listando empresas cadastradas
+  function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaEmpresasCadastradas.push(empresa);
+
+            console.log("listaEmpresasCadastradas")
+            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+
+</script>

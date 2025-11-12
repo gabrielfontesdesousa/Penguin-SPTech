@@ -6,57 +6,105 @@
 comandos para mysql server
 */
 
-CREATE DATABASE aquatech;
+CREATE DATABASE Penguin;
+USE Penguin;
 
-USE aquatech;
-
-CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14),
-	codigo_ativacao VARCHAR(50)
+CREATE TABLE Usuario (
+    idUsuario 			INT 			PRIMARY KEY AUTO_INCREMENT,
+    cpf 				CHAR(11) 		NOT NULL,
+    cnpj 				VARCHAR(14),
+    nomeCompleto 		VARCHAR(110) 	NOT NULL,
+    email 				VARCHAR(110) 	NOT NULL,
+    senha 				VARCHAR(16) 	NOT NULL,
+    username 			VARCHAR(45)		NOT NULL
 );
 
-CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+CREATE TABLE Motorista (
+    idMotorista 		INT 			AUTO_INCREMENT,
+    nomeCompleto 		VARCHAR(45) 	NOT NULL,
+    cpf 				CHAR(11) 		NOT NULL,
+    telefoneCelular 	CHAR(11) 		NOT NULL,
+    email 				VARCHAR(110)	NOT NULL,
+    tipoCNH 			CHAR(1) 		NOT NULL,
+    validadeCNH			DATE 			NOT NULL,
+    status 				VARCHAR(45) 	NOT NULL,
+    CEP 				CHAR(8) 		NOT NULL,
+    fkUsuario			INT 			NOT NULL,
+    PRIMARY KEY (idMotorista , fkUsuario),
+    FOREIGN KEY (fkUsuario)
+        REFERENCES Usuario (idUsuario)
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+CREATE TABLE Caminhao (
+    idCaminhao 			INT				 PRIMARY KEY AUTO_INCREMENT,
+    modelo 				VARCHAR(45)		NOT NULL,
+    PBT 				INT				NOT NULL,
+    categoria 			VARCHAR(45) 	NOT NULL,
+    quilometragem		INT 			NOT NULL,
+    kmManutencao 		INT 			NOT NULL,
+    kmLitro 			DECIMAL(3 , 1 ) NOT NULL
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+CREATE TABLE Manutencao (
+    idManutencao 		INT 			AUTO_INCREMENT,
+    dataManutencao 		DATE NOT NULL,
+    descricao 			TEXT NOT NULL,
+    valor 				DECIMAL(8 , 2 ) NOT NULL,
+    fkCaminhao 			INT 			NOT NULL,
+    PRIMARY KEY (idManutencao , fkCaminhao),
+    FOREIGN KEY (fkCaminhao)
+        REFERENCES Caminhao (idCaminhao)
 );
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
-
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
+CREATE TABLE Frete (
+    idFrete 			INT 			AUTO_INCREMENT,
+    dtSaida 			DATE 			NOT NULL,
+    dtChegada 			DATE 			NOT NULL,
+    dtCriacao 			DATE 			NOT NULL,
+    valor 				DECIMAL(10 , 2 ) NOT NULL,
+    pesoKG 				INT 			NOT NULL,
+    vlPedagio 			DECIMAL(5 , 2 ) NOT NULL,
+    diariaAjudante 		DECIMAL(5 , 2 ),
+    qtdAjudante 		INT,
+    fkMotorista 		INT 			NOT NULL,
+    fkCaminhao 			INT 			NOT NULL,
+    PRIMARY KEY (idFrete , fkMotorista , fkCaminhao),
+    FOREIGN KEY (fkMotorista)
+        REFERENCES Motorista (idMotorista),
+    FOREIGN KEY (fkCaminhao)
+        REFERENCES Caminhao (idCaminhao)
 );
 
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
-insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
-insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
+CREATE TABLE Coleta (
+    idColeta			INT 			AUTO_INCREMENT,
+    CEP 				CHAR(8) 		NOT NULL,
+    numero 				VARCHAR(5)		NOT NULL,
+    cliente				VARCHAR(110)	NOT NULL,
+    complemento 		VARCHAR(45),
+    distanciaKM 		INT 			NOT NULL,
+    fkFrete 			INT 			NOT NULL,
+    PRIMARY KEY (idColeta , fkFrete),
+    FOREIGN KEY (fkFrete)
+        REFERENCES Frete (idFrete)
+);
+
+CREATE TABLE Entrega (
+    idEntrega 			INT 			AUTO_INCREMENT,
+    CEP 				CHAR(8) 		NOT NULL,
+    numero 				VARCHAR(5) 		NOT NULL,
+    complemento 		VARCHAR(45),
+    destinatario 		VARCHAR(110)	NOT NULL,
+    distanciaKM 		INT 			NOT NULL,
+    fkFrete 			INT				NOT NULL,
+    PRIMARY KEY (idEntrega , fkFrete),
+    FOREIGN KEY (fkFrete)
+        REFERENCES Frete (idFrete)
+);
+
+INSERT INTO Usuario (cpf, cnpj, nomeCompleto, email, senha, username)
+VALUES
+('11111111111', NULL, 'UsuárioTeste1', 'teste1@gmail.com', '123456', 'teste1'),
+('22222222222', NULL, 'UsuárioTeste2', 'teste2@gmail.com', '123456', 'teste2'),
+('33333333333', NULL, 'UsuárioTeste3', 'teste3@gmail.com', '123456', 'teste3');
+
+select * from usuario;
