@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penguin Dahboard</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/Dashboard/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="KPI">
+        </div>
+        <div class="KPI">
+        </div>
+        <div class="KPI">
+        </div>
+        <div class="KPI">
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    function ConsultaKpiFretes(){
+        fetch("/kpi/fretes", {
+            method: "GET"})
+            .then(function respostaGet(){
+                respostaGet.json().then((fretes) => {
+                    
+                })
+            })
+    }
+
+
+</script>

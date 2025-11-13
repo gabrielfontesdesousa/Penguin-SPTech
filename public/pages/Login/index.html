@@ -25,11 +25,11 @@
             <div class="container-form-inputs">
               <section>
                 <span>Email</span>
-                <input type="emal" placeholder="Ex: EmersonSheik@gmail.com" id="email_input" />
+                <input type="emaIl" placeholder="Ex: EmersonSheik@gmail.com" id="email_input" value="fontes@gmail.com"/>
               </section>
               <section>
                 <span>Senha</span>
-                <input type="password" placeholder="********" id="senha_input" >
+                <input type="password" placeholder="********" id="senha_input" value="123456" >
                 <div id="responseInput">
                     <span id="mensagem_erro" >Deve ter mais de 8 caracteres</span>
                 </div>
@@ -37,8 +37,8 @@
               </section>
             </div>
             <div class="container-form-buttons">
-              <a href=""><button onclick="entrar()">Entrar</button></a>
-              <span>Ainda não tem uma conta? <a href="">Criar</a></span>
+             <button  onclick="entrar()" class="btn-login-form">Entrar</button>
+              <span>Ainda não tem uma conta? <a href="../Register/index.html">Criar</a></span>
             </div>
           </div>
         </div>
@@ -72,13 +72,9 @@
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
-            responseInput.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            mensagem_erro.innerHTML = "Campos em branco não são válidos";
             finalizarAguardar();
             return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
         }
 
         console.log("FORM LOGIN: ", emailVar);
@@ -95,27 +91,21 @@
             })
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
-
             if (resposta.ok) {
                 console.log(resposta);
-
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-
-                    setTimeout(function () {
-                        window.location = "/";
-                    }, 1000); // apenas para exibir o loading
+                    console.log('redireciona ai')
+                     window.location.href = "../Dashboard/index.html";
 
                 });
 
             } else {
-
                 console.log("Houve um erro ao tentar realizar o login!");
-
+                mensagem_erro.innerHTML = "Usuario ou Senha incorretos!"
                 resposta.text().then(texto => {
                     console.error(texto);
                     finalizarAguardar(texto);

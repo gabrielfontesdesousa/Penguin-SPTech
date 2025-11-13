@@ -24,36 +24,36 @@
               <section>
                 <span>Email</span>
                 <br>
-                <input type="emal" placeholder="Ex: EmersonSheik@gmail.com" id="email_input"/>
+                <input type="emal" placeholder="Ex: EmersonSheik@gmail.com" id="email_input" value="fontes@gmail.com"/>
               </section>
               <section>
                 <span>Nome Completo</span>
                 <br>
-                <input type="emal" placeholder="Ex: Emerson Sheik da Silva" id="nome_input"/>
+                <input type="emal" placeholder="Ex: Emerson Sheik da Silva" id="nome_input" value="fontes"/>
               </section>
               <section>
                 <span>CPF ou CNPJ</span>
                 <br>
-                <input type="emal" placeholder="Ex: 549.345.930-90" id="cpfcnpj_input"/>
+                <input type="emal" placeholder="Ex: 549.345.930-90" id="cpfCnpj_input" value="12345678910"/>
               </section>
               <section>
                 <span>Senha</span>
                 <br>
-                <input type="password" placeholder="********" id="senha_input" />
+                <input type="password" placeholder="********" id="senha_input" value="123456" />
               </section>
               <section>
                 <span>Confirme sua senha</span>
                 <br>
-                <input type="password" placeholder="********" id="confirmacao_senha_input"/>
+                <input type="password" placeholder="********" id="confirmacao_senha_input" value="123456"/>
                 <br>
-                <div class="cardErro">
+                <div id="cardErro" class="cardErro">
                     <span id="mensagem_erro">Deve ter mais de 8 caracteres</span>
                 </div>
                 <br>
               </section>
             </div>
             <div class="container-form-buttons">
-              <a href=""><button onclick="cadastrar()">Entrar</button></a>
+              <button onclick="cadastrar()">Entrar</button>
               <span>Ainda não tem uma conta? <a href="">Criar</a></span>
             </div>
           </div>
@@ -135,7 +135,7 @@
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
           setTimeout(() => {
-            window.location = "../login/";
+            window.location.href = "../Login/index.html";
           }, "2000");
 
           limparFormulario();
@@ -151,27 +151,6 @@
 
     return false;
   }
-
-  // Listando empresas cadastradas
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
-
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }
-
   function sumirMensagem() {
     cardErro.style.display = "none";
   }

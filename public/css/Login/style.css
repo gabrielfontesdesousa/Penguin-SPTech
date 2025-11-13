@@ -23,7 +23,7 @@
   width: 97%;
   height: 97%;
   border-radius: 30px;
-  background-image: url(../../assets/c-cedric-photographe-LR_hS7ImlDM-unsplash\ 2.png);
+  background-image: url('../../../assets/bg-login.png');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -40,9 +40,6 @@
   height: 50%;
   display: flex;
   justify-content: end;
-}
-.logo-container img{
-    width: 100px;
 }
 .navbar-image-links {
   width: 50%;
@@ -148,10 +145,8 @@
     width: 90%;
     height: 20%;
 }
-.container-form-buttons a  {
-    width: 100%;
-}
-.container-form-buttons a button {
+
+.btn-login-form{
     cursor: pointer;
     font-size: 16px;
     width: 100%;
@@ -163,12 +158,9 @@
     color: white;
     transition: 300ms;
 }
-.container-form-buttons a button:hover {
+.btn-login-form:hover {
     background-color: rgb(44, 44, 44);
 }
 
 
-.loading-div {
-    width: 50px;
-    display: none;
-  }
+
