@@ -1,11 +1,9 @@
-var express = require("express")
+var express = require("express");
+var kpiController = require("../controllers/kpiController")
 var router = express.Router();
-var kpiController = require('../controllers/kpiController')
 
-router.get('/kpi/fretes', function (req, res) {
-    kpiController.ExibirKpiFretes()
-})
+router.post('/fretes', (req, res) => {
+    kpiController.ExibirKpiFretes(req, res)
+});
 
-module.exports = {
-    router
-}
+module.exports = router;

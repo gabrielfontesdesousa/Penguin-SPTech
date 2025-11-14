@@ -9,5 +9,8 @@ router.post("/cadastrar", function (req, res) {
 router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
+router.post("/emailSessao", function (req, res) {
+    usuarioController.EnviarEmailSessionStorage(req, res);
+});
 
 module.exports = router;

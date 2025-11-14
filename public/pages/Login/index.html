@@ -25,7 +25,7 @@
             <div class="container-form-inputs">
               <section>
                 <span>Email</span>
-                <input type="emaIl" placeholder="Ex: EmersonSheik@gmail.com" id="email_input" value="fontes@gmail.com"/>
+                <input type="emaIl" placeholder="Ex: EmersonSheik@gmail.com" id="email_input" value="teste1@email.com"/>
               </section>
               <section>
                 <span>Senha</span>
@@ -79,7 +79,7 @@
 
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
-
+        var EMAILSESSAO = ''
         fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {
@@ -96,11 +96,9 @@
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
+                    EMAILSESSAO = sessionStorage.setItem("EMAIL_DO_LOGADO", emailVar)
                     console.log('redireciona ai')
                      window.location.href = "../Dashboard/index.html";
-
                 });
 
             } else {
@@ -115,7 +113,6 @@
         }).catch(function (erro) {
             console.log(erro);
         })
-
         return false;
     }
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,10 @@
     <link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="../../css/Dashboard/style.css">
 </head>
+
 <body>
     <div class="container">
-        <div class="KPI">
+        <div id="fretesRealizados" class="KPI">
         </div>
         <div class="KPI">
         </div>
@@ -19,17 +21,51 @@
         </div>
     </div>
 </body>
+
 </html>
 <script>
-    function ConsultaKpiFretes(){
+    function ConsultaKpiFretes() {
+        const email = sessionStorage.getItem("EMAIL_DO_LOGADO");
+        console.log(email)
+        if (email == null) {
+            console.log("Nenhum email no sessionStorage");
+        }
+
         fetch("/kpi/fretes", {
-            method: "GET"})
-            .then(function respostaGet(){
-                respostaGet.json().then((fretes) => {
-                    
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                    email: email
                 })
+        })
+        .then(function (resposta){
+            resposta.json().then((res)=>{
+                var arrayFretes = res
+                console.log(res[0].TOTAL_FRETES_REALIZADOS)
+                fretesRealizados.innerHTML =
+                `
+                <h1>Fretes Realizados</h1>
+                ${res[0].TOTAL_FRETES_REALIZADOS}
+
+                    `
+            }).catch((erro)=>{
+                console.log("ERRO:", erro)
             })
+        }).catch((erro)=>{
+            console.log(erro)
+        })
+        .then(function (fretes) {
+            console.log("Resultado da KPI:", fretes);
+            console.log("Quantidade de fretes realizados:", fretes);
+
+        })
+        .catch(erro => {
+            console.log("ERRO:", erro);
+        });
     }
 
-
+    window.onload = ConsultaKpiFretes;
 </script>
+

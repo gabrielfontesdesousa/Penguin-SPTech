@@ -8,15 +8,13 @@ comandos para mysql server
 
 CREATE DATABASE Penguin;
 USE Penguin;
-
 CREATE TABLE Usuario (
     idUsuario 			INT 			PRIMARY KEY AUTO_INCREMENT,
     cpf 				CHAR(11) 		NOT NULL,
     cnpj 				VARCHAR(14),
     nomeCompleto 		VARCHAR(110) 	NOT NULL,
     email 				VARCHAR(110) 	NOT NULL,
-    senha 				VARCHAR(16) 	NOT NULL,
-    username 			VARCHAR(45)		NOT NULL
+    senha 				VARCHAR(16) 	NOT NULL
 );
 
 CREATE TABLE Motorista (
@@ -58,6 +56,7 @@ CREATE TABLE Manutencao (
 
 CREATE TABLE Frete (
     idFrete 			INT 			AUTO_INCREMENT,
+    cliente				VARCHAR(110) 	NOT NULL,
     dtSaida 			DATE 			NOT NULL,
     dtChegada 			DATE 			NOT NULL,
     dtCriacao 			DATE 			NOT NULL,
@@ -68,11 +67,18 @@ CREATE TABLE Frete (
     qtdAjudante 		INT,
     fkMotorista 		INT 			NOT NULL,
     fkCaminhao 			INT 			NOT NULL,
+    fkUsuario 			INT				NOT NULL,
+    statusFrete 		VARCHAR(45),
+    dtConclusao			TIMESTAMP DEFAULT CURRENT_TIMESTAMP     NOT NULL,
+    CONSTRAINT CHK_STATUS_FRETE
+		CHECK (statusFrete in('Realizado', 'Orçado', 'Marcado')),
     PRIMARY KEY (idFrete , fkMotorista , fkCaminhao),
     FOREIGN KEY (fkMotorista)
         REFERENCES Motorista (idMotorista),
     FOREIGN KEY (fkCaminhao)
-        REFERENCES Caminhao (idCaminhao)
+        REFERENCES Caminhao (idCaminhao),
+	FOREIGN KEY (fkUsuario)
+		REFERENCES Usuario (idUsuario)
 );
 
 CREATE TABLE Coleta (
@@ -101,10 +107,71 @@ CREATE TABLE Entrega (
         REFERENCES Frete (idFrete)
 );
 
-INSERT INTO Usuario (cpf, cnpj, nomeCompleto, email, senha, username)
+INSERT INTO Usuario (cpf, cnpj, nomeCompleto, email, senha)
 VALUES
-('11111111111', NULL, 'UsuárioTeste1', 'teste1@gmail.com', '123456', 'teste1'),
-('22222222222', NULL, 'UsuárioTeste2', 'teste2@gmail.com', '123456', 'teste2'),
-('33333333333', NULL, 'UsuárioTeste3', 'teste3@gmail.com', '123456', 'teste3');
+('11111111111', NULL, 'Usuário Teste 1', 'teste1@email.com', '123456'),
+('22222222222', NULL, 'Usuário Teste 2', 'teste2@email.com', '123456'),
+('33333333333', NULL, 'Usuário Teste 3', 'teste3@email.com', '123456');
 
+INSERT INTO Usuario (cpf, cnpj, nomeCompleto, email, senha) VALUES
+('12345678901', NULL, 'joao ferreira', 'joao.ferreira@gmail.com', 'senha123'),
+('98765432100', NULL, 'maria oliveira', 'maria.oliveira@gmail.com', 'abc12345'),
+('45678912300', '11222333000188', 'transporte silva ltda', 'contato@silvalog.com', 'silva2025');
+
+INSERT INTO Motorista (nomeCompleto, cpf, telefoneCelular, email, tipoCNH, validadeCNH, status, CEP, fkUsuario) VALUES
+('carlos mendes', '11122233344', '11984561234', 'carlos.mendes@gmail.com', 'E', '2027-08-15', 'ativo', '09950000', 1),
+('roberto dias', '22233344455', '11999998888', 'roberto.dias@gmail.com', 'D', '2026-05-09', 'ativo', '09940120', 2),
+('fernando ramos', '33344455566', '11988887777', 'fernando.ramos@gmail.com', 'E', '2028-02-11', 'inativo', '09876543', 3);
+
+INSERT INTO Caminhao (modelo, PBT, categoria, quilometragem, kmManutencao, kmLitro) VALUES
+('volvo fh 540', 41000, '6x2 LS', 150000, 160000, 2.8),
+('scania r440', 30000, '6x2 Vanderléia', 95000, 100000, 3.1),
+('mercedes actros 2651', 45000, '6X2 LS', 200000, 210000, 2.5);
+
+INSERT INTO Manutencao (dataManutencao, descricao, valor, fkCaminhao) VALUES
+('2025-04-10', 'troca de oleo e filtros', 850.00, 1),
+('2025-05-20', 'revisao dos freios', 1200.00, 2),
+('2025-03-05', 'substituicao de pneus', 4500.00, 3);
+
+INSERT INTO Frete
+(cliente, dtSaida, dtChegada, dtCriacao, valor, pesoKG, vlPedagio, diariaAjudante, qtdAjudante, fkMotorista, fkCaminhao, fkUsuario, statusFrete, dtConclusao)
+VALUES
+('MONTONE','2025-11-03', '2025-11-05', '2025-11-02', 1500.00, 8000, 120.50, 100.00, 1, 1, 1, 1, 'Realizado', '2025-11-05'),
+('ANIDROL','2025-11-08', '2025-11-10', '2025-11-07', 1800.00, 9500, 130.75, 150.00, 2, 2, 2, 1, 'Orçado', '2025-11-10'),
+('ANIDROL','2025-11-11', '2025-11-13', '2025-11-10', 2100.00, 10000, 140.00, 200.00, 1, 3, 3, 1, 'Realizado', '2025-11-13');
+
+INSERT INTO Coleta (CEP, numero, cliente, complemento, distanciaKM, fkFrete) VALUES
+('01001000', '250', 'armazem santos log', 'galpao b', 15, 1),
+('02233000', '580', 'metalurgica vitoria', NULL, 22, 2),
+('04045000', '102', 'cooperativa alfa', 'entrada 2', 30, 3);
+
+INSERT INTO Entrega (CEP, numero, complemento, destinatario, distanciaKM, fkFrete) VALUES
+('18013110', '42', NULL, 'centro distribuidor sorocaba', 120, 1),
+('13050420', '300', 'bloco 1', 'autopecas campinas', 180, 2),
+('05025030', '12', NULL, 'supermercado pinheiros', 95, 3);
 select * from usuario;
+
+SELECT
+  f.idFrete,
+  u.idUsuario AS ID_Usuario,
+  f.cliente as CLIENTE,
+  f.dtConclusao AS DATA_CONCLUSAO,
+  (SELECT COUNT(*)
+   FROM Frete
+   WHERE fkUsuario = u.idUsuario
+     AND statusFrete = 'Realizado') AS TOTAL_FRETES_REALIZADOS
+FROM Frete f
+JOIN Usuario u ON u.idUsuario = f.fkUsuario
+WHERE u.idUsuario = 1
+  AND f.statusFrete = 'Realizado'
+ORDER BY f.dtConclusao DESC;
+
+DROP VIEW VW_KPI_FRETES_REALIZADOS_TOTAL;
+SELECT QTD_FRETES FROM VW_KPI_FRETES_REALIZADOS_TOTAL;
+
+
+CREATE VIEW VW_KPI_FRETES_REALIDADOS_SEMANA AS
+SELECT COUNT(idFrete) FROM Frete;
+
+ Drop DATABASE Penguin;
+
