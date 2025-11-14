@@ -5,9 +5,9 @@
 /*
 comandos para mysql server
 */
-
 CREATE DATABASE Penguin;
 USE Penguin;
+
 CREATE TABLE Usuario (
     idUsuario 			INT 			PRIMARY KEY AUTO_INCREMENT,
     cpf 				CHAR(11) 		NOT NULL,
@@ -29,8 +29,22 @@ CREATE TABLE Motorista (
     CEP 				CHAR(8) 		NOT NULL,
     fkUsuario			INT 			NOT NULL,
     PRIMARY KEY (idMotorista , fkUsuario),
-    FOREIGN KEY (fkUsuario)
-        REFERENCES Usuario (idUsuario)
+    CONSTRAINT FK_MOTORISTA_USUARIO
+		FOREIGN KEY (fkUsuario)
+			REFERENCES Usuario (idUsuario)
+);
+
+CREATE TABLE Despesa(
+	idDespesa 			INT 			PRIMARY KEY AUTO_INCREMENT,
+    descricao			VARCHAR(100)	NOT NULL,
+    valor				VARCHAR(100)	NOT NULL,
+    categoria			VARCHAR(45)		NOT NULL,
+    dataDesp			DATE,
+    fkMotorista			INT,
+    CONSTRAINT CHECK_CATEGORIA	CHECK(categoria IN('Alimentação', 'Outro', 'Pedágio', 'Documentos')),
+    CONSTRAINT FK_DESPESA_MOTORISTA
+		FOREIGN KEY(fkMotorista)
+			REFERENCES Motorista(idMotorista)
 );
 
 CREATE TABLE Caminhao (
@@ -48,28 +62,27 @@ CREATE TABLE Manutencao (
     dataManutencao 		DATE NOT NULL,
     descricao 			TEXT NOT NULL,
     valor 				DECIMAL(8 , 2 ) NOT NULL,
+    categoria			VARCHAR(45),
     fkCaminhao 			INT 			NOT NULL,
     PRIMARY KEY (idManutencao , fkCaminhao),
-    FOREIGN KEY (fkCaminhao)
-        REFERENCES Caminhao (idCaminhao)
+    CONSTRAINT FK_MANUTENCAO_CAMINHAO
+		FOREIGN KEY (fkCaminhao)
+			REFERENCES Caminhao (idCaminhao)
 );
 
 CREATE TABLE Frete (
     idFrete 			INT 			AUTO_INCREMENT,
     cliente				VARCHAR(110) 	NOT NULL,
     dtSaida 			DATE 			NOT NULL,
-    dtChegada 			DATE 			NOT NULL,
-    dtCriacao 			DATE 			NOT NULL,
     valor 				DECIMAL(10 , 2 ) NOT NULL,
     pesoKG 				INT 			NOT NULL,
     vlPedagio 			DECIMAL(5 , 2 ) NOT NULL,
-    diariaAjudante 		DECIMAL(5 , 2 ),
     qtdAjudante 		INT,
     fkMotorista 		INT 			NOT NULL,
     fkCaminhao 			INT 			NOT NULL,
     fkUsuario 			INT				NOT NULL,
     statusFrete 		VARCHAR(45),
-    dtConclusao			TIMESTAMP DEFAULT CURRENT_TIMESTAMP     NOT NULL,
+    dtConclusao			TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT CHK_STATUS_FRETE
 		CHECK (statusFrete in('Realizado', 'Orçado', 'Marcado')),
     PRIMARY KEY (idFrete , fkMotorista , fkCaminhao),
@@ -90,8 +103,9 @@ CREATE TABLE Coleta (
     distanciaKM 		INT 			NOT NULL,
     fkFrete 			INT 			NOT NULL,
     PRIMARY KEY (idColeta , fkFrete),
-    FOREIGN KEY (fkFrete)
-        REFERENCES Frete (idFrete)
+    CONSTRAINT FK_COLETA_FRETE
+		FOREIGN KEY (fkFrete)
+			REFERENCES Frete (idFrete)
 );
 
 CREATE TABLE Entrega (
@@ -103,8 +117,9 @@ CREATE TABLE Entrega (
     distanciaKM 		INT 			NOT NULL,
     fkFrete 			INT				NOT NULL,
     PRIMARY KEY (idEntrega , fkFrete),
-    FOREIGN KEY (fkFrete)
-        REFERENCES Frete (idFrete)
+    CONSTRAINT FK_ENTREGA_FRETE
+		FOREIGN KEY (fkFrete)
+			REFERENCES Frete (idFrete)
 );
 
 INSERT INTO Usuario (cpf, cnpj, nomeCompleto, email, senha)
@@ -134,11 +149,11 @@ INSERT INTO Manutencao (dataManutencao, descricao, valor, fkCaminhao) VALUES
 ('2025-03-05', 'substituicao de pneus', 4500.00, 3);
 
 INSERT INTO Frete
-(cliente, dtSaida, dtChegada, dtCriacao, valor, pesoKG, vlPedagio, diariaAjudante, qtdAjudante, fkMotorista, fkCaminhao, fkUsuario, statusFrete, dtConclusao)
+(cliente, dtSaida, valor, pesoKG, vlPedagio, qtdAjudante, fkMotorista, fkCaminhao, fkUsuario, statusFrete, dtConclusao)
 VALUES
-('MONTONE','2025-11-03', '2025-11-05', '2025-11-02', 1500.00, 8000, 120.50, 100.00, 1, 1, 1, 1, 'Realizado', '2025-11-05'),
-('ANIDROL','2025-11-08', '2025-11-10', '2025-11-07', 1800.00, 9500, 130.75, 150.00, 2, 2, 2, 1, 'Orçado', '2025-11-10'),
-('ANIDROL','2025-11-11', '2025-11-13', '2025-11-10', 2100.00, 10000, 140.00, 200.00, 1, 3, 3, 1, 'Realizado', '2025-11-13');
+('MONTONE','2025-11-03', 1500.00, 8000, 120.50, 1, 1, 1, 1, 'Realizado', '2025-11-05'),
+('ANIDROL','2025-11-08', 1800.00, 9500, 130.75, 2, 2, 2, 1, 'Orçado', '2025-11-10'),
+('ANIDROL','2025-11-11', 2100.00, 10000, 140.00, 1, 3, 3, 1, 'Realizado', '2025-11-13');
 
 INSERT INTO Coleta (CEP, numero, cliente, complemento, distanciaKM, fkFrete) VALUES
 ('01001000', '250', 'armazem santos log', 'galpao b', 15, 1),
@@ -149,6 +164,7 @@ INSERT INTO Entrega (CEP, numero, complemento, destinatario, distanciaKM, fkFret
 ('18013110', '42', NULL, 'centro distribuidor sorocaba', 120, 1),
 ('13050420', '300', 'bloco 1', 'autopecas campinas', 180, 2),
 ('05025030', '12', NULL, 'supermercado pinheiros', 95, 3);
+
 select * from usuario;
 
 SELECT
@@ -162,16 +178,23 @@ SELECT
      AND statusFrete = 'Realizado') AS TOTAL_FRETES_REALIZADOS
 FROM Frete f
 JOIN Usuario u ON u.idUsuario = f.fkUsuario
-WHERE u.idUsuario = 1
+WHERE u.email = "teste1@email.com"
   AND f.statusFrete = 'Realizado'
 ORDER BY f.dtConclusao DESC;
 
-DROP VIEW VW_KPI_FRETES_REALIZADOS_TOTAL;
-SELECT QTD_FRETES FROM VW_KPI_FRETES_REALIZADOS_TOTAL;
+DROP VIEW IF EXISTS VW_KPI_FRETES_REALIZADOS_TOTAL;
+-- VIEW precisa ser criada antes de consultar
+CREATE VIEW VW_KPI_FRETES_REALIZADOS_TOTAL AS
+SELECT fkUsuario, COUNT(*) AS QTD_FRETES
+FROM Frete
+WHERE statusFrete = 'Realizado'
+GROUP BY fkUsuario;
 
+SELECT QTD_FRETES FROM VW_KPI_FRETES_REALIZADOS_TOTAL;
 
 CREATE VIEW VW_KPI_FRETES_REALIDADOS_SEMANA AS
 SELECT COUNT(idFrete) FROM Frete;
 
- Drop DATABASE Penguin;
+DROP DATABASE Penguin;
+
 
