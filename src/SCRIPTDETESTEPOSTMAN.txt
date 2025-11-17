@@ -1,0 +1,40 @@
+controller de inserir dados coleta:
+{
+    "CEPServer": "04567890",
+    "numeroServer": "123",
+    "bairroServer": "Jardim das Flores",
+    "estadoServer": "SP",
+    "clienteServer": "Transportes Silva",
+    "complementoServer": "Galpão 2",
+    "distanciaKMServer": 45,
+    "fkFreteServer": 1
+}
+
+inserir dados entrega
+{
+    "CEPServer": "04567890",
+    "numeroServer": "123",
+    "bairroServer": "Jardim das Flores",
+    "estadoServer": "SP",
+    "clienteServer": "Transportes Silva",
+    "complementoServer": "Galpão 2",
+    "destinatarioServer": "João da Silva",
+    "distanciaKMServer": 45,
+    "fkFreteServer": 1
+}
+
+inserir dados frete
+
+{
+    "clienteServer": "Transportes Silva",
+    "dtSaidaServer": "2025-11-17",
+    "valorServer": 1200.50,
+    "pesoKGServer": 1500,
+    "vlPedagioServer": 75.00,
+    "qtdAjudanteServer": 2,
+    "fkCaminhaoServer": 3,
+    "fkUsuarioServer": 1,
+    "statusFreteServer": "Em andamento",
+    "dtConclusaoServer": "2025-11-20"
+}
+

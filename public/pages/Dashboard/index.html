@@ -7,17 +7,40 @@
     <title>Penguin Dahboard</title>
     <link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="../../css/Dashboard/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
     <div class="container">
-        <div id="fretesRealizados" class="KPI">
+        <div class="sub-container">
+            <div class="kpi-container">
+                <div id="fretesRealizados" class="KPI">
+                </div>
+                <div id="LucroLiquido" class="KPI">
+                </div>
+                <div id="DistanciaTotal" class="KPI">
+                </div>
+                <div id="Manutencao" class="KPI">
+                </div>
+            </div>
+            <div class="graficos-container">
+                <div class="GRAFICO">
+                    <canvas id="chart"></canvas>
+                </div>
+                <div class="GRAFICO-DONNUT">
+                    <canvas id="donut"></canvas>
+                </div>
+            </div>
         </div>
-        <div class="KPI">
+        <div class="agenda-container">
+            <div class="lista-agenda">
+                <p is><strong>Fretes para essa semana</strong></p>
+                <ul id="listaAgenda">
+
+                </ul>
+                </div>
+
         </div>
-        <div class="KPI">
-        </div>
-        <div class="KPI">
         </div>
     </div>
 </body>
@@ -25,47 +48,260 @@
 </html>
 <script>
     function ConsultaKpiFretes() {
-        const email = sessionStorage.getItem("EMAIL_DO_LOGADO");
-        console.log(email)
+        var email = sessionStorage.getItem("EMAIL_DO_LOGADO")
+        console.log('kpi fretes: ', email)
         if (email == null) {
             console.log("Nenhum email no sessionStorage");
         }
-
         fetch("/kpi/fretes", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                    email: email
+                email: email
+            })
+        })
+            .then(function (resposta) {
+                resposta.json()
+                    .then(function (respostaConversao) {
+                        fretesRealizados.innerHTML =
+                            `
+                            <h1>Fretes Realizados</h1>
+                            <h1>${respostaConversao[0].TOTAL_FRETES_REALIZADOS}</h1>
+                      `
+                    }).catch((erro) => {
+                        console.log("ERRO:", erro)
+                    })
+            }).catch((erro) => {
+                console.log(erro)
+            })
+            .then(function (fretes) {
+                console.log("Resultado da KPI:", fretes);
+                console.log("Quantidade de fretes realizados:", fretes);
+
+            })
+            .catch(erro => {
+                console.log("ERRO:", erro);
+            });
+    }
+    function ConsultaKpiLucroLiquido() {
+        var email = sessionStorage.getItem("EMAIL_DO_LOGADO")
+        console.log('kpi lucro:', email)
+        fetch('/kpi/lucro', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailSessionServer: email
+            })
+        })
+            .then(function (resposta) {
+                resposta.json()
+                    .then(function (respostaConversaoDados) {
+                        LucroLiquido.innerHTML = `
+            <h1>Lucro Líquido</h1>
+             <h1>${respostaConversaoDados}</h1>
+
+             `
+                    }).catch(function (errorConversao) {
+                        console.log(errorConversao)
+                    })
+            }).catch(function (errorEnvio) {
+                console.log(console.log(errorEnvio))
+            })
+    }
+    function ConsultaKpiDistancia() {
+        var email = sessionStorage.getItem("EMAIL_DO_LOGADO")
+        var objManipularData = new Date();
+        var ano = objManipularData.getFullYear();
+        var mes = objManipularData.getMonth() + 1;
+        fetch('/kpi/distancia', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body:
+                JSON.stringify({
+                    emailServer: email,
+                    mesServer: mes,
+                    anoServer: ano
                 })
         })
-        .then(function (resposta){
-            resposta.json().then((res)=>{
-                var arrayFretes = res
-                console.log(res[0].TOTAL_FRETES_REALIZADOS)
-                fretesRealizados.innerHTML =
+            .then(function (resposta) {
+                resposta.json()
+                    .then(function (respostaConversao) {
+                        DistanciaTotal.innerHTML = `
+                <h1>Distancia Total Percorrida Mes</h1>
+                <h2>${respostaConversao[0].TOTAL_DE_KM}</h2>
                 `
-                <h1>Fretes Realizados</h1>
-                ${res[0].TOTAL_FRETES_REALIZADOS}
-
-                    `
-            }).catch((erro)=>{
-                console.log("ERRO:", erro)
+                    }).catch(function (erro) {
+                        console.log(`ERRO CONVERSAO: ${erro}`)
+                    })
+            }).catch(function (erro) {
+                console.log('ERRO AO BUSCAR DADOS NA ROTA: erro')
             })
-        }).catch((erro)=>{
-            console.log(erro)
+    }
+    function ConsultaKpiManutencao() {
+        var email = sessionStorage.getItem("EMAIL_DO_LOGADO")
+        fetch('/kpi/manutencao', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body:
+                JSON.stringify({
+                    emailServer: email,
+                })
         })
-        .then(function (fretes) {
-            console.log("Resultado da KPI:", fretes);
-            console.log("Quantidade de fretes realizados:", fretes);
+            .then(function (resposta) {
+                resposta.json()
+                    .then(function (respostaConversao) {
+                        Manutencao.innerHTML = `
+                        <h1>Kms até a Próxima Manutenção</h1>
+                        <h2>${respostaConversao}</h2>
+                `
+                    }).catch(function (erro) {
+                        console.log(`ERRO CONVERSAO: ${erro}`)
+                    })
+            }).catch(function (erro) {
+                console.log(`ERRO AO BUSCAR DADOS NA ROTA: ${erro}`)
+            })
+    }
+    function ConsultaGraficoSemestre() {
+        var email = sessionStorage.getItem("EMAIL_DO_LOGADO")
 
+        fetch('/grafico/semestre', {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ emailServer: email })
         })
-        .catch(erro => {
-            console.log("ERRO:", erro);
-        });
+            .then(function (resposta) {
+                resposta.json()
+                    .then(function (respostaConversao) {
+                        let labels = [];
+                        let valores = [];
+
+                        for (let i = 0; i < respostaConversao.length; i++) {
+                            labels[i] = respostaConversao[i].mes;
+                            valores[i] = respostaConversao[i].faturamento;
+                        }
+
+                        const ctx = document.getElementById('chart');
+                        new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    label: "Faturamento",
+                                    data: valores,
+                                    borderWidth: 1,
+                                    backgroundColor: [
+                                        '#1BAFA9',
+                                        '#FFFFFF',
+                                        '#7B20E2'
+                                    ],
+                                }]
+                            },
+                            options: {
+                                scales: { y: { beginAtZero: true } },
+                                responsive: true,
+                                maintainAspectRatio: false
+
+                            }
+                        });
+                    })
+            })
+            .catch(err => console.log(err))
+    }
+    function ConsultaGraficoDonnut() {
+        var email = sessionStorage.getItem("EMAIL_DO_LOGADO")
+        fetch('/grafico/donut', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body:
+                JSON.stringify({
+                    emailServer: email
+                })
+        })
+            .then(function (resposta) {
+                resposta.json()
+                    .then(function (respostaConversao) {
+                        let labels = [];
+                        let valores = [];
+                        for (let i = 0; i < respostaConversao.length; i++) {
+                            labels[i] = respostaConversao[i].categoria, "%";
+                            valores[i] = respostaConversao[i].total;
+                        }
+                        console.log(respostaConversao)
+                        const ctx = document.getElementById('donut');
+                        new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    data: valores,
+                                    backgroundColor: [
+                                        '#1BAFA9',
+                                        '#636363',
+                                        '#FFAE00',
+                                        '#7B20E2'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                cutout: '60%'
+                            }
+                        });
+                    }).catch(function (errorConversao) {
+                        console.log(errorConversao)
+                    })
+            }).catch(function (erro) {
+                console.log(erro)
+            })
+
+    }
+    function ConsultaAgenda() {
+        var email = sessionStorage.getItem("EMAIL_DO_LOGADO")
+        fetch('/usuarios/agenda', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: email
+            })
+        })
+        .then(function (resposta){
+            resposta.json()
+            .then(function(respostaConversao){
+                console.log(respostaConversao)
+                for(let i = 0; i < respostaConversao.length; i++){
+                    listaAgenda.innerHTML += `
+                    <li>${respostaConversao[i].DATA_SAIDA} ${respostaConversao[i].NOME_CLIENTE} - ${respostaConversao[i].BAIRRO} - ${respostaConversao[i].ESTADO} </li>
+                    `
+                }
+            }).catch(function (errorConversao){
+                console.log(errorConversao)
+            })
+        }).catch(function (erroResposta){
+            console.log(erroResposta)
+        })
+
     }
 
-    window.onload = ConsultaKpiFretes;
-</script>
+    window.onload = function () {
+        ConsultaKpiFretes()
+        ConsultaKpiLucroLiquido()
+        ConsultaKpiDistancia()
+        ConsultaKpiManutencao()
+        ConsultaGraficoSemestre()
+        ConsultaGraficoDonnut()
+        ConsultaAgenda()
+    }
 
+</script>
