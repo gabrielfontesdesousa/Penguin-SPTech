@@ -1,0 +1,77 @@
+.card-calendario{
+    width: 100%;
+    background: #1D1D1D;
+    border-radius: 15px;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.header-calendario{
+    background-color: #7B20E2;
+    display: flex;
+    width: 100%;
+    height: 10%;
+    min-height: 45px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-calendario h3{
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.conteudo-calendario{
+    width: 90%;
+    height: 80%;
+    min-height: 250px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #6B6B6B;
+    gap: 30px;
+}
+
+.conteudo-calendario div{
+    width: 100%;
+    height: 80%;
+}
+
+.conteudo-calendario h4{
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lista-fretes{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.item-agenda{
+    color: white;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-agenda:last-child{
+    border-bottom: none;
+}

@@ -1,0 +1,124 @@
+.container-experimente{
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.sub-container-experimente{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.text-experimente{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.text-experimente h1{
+    color: white;
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.text-experimente p{
+    color: #8A8F98;
+    font-size: 20px;
+    padding-top: 20px;
+}
+
+.btn-experimente{
+    background-color: white;
+    color: #000000;
+    border: none;
+    padding: 15px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 30px;
+    font-family: 'Montserrat';
+    transition: 200ms;
+}
+
+.btn-experimente:hover{
+    background-color: #373737;
+    color: white;
+}
+.container-perguntas{
+    width: 100%;
+    height: 100vh;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub-container-perguntas{
+    width: 60%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.title-perguntas{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-perguntas h1{
+    color: white;
+    font-size: 45px;
+    font-weight: 600;
+}
+
+.lista-perguntas{
+    width: 100%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-pergunta{
+    width: 100%;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+
+.pergunta-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 0;
+    cursor: pointer;
+}
+
+.pergunta-header h3{
+    color: white;
+    font-size: 19px;
+    font-weight: 400;
+}
+
+.icon-toggle{
+    color: white;
+    font-size: 28px;
+    font-weight: 300;
+}
+
+
+
+.pergunta-resposta p{
+    color: #8A8F98;
+    font-size: 17px;
+    line-height: 1.6;
+}

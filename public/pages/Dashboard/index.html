@@ -10,40 +10,127 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Penguin</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/Dashboard/cardCalendario.css">
+    <link rel="stylesheet" href="../../css/Dashboard/graficoBarra.css">
+    <link rel="stylesheet" href="../../css/Dashboard/cardRevisao.css">
+    <link rel="stylesheet" href="../../css/Dashboard/cardSimulador.css">
+    <link rel="stylesheet" href="../../css/Dashboard/graficoPizza.css">
+    <link rel="stylesheet" href="../../css/Dashboard/header.css">
+    <link rel="stylesheet" href="../../css/Dashboard/sidebarMenu.css">
+    <link rel="stylesheet" href="../../css/Dashboard/cardKpis.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
 <body>
-    <div class="container">
-        <div class="sub-container">
-            <div class="kpi-container">
-                <div id="fretesRealizados" class="KPI">
+    <div class="container-dashboard">
+        <div class="sidebar-menu">
+            <div class="itens-menu">
+                <div class="item-menu telaAtual">
+                    <img src="../../assets/layers 5.svg" alt="">
                 </div>
-                <div id="LucroLiquido" class="KPI">
+                <div class="item-menu">
+                    <img src="../../assets/layers 2.svg" alt="">
                 </div>
-                <div id="DistanciaTotal" class="KPI">
+                <div class="item-menu">
+                    <img src="../../assets/In Transit.svg" alt="">
                 </div>
-                <div id="Manutencao" class="KPI">
+                <div class="item-menu">
+                    <img src="../../assets/layers 6.svg" alt="">
                 </div>
-            </div>
-            <div class="graficos-container">
-                <div class="GRAFICO">
-                    <canvas id="chart"></canvas>
-                </div>
-                <div class="GRAFICO-DONNUT">
-                    <canvas id="donut"></canvas>
+                <div class="item-menu">
+                    <img src="../../assets/exit.svg" alt="">
                 </div>
             </div>
         </div>
-        <div class="agenda-container">
-            <div class="lista-agenda">
-                <p is><strong>Fretes para essa semana</strong></p>
-                <ul id="listaAgenda">
 
-                </ul>
+        <div class="container-principal">
+            <div class="sub-container-boas-vindas">
+                <div class="text-boas-vindas">
+                    <h1>Olá, <span>Fontes!</span></h1>
                 </div>
 
-        </div>
+            </div>
+
+            <div class="layout-grid">
+                <div class="coluna-esquerda">
+                    <div class="container-kpis">
+                        <div class="card-info" id="fretesRealizados"></div>
+                        <div class="card-info" id="LucroLiquido"></div>
+                        <div class="card-info" id="DistanciaTotal"></div>
+                    </div>
+                    <div class="card-grafico-barra">
+                        <div class="header-grafico">
+                            <h3>Faturamento do semestre</h3>
+                            <span class="caixa-semestre">Semestre</span>
+                        </div>
+                        <div class="conteudo-grafico">
+                            <canvas id="chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="container-graficos-bottom">
+                        <div class="card-grafico-pizza">
+                            <div class="conteudo-pizza">
+                                <div class="grafico">
+                                    <canvas id="donut"></canvas>
+                                </div>
+
+                                <div class="legenda">
+                                    <h3>Despesas mensais<br>por tipo (em %)</h3>
+
+                                    <div class="item"><span class="cor diesel"></span> Diesel</div>
+                                    <div class="item"><span class="cor manut"></span> Manutenção</div>
+                                    <div class="item"><span class="cor pedagio"></span> Pedágio</div>
+                                    <div class="item"><span class="cor alim"></span> Alimentação</div>
+                                    <div class="item"><span class="cor outros"></span> Outros</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-revisao" id="Manutencao"></div>
+                    </div>
+                </div>
+
+                <div class="coluna-direita">
+                    <div class="card-calendario">
+                        <div class="header-calendario">
+                            <h3>Calendário Semanal</h3>
+                        </div>
+                        <div class="conteudo-calendario">
+                            <p>Confira as coletas e entregas referentes a semana atual, <br>
+                            para mais detalhes e gerenciamento, entre na tela de gerenciamento de fretes
+                            </p>
+                            <div>
+                                <div id="listaAgenda" class="lista-fretes"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-simulador">
+                        <div class="header-simulador">
+                            <h3>Fazer simulações de fretes</h3>
+                        </div>
+                        <p class="descricao-simulador">Faça simulações para ver a viabilidade de fretes e seus custos
+                            envolvidos.</p>
+                        <button class="btn-simular">Simular frete</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script src="../../js/dashboard.js"></script>
 </body>
+
+</html>
 
 </html>
 <script>
@@ -66,10 +153,20 @@
                 resposta.json()
                     .then(function (respostaConversao) {
                         fretesRealizados.innerHTML =
-                            `
-                            <h1>Fretes Realizados</h1>
-                            <h1>${respostaConversao[0].TOTAL_FRETES_REALIZADOS}</h1>
-                      `
+                            fretesRealizados.innerHTML = `
+                                <div class="header-card">
+                                    <div>
+                                        <h3>Fretes</h3>
+                                        <h3>Realizados</h3>
+                                    </div>
+                                    <span class="caixa-mes">Mês</span>
+                                </div>
+                                <div class="conteudo-card">
+                                    <h2>${respostaConversao[0].TOTAL_FRETES_REALIZADOS}</h2>
+                                    <span class="porcentagem positivo">↗ 17%</span>
+                                </div>
+                                <p class="descricao-card">Viagens realizadas na jornada do último mês</p>
+`;
                     }).catch((erro) => {
                         console.log("ERRO:", erro)
                     })
@@ -101,10 +198,18 @@
                 resposta.json()
                     .then(function (respostaConversaoDados) {
                         LucroLiquido.innerHTML = `
-            <h1>Lucro Líquido</h1>
-             <h1>${respostaConversaoDados}</h1>
-
-             `
+                        <div class="header-card">
+                            <div>
+                                <h3>Lucro Líquido</h3>
+                                <h3>Mensal</h3>
+                            </div>
+                            <span class="porcentagem-mini positivo">↗ 5%</span>
+                        </div>
+                        <div class="conteudo-card">
+                            <h2>${respostaConversaoDados}</h2>
+                        </div>
+                        <p class="descricao-card">Cálculo baseado na margem dos custos fixos e variáveis no mês anterior.</p>
+`;
                     }).catch(function (errorConversao) {
                         console.log(errorConversao)
                     })
@@ -133,9 +238,20 @@
                 resposta.json()
                     .then(function (respostaConversao) {
                         DistanciaTotal.innerHTML = `
-                <h1>Distancia Total Percorrida Mes</h1>
-                <h2>${respostaConversao[0].TOTAL_DE_KM}</h2>
-                `
+                        <div class="header-card">
+                            <div>
+                                <h3>Distância Total</h3>
+                                <h3>Percorrida</h3>
+                            </div>
+                            <span class="caixa-mes">Mês</span>
+                        </div>
+                        <div class="conteudo-card">
+                            <h2>${respostaConversao[0].TOTAL_DE_KM}</h2>
+                            <span class="unidade">KM</span>
+                            <span class="porcentagem positivo">↗ 12%</span>
+                        </div>
+                        <p class="descricao-card">Porcentagem relativa ao período anterior.</p>
+                    `;
                     }).catch(function (erro) {
                         console.log(`ERRO CONVERSAO: ${erro}`)
                     })
@@ -159,9 +275,16 @@
                 resposta.json()
                     .then(function (respostaConversao) {
                         Manutencao.innerHTML = `
-                        <h1>Kms até a Próxima Manutenção</h1>
-                        <h2>${respostaConversao}</h2>
-                `
+                            <div class="header-revisao">
+                                <h3>Sugestão de revisão em</h3>
+                            </div>
+                            <div class="conteudo-revisao">
+                                <h2>${respostaConversao}</h2>
+                                <span class="unidade-km">KMs</span>
+                            </div>
+                            <p class="descricao-revisao">Baseado no gerenciamento e o intervalo de kms para esta manutenção.</p>
+                            <p class="info-revisao">Gerenciamento baseado no tempo médio e última manutenção feita. Ajuste estimado baseado na sua distância, podendo variar.</p>
+`;
                     }).catch(function (erro) {
                         console.log(`ERRO CONVERSAO: ${erro}`)
                     })
@@ -250,11 +373,16 @@
                                         '#FFAE00',
                                         '#7B20E2'
                                     ],
-                                    borderWidth: 1
+                                    borderWidth: 1,
                                 }]
                             },
                             options: {
-                                cutout: '60%'
+                                cutout: '60%',
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: { display: false },
+                                }
                             }
                         });
                     }).catch(function (errorConversao) {
@@ -276,23 +404,26 @@
                 emailServer: email
             })
         })
-        .then(function (resposta){
-            resposta.json()
-            .then(function(respostaConversao){
-                console.log(respostaConversao)
-                for(let i = 0; i < respostaConversao.length; i++){
-                    listaAgenda.innerHTML += `
-                    <li>${respostaConversao[i].DATA_SAIDA} ${respostaConversao[i].NOME_CLIENTE} - ${respostaConversao[i].BAIRRO} - ${respostaConversao[i].ESTADO} </li>
-                    `
-                }
-            }).catch(function (errorConversao){
-                console.log(errorConversao)
+            .then(function (resposta) {
+                resposta.json()
+                    .then(function (respostaConversao) {
+                        console.log(respostaConversao)
+                        for (let i = 0; i < respostaConversao.length; i++) {
+                            listaAgenda.innerHTML += `
+                                <div class="item-agenda">
+                                    <strong>${respostaConversao[i].DATA_SAIDA}</strong> - ${respostaConversao[i].NOME_CLIENTE} - ${respostaConversao[i].BAIRRO}, ${respostaConversao[i].ESTADO}
+                                </div>
+                              `;
+                        }
+                    }).catch(function (errorConversao) {
+                        console.log(errorConversao)
+                    })
+            }).catch(function (erroResposta) {
+                console.log(erroResposta)
             })
-        }).catch(function (erroResposta){
-            console.log(erroResposta)
-        })
 
     }
+
 
     window.onload = function () {
         ConsultaKpiFretes()

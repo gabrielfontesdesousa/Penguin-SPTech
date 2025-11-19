@@ -1,36 +1,358 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Penguin</title>
-    <link rel="stylesheet" href="./css/Landing/style.css" />
     <link rel="stylesheet" href="./css/reset.css">
-    <link rel="shortcut icon" href="./assets/1-5f7fbf98.ico "type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/1-5f7fbf98.ico " type="image/x-icon">
+    <link rel="stylesheet" href="./css/Landing/containerHome.css" />
+    <link rel="stylesheet" href="./css/Landing/containerVisuzalize.css">
+    <link rel="stylesheet" href="./css/Landing/containerBoleia.css">
+    <link rel="stylesheet" href="./css/Landing/containerBeneficios.css">
+    <link rel="stylesheet" href="./css/Landing/containerCultura.css">
+    <link rel="stylesheet" href="./css/Landing/containerMvv.css">
+    <link rel="stylesheet" href="./css/Landing/containerMvv.css">
+    <link rel="stylesheet" href="./css/Landing/containerPerguntas.css">
+    <link rel="stylesheet" href="./css/Landing/footer.css">
+    <link rel="stylesheet" href="./css/Landing/header.css">
 </head>
+
 <body>
     <div class="container-home">
+        <video autoplay muted loop playsinline>
+            <source src="./assets/videoplayback.mp4" type="video/mp4">
+        </video>
         <header class="header">
             <section class="navbar-logo">
-              <img src="./assets/logo-navbar-login.svg" alt="Logo Penguin Solutions">
+                <img src="./assets/logo-navbar-login.svg" alt="Logo Penguin Solutions">
             </section>
 
             <nav class="navbar-header">
-              <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Sobre nós</a></li>
-                <li><a href="#">O que fazemos</a></li>
-                <li><a href="#">Simulador Financeiro</a></li>
-                <li><a href="#">Contate-nos</a></li>
-              </ul>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Sobre nós</a></li>
+                    <li><a href="#">O que fazemos</a></li>
+                    <li><a href="#">Simulador Financeiro</a></li>
+                    <li><a href="#">Contate-nos</a></li>
+                </ul>
             </nav>
 
             <section class="navbar-btn">
-              <a href="./pages/Login/index.html"><button class="btn btn-lg">Login</button></a>
-              <a href="./pages/Register/index.html"><button class="btn btn-rg">Criar conta</button></a>
+                <a href="./pages/Login/index.html"><button class="btn btn-login">Login</button></a>
+                <a href="./pages/Register/index.html"><button class="btn btn-criar">Criar conta</button></a>
             </section>
-          </header>
+        </header>
 
+        <div class="container-acao">
+            <div class="hero-text">
+                <h1>Seu painel pessoal de controle<br>na estrada.</h1>
+                <p>Simule fretes, monitore custos e receba alertas <br> automáticos. Feito para deixar sua jornada mais
+                    <br> eficiente e organizada. Tecnologia e estrada, lado a <br> lado.
+                </p>
+                <button class="btn-comecar">Começar!</button>
+            </div>
+        </div>
     </div>
+    <div class="container-visualize">
+        <div class="sub-container-text">
+            <div class="container-h1">
+                <h1>Visualize e Otimize</h1>
+                <div class="container-topics">
+                    <div>
+                        <h3><b>A Dashboard</b> de nosso painel oferece uma visão completa e dinâmica de todas as
+                            operações da
+                            sua <b>Rotina</b>.
+                        </h3>
+                        <h3>Oferecemos um serviço de excelência que dispõe de: <br><br>
+                            <b>Gerenciador de Fretes: </b> Registre e acompanhe todos os seus fretes
+                            <br><br>
+
+                            <b>Gerenciador de Coletas: </b> Organize suas coletas com eficiência
+                            <br><br>
+
+                            <b>Gerenciador de Entregas: </b> Controle prazos e rotas de entrega
+                            <br><br>
+
+                            <b>Simulador de Fretes: </b> Calcule valores antes de fechar negócio
+                            <br><br>
+
+                            <b>Gerenciador de Despesas: </b> – Monitore gastos e maximize lucros
+                            <br><br>
+                        </h3>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="sub-container-laptop"></div>
+    </div>
+    <div class="container-boleia">
+        <div class="sub-container-boleia">
+            <div class="text-boleia">
+                <h2>
+                    Da Boleia para o <br> mundo digital, <br> gestão inteligente <br> com alma de <br>
+                    <b>Caminhoneiro.</b>
+                </h2>
+                <div class="paragrafo-boleia">
+                    <p>Acredito que a estrada conecta mais do que cidades,</p>
+                    <p>conectam histórias, esforços e sonhos.</p>
+                    <p>O Projeto Penguin nasceu para tornar o trabalho dos</p>
+                    <p>caminhoneiros mais inteligente e acessível, unindo</p>
+                    <p>tecnologia à realidade da boleia.</p>
+                    <p>Nosso propósito é facilitar o dia a dia de quem move o</p>
+                    <p>país, com ferramentas simples, úteis e pensadas por</p>
+                    <p>quem já viveu e cresceu nesse dia a dia.</p>
+                </div>
+            </div>
+            <div class="galeria-boleia">
+                <div class="item-galeria">
+                    <img src="./assets/Image.png" alt="">
+                    <p>O trânsito mostra o peso e a paciência de quem vive a cidade.</p>
+                </div>
+                <div class="item-galeria">
+                    <img src="./assets/Image-1.png" alt="">
+                    <p>O dia a dia na rua, me fez enxergar diferentes realidades que nunca imaginaria saber da
+                        existência</p>
+                </div>
+                <div class="item-galeria">
+                    <img src="./assets/Image-2.png" alt="Caminhão em viagem">
+                    <p>Paisagens que fazem todas as horas gastas e desgastes mentais e fisicos valerem apena.</p>
+                </div>
+                <div class="item-galeria">
+                    <img src="./assets/Image-3.png" alt="Caminhoneiro trabalhando">
+                    <p>Cresci vendo o valor do trabalho nas mãos do meu pai. E hoje quero ver que faço parte da nova
+                        geração que auxiliará quem me deu tudo.</p>
+                </div>
+                <div class="item-galeria">
+                    <img src="./assets/Image-4.png" alt="Estrada aberta">
+                    <p>Na monotonia da estrada, as conversas davam espaço pra uma conexão e intimidade que não tinhamos
+                        no dia a dia normal, sou muito grato a todas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-beneficios">
+        <div class="sub-container-beneficios">
+            <div class="text-beneficios">
+                <h1>Beneficios</h1>
+                <p>Painel completo para controle e planejamento da sua jornada</p>
+            </div>
+            <div class="container-cards-beneficios">
+                <div class="card-ben">
+                    <div class="header-card">
+                        <div class="span-card">Economia</div>
+                        <img src="./assets/Crowdfunding.svg" alt="">
+                    </div>
+                    <div class="sub-container-card">
+                        <h1><b>20%</b> <br><br> De Economia</h1>
+                        <h2>Reduza até 20% dos gastos com combustível planejando rotas inteligentes, economizando tempo
+                            e dinheiro
+                            em cada viagem. </h2>
+                    </div>
+                </div>
+                <div class="card-ben">
+                    <div class="header-card">
+                        <div class="span-card">Controle</div>
+                        <img src="./assets/Website Analytics.svg" alt="">
+                    </div>
+                    <div class="sub-container-card">
+                        <h1><b>50%</b> <br><br> Menos erros </h1>
+                        <h2>Reduza até 20% dos gastos com combustível planejando rotas inteligentes, economizando tempo
+                            e dinheiro
+                            em cada viagem. </h2>
+                    </div>
+                </div>
+                <div class="card-ben">
+                    <div class="header-card">
+                        <div class="span-card">Eficiencia</div>
+                        <img src="./assets/Efficiency.svg" alt="">
+                    </div>
+                    <div class="sub-container-card">
+                        <h1><b>1000</b> <br><br> Litros</h1>
+                        <h2>Reduza até 20% dos gastos com combustível planejando rotas inteligentes, economizando tempo
+                            e dinheiro
+                            em cada viagem. </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-cultura">
+        <div class="sub-container-cultura">
+            <div class="text-container-cultura">
+                <div class="sub-text-container-cultura">
+                    <div>
+                        <h1>Cultura</h1>
+                        <p>Na estrada, caminhoneiro não anda sozinho. Existe uma irmandade silenciosa nos sinais de
+                            farol, nos avisos de radar pelo rádio, nos comboios que se formam nas madrugadas. É uma
+                            cultura de respeito mútuo, onde um ajuda o outro sem pedir nada em troca. Os encontros nos
+                            postos viram momentos de troca, e cada
+                            traseira erguida, cada roda cromada, cada item que faz do seu caminhão ser SEU,
+                            completamente AUTÊNTICO, é unm símbolo de orgulho pra quem dirige e sabe o que essa cultura
+                            representa. O Penguin nasceu para honrar essa união, trazendo tecnologia que fortalece, e
+                            não substitui, os laços que
+                            fazem da estrada uma verdadeira comunidade. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="container-video-cultura">
+                <video autoplay muted loop playsinline>
+                    <source src="../assets/snaptik_7466957136988261638_hd (1).mp4">
+                </video>
+            </div>
+            <div class="text-container-inspiracao">
+                <div class="sub-text-container-inspiracao">
+                    <h1>Inspiração</h1>
+                    <p>Meu pai dirige caminhão há mais de 20 anos. Cresci ouvindo histórias da estrada, vendo ele voltar
+                        cansado, e participando dessa rotina com ele durante um tempo. Vi também a dificuldade com as contas, os papéis
+                        espalhados, a preocupação se o mês tinha valido a pena, se tinha fretes pendentes e etc. Foi pensando nele que criei o Penguin,
+                        pra tornar a vida de quem trabalha tanto um pouco mais facil de ser administrada. Cada ferramenta aqui é um jeito de
+                        retribuir tudo que ele me ensinou sobre dedicação e amor pelo que faz.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="container-mvv">
+        <div class="card-mvv">
+            <div>
+                <p>
+                    <b>Missão</b> <br><br>
+                    Facilitar o dia a dia dos caminhoneiros autônomos através de tecnologia acessível e intuitiva,
+                    transformando a gestão de transportes em um processo simples, eficiente e estratégico. Oferecemos
+                    ferramentas que aproximam o caminhoneiro da tecnologia, permitindo uma visão clara e organizada de
+                    seus resultados financeiros. <br><br>
+                    <b>Visão</b> <br> <br>
+                    Ser a principal plataforma de gestão para caminhoneiros autônomos no Brasil, reconhecida por
+                    desenvolver soluções que respeitam e valorizam a cultura da estrada, unindo tradição e inovação para
+                    tornar o trabalho mais inteligente e rentável. <br><br>
+                    <b>Valores</b> <br> <br>
+                    Respeito à estrada - Valorizamos a profissão dos caminhões e a vida na estrada com admiração e
+                    autenticidade.
+
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container-experimente">
+        <div class="sub-container-experimente">
+            <div class="text-experimente">
+                <h1>Experimente o Penguin</h1>
+                <p>Gerencie caminhoneiros, fretes e cargas com a inteligência de quem entende a estrada.</p>
+                <a href="/pages/register"> <button class="btn-experimente">Começar agora</button></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-perguntas">
+        <div class="sub-container-perguntas">
+            <div class="title-perguntas">
+                <h1>Perguntas frequentes</h1>
+            </div>
+            <div class="lista-perguntas">
+                <div class="item-pergunta">
+                    <input type="checkbox" id="pergunta1" name="accordion">
+                    <label for="pergunta1" class="pergunta-header">
+                        <h3>Como o Penguin ajuda no gerenciamento de caminhoneiros?</h3>
+                        <span class="icon-toggle">+</span>
+                    </label>
+                    <div class="pergunta-resposta">
+                        <p>O Penguin oferece ferramentas completas para cadastro, controle de jornada, gestão de
+                            documentos e acompanhamento em tempo real de todos os motoristas da sua frota.</p>
+                    </div>
+                </div>
+
+                <div class="item-pergunta">
+                    <input type="checkbox" id="pergunta2" name="accordion">
+                    <label for="pergunta2" class="pergunta-header">
+                        <h3>O sistema funciona em qualquer dispositivo?</h3>
+                        <span class="icon-toggle">+</span>
+                    </label>
+                    <div class="pergunta-resposta">
+                        <p>Sim! O Penguin é totalmente responsivo e funciona perfeitamente em computadores, tablets e
+                            smartphones, permitindo acesso de qualquer lugar.</p>
+                    </div>
+                </div>
+
+                <div class="item-pergunta">
+                    <input type="checkbox" id="pergunta3" name="accordion">
+                    <label for="pergunta3" class="pergunta-header">
+                        <h3>O Penguin ajuda no controle financeiro do dia a dia?</h3>
+                        <span class="icon-toggle">+</span>
+                    </label>
+                    <div class="pergunta-resposta">
+                        <p>Absolutamente! Com o gerenciador de despesas, você registra todos os gastos, acompanha lucros
+                            por frete e visualiza relatórios detalhados para tomar decisões mais inteligentes.</p>
+                    </div>
+                </div>
+
+                <div class="item-pergunta">
+                    <input type="checkbox" id="pergunta4" name="accordion">
+                    <label for="pergunta4" class="pergunta-header">
+                        <h3>O que a dashboard do Penguin mostra?</h3>
+                        <span class="icon-toggle">+</span>
+                    </label>
+                    <div class="pergunta-resposta">
+                        <p>A dashboard apresenta visão geral de fretes ativos, despesas do mês, KPIs importantes,
+                            gráficos de desempenho, alertas de manutenção e muito mais em uma interface intuitiva.</p>
+                    </div>
+                </div>
+
+                <div class="item-pergunta">
+                    <input type="checkbox" id="pergunta5" name="accordion">
+                    <label for="pergunta5" class="pergunta-header">
+                        <h3>Como o Penguin ajuda no agendamento de serviços?</h3>
+                        <span class="icon-toggle">+</span>
+                    </label>
+                    <div class="pergunta-resposta">
+                        <p>O sistema permite agendar manutenções preventivas, controlar revisões por quilometragem e
+                            enviar lembretes automáticos, garantindo que seu caminhão esteja sempre em dia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="container-footer">
+        <div class="sub-container-footer">
+            <div class="footer-logo">
+                <img src="./assets/logo-navbar-login.svg" alt="Logo Penguin">
+                <p>© 2025 Penguin</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-coluna">
+                    <h3>Contato</h3>
+                    <p>Rua Haddock Lobo,</p>
+                    <p>Cerqueira César, 595,</p>
+                    <p>São Paulo, Brasil,</p>
+                    <p>CEP: 01414-905</p>
+                </div>
+                <div class="footer-coluna">
+                    <h3>Sitemap</h3>
+                    <a href="#">Home</a>
+                    <a href="#">Perguntas</a>
+                    <a href="#">Funcionalidades</a>
+                </div>
+                <div class="footer-coluna">
+                    <h3>Social media</h3>
+                    <a href="#">Linkedin</a>
+                    <a href="#">Github</a>
+                    <a href="#">Instagram</a>
+                </div>
+                <div class="footer-coluna">
+                    <h3>Legal</h3>
+                    <a href="#">Política de privacidade</a>
+                    <a href="#">Cookies</a>
+                    <a href="#">Termos de serviço</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+
+    </script>
 </body>
+
 </html>

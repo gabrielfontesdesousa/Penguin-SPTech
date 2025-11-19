@@ -1,0 +1,60 @@
+.container-cultura{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+.sub-container-cultura{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.text-container-inspiracao{
+    width: 30%;
+}
+.text-container-cultura{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+.container-video-cultura{
+    width: 30%;
+    height: 100%;
+    background-color: #3B3B3B;
+    background-color: black;
+    position: relative;
+    overflow: hidden;
+}
+.container-video-cultura video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.5;
+}
+
+.sub-text-container-cultura{
+    width: 100%;
+    height: 50%;
+}
+.sub-text-container-inspiracao{
+    width: 100%;
+    height: 50%;
+}
+.sub-text-container-inspiracao h1{
+    padding-top: 50px;
+    color: #3B3B3B;
+    font-size: 70px;
+}
+.sub-text-container-cultura h1{
+    padding-top: 50px;
+    color: #3B3B3B;
+    font-size: 70px;
+}
+.sub-container-cultura p{
+    font-size: 20px;
+    padding-top: 30px;
+    color: #989898;
+    line-height: 1.4;
+}

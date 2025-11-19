@@ -1,0 +1,52 @@
+
+.card-revisao{
+    width: 50%;
+    height: 40%;
+    background-color: #1D1D1D;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.header-revisao h3{
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.conteudo-revisao{
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.conteudo-revisao h2{
+    color: white;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 15px;
+
+}
+
+.unidade-km{
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.descricao-revisao{
+    color: white;
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 27px;
+
+}
+
+.info-revisao{
+    color: #8A8F98;
+    font-size: 11px;
+    line-height: 1.4;
+}
+

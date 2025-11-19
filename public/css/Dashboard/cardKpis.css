@@ -1,0 +1,72 @@
+
+.card-info{
+    width: 33.33%;
+    background-color: #1A1A1A;
+    border-radius: 15px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.header-card{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.header-card h3{
+    color: white;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.caixa-mes{
+    background-color: white;
+    color: #000;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.porcentagem-mini{
+    color: #10B981;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.conteudo-card{
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.conteudo-card h2{
+    color: white;
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.unidade{
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.porcentagem{
+    color: #10B981;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.positivo{
+    color: #10B981;
+}
+
+.descricao-card{
+    color: #8A8F98;
+    font-size: 13px;
+    line-height: 1.4;
+}

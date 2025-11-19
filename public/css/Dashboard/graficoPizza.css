@@ -1,0 +1,67 @@
+.card-grafico-pizza {
+  width: 100%;
+  height: 40%;
+  background: #1d1d1d;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.conteudo-pizza {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.grafico {
+  width: 40%;
+  height: 190px;
+  position: relative;
+}
+
+.grafico canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.legenda {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: white;
+}
+.legenda h3{
+  font-size: 25px ;
+  padding-bottom: 10px;
+
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #8a8f98;
+}
+
+.cor {
+  width: 18px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.diesel {
+  background: #1bafa9;
+}
+.manut {
+  background: #7b20e2;
+}
+.pedagio {
+  background: #ffae00;
+}
+.alim {
+  background: white;
+}
+.outros {
+  background: #555;
+}

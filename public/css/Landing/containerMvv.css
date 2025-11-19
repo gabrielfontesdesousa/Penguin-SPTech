@@ -1,0 +1,26 @@
+.container-mvv{
+    width: 100%;
+    height: 100vh;
+    background-image: url(../../assets/backgroundMvv.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: end;
+}
+.card-mvv{
+    width: 25%;
+    height: 100%;
+    background-image: url(../../assets/fundoCardMvv.png);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-mvv{
+    color: #989898;
+    line-height: 1.2;
+    font-size: 20px;
+}
+.card-mvv div{
+    width: 80%;
+}
