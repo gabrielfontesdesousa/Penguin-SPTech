@@ -16,11 +16,8 @@ function autenticar(req, res) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
                     if (resultadoAutenticar.length == 1) {
-                        function EnviarEmailSessionStorage(){
-                            var email = req.body.emailSessaoServer
-                        }
                         console.log(resultadoAutenticar);
-                        res.status(200).send({"mensagemResposta": "ok"})
+                        res.status(200).send([{"mensagemResposta": "ok"}, {resultadoAutenticar}])
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {

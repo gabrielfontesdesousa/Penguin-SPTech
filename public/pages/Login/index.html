@@ -1,122 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Penguin Logistics</title>
-    <link rel="stylesheet" href="../../css/Login/style.css" />
-    <link rel="stylesheet" href="../../css/reset.css">
-    <script src="../../js/sessao.js"></script>
-  </head>
 
-  <body>
-    <div class="main-container">
-      <div class="container-form">
-        <div class="sub-container-form">
-          <div class="sub-container-form-2">
-            <div class="container-form-labels">
-              <h1>Entre em sua conta</h1>
-              <p>
-                Insira suas credenciais para <br />
-                entrar em sua conta.
-              </p>
-            </div>
-            <div class="container-form-inputs">
-              <section>
-                <span>Email</span>
-                <input type="emaIl" placeholder="Ex: EmersonSheik@gmail.com" id="email_input" value="teste1@email.com"/>
-              </section>
-              <section>
-                <span>Senha</span>
-                <input type="password" placeholder="********" id="senha_input" value="123456" >
-                <div id="responseInput">
-                    <span id="mensagem_erro" >Deve ter mais de 8 caracteres</span>
-                </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Penguin Logistics</title>
+  <link rel="stylesheet" href="../../css/Login/style.css" />
+  <link rel="stylesheet" href="../../css/reset.css">
+  <script src="../../js/sessao.js"></script>
+</head>
 
-              </section>
-            </div>
-            <div class="container-form-buttons">
-             <button  onclick="entrar()" class="btn-login-form">Entrar</button>
-              <span>Ainda não tem uma conta? <a href="../Register/index.html">Criar</a></span>
-            </div>
+<body>
+  <div class="main-container">
+    <div class="container-form">
+      <div class="sub-container-form">
+        <div class="sub-container-form-2">
+          <div class="container-form-labels">
+            <h1>Entre em sua conta</h1>
+            <p>
+              Insira suas credenciais para <br />
+              entrar em sua conta.
+            </p>
+          </div>
+          <div class="container-form-inputs">
+            <section>
+              <span>Email</span>
+              <input type="emaIl" placeholder="Ex: EmersonSheik@gmail.com" id="email_input" value="teste1@email.com" />
+            </section>
+            <section>
+              <span>Senha</span>
+              <input type="password" placeholder="********" id="senha_input" value="123456">
+              <div id="responseInput">
+                <span id="mensagem_erro">Deve ter mais de 8 caracteres</span>
+              </div>
+
+            </section>
+          </div>
+          <div class="container-form-buttons">
+            <button onclick="entrar()" class="btn-login-form">Entrar</button>
+            <span>Ainda não tem uma conta? <a href="../Register/index.html">Criar</a></span>
           </div>
         </div>
       </div>
-      <div class="container-image">
-        <div class="sub-container-image">
-          <section class="navbar-image">
-            <div class="logo-container">
-              <img src="../../assets/logo-navbar-login.svg" alt="" />
-            </div>
-            <div class="navbar-image-links">
-              <ul>
-                <li><a href="">Nosso produto</a></li>
-                <li><a href="">Nossa história.</a></li>
-              </ul>
-            </div>
-          </section>
-        </div>
+    </div>
+    <div class="container-image">
+      <div class="sub-container-image">
+        <section class="navbar-image">
+          <div class="logo-container">
+            <img src="../../assets/logo-navbar-login.svg" alt="" />
+          </div>
+          <div class="navbar-image-links">
+            <ul>
+              <li><a href="">Nosso produto</a></li>
+              <li><a href="">Nossa história.</a></li>
+            </ul>
+          </div>
+        </section>
       </div>
     </div>
-    <div id="div_aguardar" class="loading-div">
-        <img src="../../assets/circle-loading.gif" id="loading-gif">
-    </div>
-  </body>
+  </div>
+  <div id="div_aguardar" class="loading-div">
+    <img src="../../assets/circle-loading.gif" id="loading-gif">
+  </div>
+</body>
+
 </html>
 <script>
-      function entrar() {
-        aguardar();
+  function entrar() {
+    aguardar();
 
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
-
-        if (emailVar == "" || senhaVar == "") {
-            mensagem_erro.innerHTML = "Campos em branco não são válidos";
-            finalizarAguardar();
-            return false;
-        }
-
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-        var EMAILSESSAO = ''
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-            if (resposta.ok) {
-                console.log(resposta);
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    EMAILSESSAO = sessionStorage.setItem("EMAIL_DO_LOGADO", emailVar)
-                    console.log('redireciona ai')
-                     window.location.href = "../Dashboard/index.html";
-                });
-
-            } else {
-                console.log("Houve um erro ao tentar realizar o login!");
-                mensagem_erro.innerHTML = "Usuario ou Senha incorretos!"
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-        return false;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    if (emailVar == "" || senhaVar == "") {
+      mensagem_erro.innerHTML = "Campos em branco não são válidos";
+      finalizarAguardar();
+      return false;
     }
 
-    function sumirMensagem() {
-        responseInput.style.display = "none"
-    }
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+    fetch("/usuarios/autenticar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+      })
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!")
+      EMAILSESSAO = sessionStorage.setItem("EMAIL_DO_LOGADO", emailVar)
+      if (resposta.ok) {
+        resposta.json().then(json => {
+          console.log(json);
+          var nome = json[1].resultadoAutenticar[0].nomeCompleto;
+          nome = sessionStorage("NOME_DO_LOGADO", nome)
+          console.log(nome);
+          NOMESESSAO = sessionStorage.setItem("NOME_DO_LOGADO", nome)
+          console.log('redireciona ai')
+          window.location.href = "../Dashboard/index.html";
+        });
+
+      } else {
+        console.log("Houve um erro ao tentar realizar o login!");
+        mensagem_erro.innerHTML = "Usuario ou Senha incorretos!"
+        resposta.text().then(texto => {
+          console.error(texto);
+          finalizarAguardar(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    })
+    return false;
+  }
+
+  function sumirMensagem() {
+    responseInput.style.display = "none"
+  }
 </script>

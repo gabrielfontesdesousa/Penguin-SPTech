@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penguin Dahboard</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/Dashboard/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Penguin</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/Dashboard/cardCalendario.css">
+    <link rel="stylesheet" href="../../css/Dashboard/graficoBarra.css">
+    <link rel="stylesheet" href="../../css/Dashboard/cardRevisao.css">
+    <link rel="stylesheet" href="../../css/Dashboard/cardSimulador.css">
+    <link rel="stylesheet" href="../../css/Dashboard/graficoPizza.css">
+    <link rel="stylesheet" href="../../css/Dashboard/header.css">
+    <link rel="stylesheet" href="../../css/Dashboard/sidebarMenu.css">
+    <link rel="stylesheet" href="../../css/Dashboard/cardKpis.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container-dashboard">
+        <div class="sidebar-menu">
+            <div class="itens-menu">
+                <div class="item-menu telaAtual">
+                    <img src="../../assets/layers 5.svg" alt="">
+                </div>
+                <div class="item-menu">
+                    <img src="../../assets/layers 2.svg" alt="">
+                </div>
+                <div class="item-menu">
+                    <img src="../../assets/In Transit.svg" alt="">
+                </div>
+                <div class="item-menu">
+                    <img src="../../assets/layers 6.svg" alt="">
+                </div>
+                <div class="item-menu">
+                    <img src="../../assets/exit.svg" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="container-principal">
+            <div class="sub-container-boas-vindas">
+                <div class="text-boas-vindas">
+                    <h1>Olá, <span>Fontes!</span></h1>
+                </div>
+
+            </div>
+
+            <div class="layout-grid">
+                <div class="coluna-esquerda">
+                    <div class="container-kpis">
+                        <div class="card-info" id="fretesRealizados"></div>
+                        <div class="card-info" id="LucroLiquido"></div>
+                        <div class="card-info" id="DistanciaTotal"></div>
+                    </div>
+                    <div class="card-grafico-barra">
+                        <div class="header-grafico">
+                            <h3>Faturamento do semestre</h3>
+                            <span class="caixa-semestre">Semestre</span>
+                        </div>
+                        <div class="conteudo-grafico">
+                            <canvas id="chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="container-graficos-bottom">
+                        <div class="card-grafico-pizza">
+                            <div class="conteudo-pizza">
+                                <div class="grafico">
+                                    <canvas id="donut"></canvas>
+                                </div>
+
+                                <div class="legenda">
+                                    <h3>Despesas mensais<br>por tipo (em %)</h3>
+
+                                    <div class="item"><span class="cor diesel"></span> Diesel</div>
+                                    <div class="item"><span class="cor manut"></span> Manutenção</div>
+                                    <div class="item"><span class="cor pedagio"></span> Pedágio</div>
+                                    <div class="item"><span class="cor alim"></span> Alimentação</div>
+                                    <div class="item"><span class="cor outros"></span> Outros</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-revisao" id="Manutencao"></div>
+                    </div>
+                </div>
+
+                <div class="coluna-direita">
+                    <div class="card-calendario">
+                        <div class="header-calendario">
+                            <h3>Calendário Semanal</h3>
+                        </div>
+                        <div class="conteudo-calendario">
+                            <p>Confira as coletas e entregas referentes a semana atual, <br>
+                            para mais detalhes e gerenciamento, entre na tela de gerenciamento de fretes
+                            </p>
+                            <div>
+                                <div id="listaAgenda" class="lista-fretes"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-simulador">
+                        <div class="header-simulador">
+                            <h3>Fazer simulações de fretes</h3>
+                        </div>
+                        <p class="descricao-simulador">Faça simulações para ver a viabilidade de fretes e seus custos
+                            envolvidos.</p>
+                        <button class="btn-simular">Simular frete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/dashboard.js"></script>
+</body>
+
+</html>
+
+</html>

@@ -54,7 +54,7 @@
         <div class="container-principal">
             <div class="sub-container-boas-vindas">
                 <div class="text-boas-vindas">
-                    <h1>Olá, <span>Fontes!</span></h1>
+                    <h1>Olá, <span id="nomeUser"></span></h1>
                 </div>
 
             </div>
@@ -134,6 +134,8 @@
 
 </html>
 <script>
+    nome = sessionStorage.getItem("NOME_DO_LOGADO")
+    nomeUser.innerHTML = nome;
     function ConsultaKpiFretes() {
         var email = sessionStorage.getItem("EMAIL_DO_LOGADO")
         console.log('kpi fretes: ', email)
@@ -325,12 +327,24 @@
                                         '#FFFFFF',
                                         '#7B20E2'
                                     ],
+
                                 }]
                             },
                             options: {
                                 scales: { y: { beginAtZero: true } },
                                 responsive: true,
-                                maintainAspectRatio: false
+                                maintainAspectRatio: false,
+                                barPercentage: 0.60,
+                                plugins: {
+                                    legend: {
+                                        labels: {
+                                            font: {
+                                                size: 22
+                                            }
+                                        }
+                                    }
+
+                                }
 
                             }
                         });
@@ -423,7 +437,6 @@
             })
 
     }
-
 
     window.onload = function () {
         ConsultaKpiFretes()
