@@ -194,10 +194,6 @@ INSERT INTO Entrega VALUES
 (9, '18133000','33','Sorocaba','SP','TransMoraes','Setor 1','TransMoraes Destino',140,9),
 (10, '13090000','70','Campinas','SP','Mega Cargas',NULL,'Mega Cargas Destino',160,10);
 
-
-
-
-
 DROP TABLE IF EXISTS Manutencao;
 CREATE TABLE Manutencao (
 idManutencao int NOT NULL AUTO_INCREMENT,
@@ -215,7 +211,6 @@ INSERT INTO Manutencao VALUES
 (1,'2025-04-10','troca de oleo e filtros',850.00,NULL,1),
 (2,'2025-05-20','revisao dos freios',1200.00,NULL,2),
 (3,'2025-03-05','substituicao de pneus',4500.00,NULL,3);
-
 
 CREATE VIEW VW_DADOS_BRUTOS_FATURAMENTO_SEMESTRE AS
 SELECT
@@ -306,7 +301,7 @@ WHERE ID_Usuario = (SELECT idUsuario FROM Usuario WHERE email = 'teste1@email.co
 
 -- DROP VIEW VW_QUILOMETRAGEM_ATE_MANUTENCAO;
 
-CREATE or replace VIEW VW_LUCRO_LIQUIDO AS
+CREATE OR REPLACE VIEW VW_LUCRO_LIQUIDO AS
  SELECT
         (
             SELECT SUM(f.valor)
@@ -347,20 +342,7 @@ AND f.statusFrete = 'Marcado';
 -- DROP VIEW VW_LUCRO_LIQUIDO;
 
 CREATE VIEW VW_DESPESAS_MENSAIS AS
-SELECT
-    u.idUsuario AS ID_Usuario,
-    d.idDespesa AS ID_DESPESA,
-    d.categoria AS CATEGORIA,
-    d.valor AS VALOR,
-    DATE_FORMAT(d.dataDesp, '%d/%m/%Y') AS DATA_FORMATADA,
-    d.dataDesp AS DATA,
-    d.descricao AS DESCRICAO,
-    MONTH(d.dataDesp) AS MES,
-    YEAR(d.dataDesp) AS ANO
-FROM Despesa d
-JOIN Motorista m ON d.fkMotorista = m.idMotorista
-JOIN Usuario u ON u.idUsuario = m.fkUsuario
-ORDER BY d.dataDesp DESC;
+ 
 
 SELECT *
 FROM VW_DESPESAS_MENSAIS
@@ -387,6 +369,26 @@ GROUP BY
     MONTH(d.dataDesp),
     YEAR(d.dataDesp);
 
+CREATE OR REPLACE VIEW VW_FRETES AS
+SELECT 
+	f.idFrete 	AS ID_Fretes,
+	f.cliente 	AS CLIENTE,
+    f.dtSaida 	AS DT_SAIDA,
+    f.valor 	AS VALOR,
+    f.pesoKG  	AS PESO_KG,
+    f.vlPedagio	AS VALOR_PEDAGIO,
+    f.qtdAjudante AS QTD_AJUDANTE,
+    f.statusFrete AS STATUS_FRETES,
+    f.dtConclusao AS DT_CONCLUSAO,
+    u.idUsuario  AS ID_Usuario,
+    u.email 	
+	FROM Frete f
+    JOIN Usuario u
+    ON u.idUsuario = f.fkUsuario;
+    
+SELECT *
+FROM VW_FRETES
+WHERE ID_Usuario = (SELECT idUsuario FROM Usuario WHERE email = 'teste1@email.com');
 
 -- DROP VIEW VW_RESUMO_DESPESAS_MENSAIS;
 SELECT *
