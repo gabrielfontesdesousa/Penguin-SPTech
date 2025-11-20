@@ -1,6 +1,6 @@
-DROP DATABASE penguin;
-CREATE DATABASE IF NOT EXISTS penguin;
-USE penguin;
+DROP DATABASE Penguin;
+CREATE DATABASE IF NOT EXISTS Penguin;
+USE Penguin;
 
 DROP TABLE IF EXISTS Usuario;
 
@@ -18,7 +18,7 @@ status VARCHAR(45),
 PRIMARY KEY (idUsuario)
 );
 INSERT INTO Usuario VALUES
-(1,'11111111111',NULL,'Usuário Teste 1','teste1@email.com','123456',NULL,NULL,NULL,NULL),
+(1,'11111111111',NULL,'Fontes Mlk Zika','teste1@email.com','123456',NULL,NULL,NULL,NULL),
 (2,'22222222222',NULL,'Usuário Teste 2','teste2@email.com','123456',NULL,NULL,NULL,NULL),
 (3,'33333333333',NULL,'Usuário Teste 3','teste3@email.com','123456',NULL,NULL,NULL,NULL),
 (4,'12345678901',NULL,'joao ferreira','joao.ferreira@gmail.com','senha123',NULL,NULL,NULL,NULL),
@@ -145,15 +145,25 @@ fkMotorista int NOT NULL,
 PRIMARY KEY (idDespesa),
 KEY FK_DESPESA_MOTORISTA (fkMotorista),
 CONSTRAINT FK_DESPESA_MOTORISTA FOREIGN KEY (fkMotorista) REFERENCES Motorista (idMotorista),
-CONSTRAINT CHECK_CATEGORIA CHECK (categoria in ('Alimentação','Outro','Pedágio','Documentos'))
+CONSTRAINT CHECK_CATEGORIA CHECK (categoria in ('Alimentação','Outro','Pedágio','Documentos', 'Combústivel', 'Manutencao'))
 );
 
 INSERT INTO Despesa VALUES
-(1,'Almoço no posto',32.50,'Alimentação','2025-01-12',1),
-(2,'Jantar na estrada',45.00,'Alimentação','2025-01-14',1),
-(3,'Pedágio - Bandeirantes',18.90,'Pedágio','2025-01-15',1),
-(4,'Documentos do veículo',120.00,'Documentos','2025-01-20',1),
-(5,'Lavagem do caminhão',35.00,'Outro','2025-01-21',1);
+(default, 'Almoço no posto',32.50,'Alimentação','2025-11-12',1),
+(default,'Jantar na estrada',45.00,'Alimentação','2025-11-14',1),
+(default,'Pedágio - Bandeirantes',168.90,'Pedágio','2025-11-15',1),
+(default,'Documentos do veículo',400.00,'Documentos','2025-11-20',1),
+(default,'Lavagem do caminhão',35.00,'Outro','2025-01-21',1),
+(default,'Almoço no posto',32.50,'Alimentação','2025-11-12',1),
+(default,'Jantar na estrada',45.00,'Alimentação','2025-11-14',1),
+(default,'Pedágio - Bandeirantes',120.90,'Pedágio','2025-11-15',1),
+(default,'Documentos do veículo',500.00,'Documentos','2025-11-20',1),
+(default,'Posto',735.00,'Combústivel','2025-01-21',1),
+(default,'Posto',322.50,'Combústivel','2025-11-12',1),
+(default,'Posto',454.00,'Combústivel','2025-11-14',1),
+(default,'Posto - Bandeirantes',185.90,'Combústivel','2025-11-15',1),
+(default,'Posto',1290.00,'Combústivel','2025-11-20',1),
+(default,'Posto',1000.00,'Combústivel','2025-01-21',1);
 
 DROP TABLE IF EXISTS Entrega;
 CREATE TABLE Entrega (
@@ -207,8 +217,6 @@ INSERT INTO Manutencao VALUES
 (3,'2025-03-05','substituicao de pneus',4500.00,NULL,3);
 
 
-
--- vw_dados_brutos_faturamento_semestre
 CREATE VIEW VW_DADOS_BRUTOS_FATURAMENTO_SEMESTRE AS
 SELECT
 u.idUsuario AS ID_Usuario,
@@ -226,7 +234,6 @@ WHERE ID_Usuario = (SELECT idUsuario FROM Usuario WHERE email = 'teste1@email.co
 
 -- DROP VIEW VW_DADOS_BRUTOS_FATURAMENTO_SEMESTRE;
 
--- vw_grafico_donut
 CREATE VIEW VW_GRAFICO_DONUT AS
 SELECT
 u.idUsuario AS ID_Usuario,
@@ -243,7 +250,6 @@ WHERE ID_Usuario = (SELECT idUsuario FROM Usuario WHERE email = 'teste1@email.co
 
 -- DROP VIEW VW_GRAFICO_DONUT;
 
--- vw_kpi_km_total
 CREATE VIEW VW_KPI_KM_TOTAL AS
 SELECT
 f.fkUsuario AS FK_USUARIO,
@@ -259,7 +265,6 @@ WHERE FK_USUARIO = (SELECT idUsuario FROM Usuario WHERE email = 'teste1@email.co
 
 -- DROP VIEW VW_KPI_KM_TOTAL;
 
--- vw_kpi_total_fretes_realizados
 CREATE VIEW VW_KPI_TOTAL_FRETES_REALIZADOS AS
 SELECT
 f.idFrete AS idFrete,
@@ -280,7 +285,6 @@ WHERE ID_Usuario = (SELECT idUsuario FROM Usuario WHERE email = 'teste1@email.co
 
 -- DROP VIEW KM_KPI_TOTAL_FRETES_REALIZADOS;
 
--- vw_quilometragem_ate_manutencao
 CREATE VIEW VW_QUILOMETRAGEM_ATE_MANUTENCAO AS
 SELECT
 u.idUsuario AS ID_Usuario,
@@ -302,29 +306,31 @@ WHERE ID_Usuario = (SELECT idUsuario FROM Usuario WHERE email = 'teste1@email.co
 
 -- DROP VIEW VW_QUILOMETRAGEM_ATE_MANUTENCAO;
 
--- VW_LUCRO_LIQUIDO
+CREATE or replace VIEW VW_LUCRO_LIQUIDO AS
+ SELECT
+        (
+            SELECT SUM(f.valor)
+            FROM Frete f
+            WHERE f.fkUsuario = u.idUsuario
+            AND MONTH(f.dtConclusao) = MONTH(CURDATE())
+            AND YEAR(f.dtConclusao) = YEAR(CURDATE())
+        ) AS TOTAL_FRETES,
 
-CREATE VIEW VW_LUCRO_LIQUIDO AS
-SELECT
-(
-SELECT SUM(f.valor)
-FROM Frete f
-WHERE f.fkUsuario = u.idUsuario
-) AS TOTAL_FRETES,
-(
-SELECT SUM(d.valor)
-FROM Despesa d
-JOIN Motorista m ON d.fkMotorista = m.idMotorista
-WHERE m.fkUsuario = u.idUsuario
-) AS TOTAL_DESPESAS,
-u.idUsuario AS ID_Usuario
-FROM Usuario u;
+        (
+            SELECT SUM(d.valor)
+            FROM Despesa d
+            JOIN Motorista m ON d.fkMotorista = m.idMotorista
+            WHERE m.fkUsuario = u.idUsuario
+            AND MONTH(d.dataDesp) = MONTH(CURDATE())
+            AND YEAR(d.dataDesp) = YEAR(CURDATE())
+        ) AS TOTAL_DESPESAS,
+        u.idUsuario AS ID_Usuario
+    FROM Usuario u;
 
 SELECT *
 FROM VW_LUCRO_LIQUIDO
 WHERE ID_Usuario = (SELECT idUsuario FROM Usuario WHERE email = 'teste1@email.com');
 
--- VIEW AGENDA
 CREATE OR REPLACE VIEW VW_AGENDA AS
 SELECT
 f.idFrete AS ID_FRETE,
@@ -339,6 +345,53 @@ WHERE YEARWEEK(f.dtSaida, 1) = YEARWEEK(CURDATE(), 1)
 AND f.statusFrete = 'Marcado';
 
 -- DROP VIEW VW_LUCRO_LIQUIDO;
+
+CREATE VIEW VW_DESPESAS_MENSAIS AS
+SELECT
+    u.idUsuario AS ID_Usuario,
+    d.idDespesa AS ID_DESPESA,
+    d.categoria AS CATEGORIA,
+    d.valor AS VALOR,
+    DATE_FORMAT(d.dataDesp, '%d/%m/%Y') AS DATA_FORMATADA,
+    d.dataDesp AS DATA,
+    d.descricao AS DESCRICAO,
+    MONTH(d.dataDesp) AS MES,
+    YEAR(d.dataDesp) AS ANO
+FROM Despesa d
+JOIN Motorista m ON d.fkMotorista = m.idMotorista
+JOIN Usuario u ON u.idUsuario = m.fkUsuario
+ORDER BY d.dataDesp DESC;
+
+SELECT *
+FROM VW_DESPESAS_MENSAIS
+WHERE ID_Usuario = (SELECT idUsuario FROM Usuario WHERE email = 'teste1@email.com');
+
+
+CREATE VIEW VW_RESUMO_DESPESAS_MENSAIS AS
+SELECT
+    u.idUsuario AS ID_Usuario,
+    SUM(d.valor) AS TOTAL_DESPESAS_MES,
+    SUM(CASE WHEN d.categoria = 'Alimentação' THEN d.valor ELSE 0 END) AS TOTAL_ALIMENTACAO,
+    SUM(CASE WHEN d.categoria = 'Pedágio' THEN d.valor ELSE 0 END) AS TOTAL_PEDAGIO,
+    SUM(CASE WHEN d.categoria = 'Documentos' THEN d.valor ELSE 0 END) AS TOTAL_DOCUMENTOS,
+    SUM(CASE WHEN d.categoria = 'Outro' THEN d.valor ELSE 0 END) AS TOTAL_OUTROS,
+    MONTH(d.dataDesp) AS MES,
+    YEAR(d.dataDesp) AS ANO
+FROM Despesa d
+JOIN Motorista m ON d.fkMotorista = m.idMotorista
+JOIN Usuario u ON u.idUsuario = m.fkUsuario
+WHERE MONTH(d.dataDesp) = MONTH(CURDATE())
+AND YEAR(d.dataDesp) = YEAR(CURDATE())
+GROUP BY
+    u.idUsuario,
+    MONTH(d.dataDesp),
+    YEAR(d.dataDesp);
+
+
+-- DROP VIEW VW_RESUMO_DESPESAS_MENSAIS;
+SELECT *
+FROM VW_RESUMO_DESPESAS_MENSAIS
+WHERE ID_Usuario = (SELECT idUsuario FROM Usuario WHERE email = 'teste1@email.com');
 
 -- DROP DATABASE Penguin;
 

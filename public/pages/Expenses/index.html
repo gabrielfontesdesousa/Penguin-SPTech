@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Despesas - Penguin</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/Expenses/despesasContainer.css">
+    <link rel="stylesheet" href="../../css/Expenses/sidebarContainer.css">
+    <link rel="stylesheet" href="../../css/Expenses/style.css">
+    <link rel="stylesheet" href="../../css/Expenses/formularioContainer.css">
+    <link rel="stylesheet" href="../../css/Expenses/tabelaContainer.css">
+    <link rel="stylesheet" href="../../css/Expenses/cardsContainer.css">
+</head>
+
+<body>
+    <div class="container-despesas">
+        <div class="sidebar-menu">
+            <div class="itens-menu">
+                <div class="item-menu ">
+                    <a href="../Dashboard/"> <img src="../../assets/layers 5.svg" alt=""></a>
+                </div>
+                <div class="item-menu telaAtual">
+                    <a href="../Expenses/"><img src="../../assets/layers 2.svg" alt=""></a>
+                </div>
+                <div class="item-menu">
+                    <a href=""><img src="../../assets/In Transit.svg" alt=""></a>
+                </div>
+                <div class="item-menu">
+                    <a href=""><img src="../../assets/layers 6.svg" alt=""></a>
+                </div>
+                <div class="item-menu">
+                    <a href="../../index.html"><img src="../../assets/exit.svg" alt=""></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-principal">
+            <div class="sub-container-header">
+                <div class="text-header">
+                    <h1>Gerencie suas <span>Despesas</span></h1>
+                </div>
+            </div>
+
+            <div class="layout-despesas">
+                <div class="coluna-esquerda">
+                    <div class="card-formulario">
+                        <div class="header-formulario">
+                            <h2>Adicione <span>Despesas</span> no seu planejamento aqui</h2>
+                            <p>Selecione o caminhão que deseja editar na tabela acima clicando no desejado, caso queira
+                                adicionar, preencha os campos e clique em "Adicionar".</p>
+                        </div>
+
+                        <div class="form-despesas">
+                            <div class="campo-form">
+                                <label>Categoria</label>
+                                <input type="text" id="categoriaInput" placeholder="EX: 4 KM/Litro">
+                            </div>
+
+                            <div class="campo-form">
+                                <label>Valor</label>
+                                <input type="text" id="valorInput" placeholder="EX: 357.000KM">
+                            </div>
+
+                            <div class="campo-form">
+                                <label>Data</label>
+                                <input type="text" id="dataInput" placeholder="EX: 60.000">
+                            </div>
+
+                            <div class="campo-form">
+                                <label>Descrição</label>
+                                <input type="text" id="descricaoInput" placeholder="EX: Jantar">
+                            </div>
+
+                            <div class="botoes-form">
+                                <button class="btn-remover">Remover</button>
+                                <button class="btn-editar">Editar</button>
+                                <button class="btn-adicionar">Adicionar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="coluna-direita">
+                    <div class="card-tabela">
+                        <div class="container-table">
+                            <table class="tabela-despesas">
+                                <thead>
+                                    <tr>
+                                        <th>Categoria</th>
+                                        <th>Valor</th>
+                                        <th>Data</th>
+                                        <th>Descrição</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabelaDespesas">
+                                    <tr>
+                                        <td>Alimentação</td>
+                                        <td>R$130,00,00</td>
+                                        <td>19/01/2026</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alimentação</td>
+                                        <td>R$130,00,00</td>
+                                        <td>19/01/2026</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alimentação</td>
+                                        <td>R$130,00,00</td>
+                                        <td>19/01/2026</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alimentação</td>
+                                        <td>R$130,00,00</td>
+                                        <td>19/01/2026</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alimentação</td>
+                                        <td>R$130,00,00</td>
+                                        <td>19/01/2026</td>
+                                        <td>-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-totais">
+                <div class="card-total">
+                    <h3>Despesas Mensais Totais:</h3>
+                    <h2 id="kpi_total">R$ 0,00</h2>
+                </div>
+                <div class="card-total">
+                    <h3>Alimentação/Mês</h3>
+                    <h2 id="kpi_alimentacao">R$ 0,00</h2>
+                </div>
+                <div class="card-total">
+                    <h3>Pedágio/Mês</h3>
+                    <h2 id="kpi_pedagio">R$ 0,00</h2>
+                </div>
+                <div class="card-total">
+                    <h3>Documentos/Mês</h3>
+                    <h2 id="kpi_documentos">R$ 0,00</h2>
+                </div>
+                <div class="card-total">
+                    <h3>Outros/Mês</h3>
+                    <h2 id="kpi_outros">R$ 0,00</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function preencherTabelaDespesas() {
+        email = sessionStorage.getItem("EMAIL_DO_LOGADO")
+        fetch('/despesas/tabela', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: email
+            })
+        })
+            .then(function (resposta) {
+                resposta.json()
+                    .then(function (respostaConversao) {
+                        tabelaDespesas.innerHTML = '';
+                        for (let i = 0; i < respostaConversao.length; i++) {
+                            tabelaDespesas.innerHTML += `
+                        <tr onclick="preencherFormulario('${respostaConversao[i].CATEGORIA}', '${respostaConversao[i].VALOR}', '${respostaConversao[i].DATA_FORMATADA}', '${respostaConversao[i].DESCRICAO}')">
+                            <td>${respostaConversao[i].CATEGORIA}</td>
+                            <td>R$ ${respostaConversao[i].VALOR}</td>
+                            <td>${respostaConversao[i].DATA_FORMATADA}</td>
+                            <td>${respostaConversao[i].DESCRICAO}</td>
+                        </tr>
+                        `;
+                        }
+                    }).catch(function (erroConversao) {
+                        console.log(erroConversao)
+                    })
+            }).catch(function (erro) {
+                console.log(erro)
+            })
+    }
+    function preencherKpisDespesas() {
+        fetch('/despesas/tipo', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: email
+            })
+        })
+            .then(function (resposta) {
+                resposta.json()
+                    .then(function (respostaConversao) {
+                        document.getElementById("kpi_total").innerText = `
+                             R$ ${respostaConversao[0].TOTAL_DESPESAS_MES}`;
+                        document.getElementById("kpi_alimentacao").innerText = `
+                            R$ ${respostaConversao[0].TOTAL_ALIMENTACAO}`;
+
+                        document.getElementById("kpi_pedagio").innerText = `
+                            R$ ${respostaConversao[0].TOTAL_PEDAGIO}`;
+
+                        document.getElementById("kpi_documentos").innerText = `
+                             R$ ${respostaConversao[0].TOTAL_DOCUMENTOS}`;
+
+                        document.getElementById("kpi_outros").innerText = `
+                             R$ ${respostaConversao[0].TOTAL_OUTROS}`;
+                    })
+            })
+            .catch(function (erro) {
+                console.log(erro);
+            })
+    }
+    function preencherFormulario(categoria, valor, data, descricao, id) {
+    document.getElementById("categoriaInput").value = categoria;
+    document.getElementById("valorInput").value = valor;
+    document.getElementById("dataInput").value = data;
+    document.getElementById("descricaoInput").value = descricao;
+    sessionStorage.setItem("ID_DESPESA_EDITAR", id);
+}
+    window.onload =
+        preencherTabelaDespesas()
+    preencherKpisDespesas()
+
+</script>
+
+</html>

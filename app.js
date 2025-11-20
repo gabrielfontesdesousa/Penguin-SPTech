@@ -27,6 +27,7 @@ var agendaRouter = require('./src/routes/agendaRoute');
 var fretesRouter = require('./src/routes/fretesRoute');
 var coletaRouter = require('./src/routes/coletaRoute')
 var entregaRouter = require('./src/routes/entregaRoute')
+var despesasRouter = require('./src/routes/despesasRoute')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -46,6 +47,7 @@ app.use("/usuarios", agendaRouter);
 app.use("/fretes", fretesRouter);
 app.use('/coleta', coletaRouter);
 app.use('/entrega', entregaRouter);
+app.use('/despesas', despesasRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`

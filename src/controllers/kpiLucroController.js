@@ -7,8 +7,8 @@ function ExibirLucroLiquido(req, res){
     }
     KpiLucroModel.ObterLucroLiquido(email)
     .then(function (resultado){
-        var totalFrete = resultado[0].totalFretes
-        var totalDespesas = resultado[0].totalDespesas
+        var totalFrete = resultado[0].TOTAL_FRETES
+        var totalDespesas = resultado[0].TOTAL_DESPESAS
         var LucroLiquido =  totalFrete - totalDespesas
         res.status(200).json(LucroLiquido);
     })

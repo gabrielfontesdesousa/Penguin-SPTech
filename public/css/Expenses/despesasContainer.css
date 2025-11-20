@@ -1,0 +1,30 @@
+*{
+    font-family: 'Montserrat';
+}
+
+.container-despesas{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    background-color: #0A0A0A;
+}
+
+
+
+
+.text-header h1{
+    font-size: 48px;
+    color: white;
+    font-weight: 300;
+}
+
+.text-header span{
+    font-weight: 700;
+}
+
+.logo-usuario img{
+    width: 60px;
+}
+
+
+

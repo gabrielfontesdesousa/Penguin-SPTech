@@ -1,0 +1,115 @@
+
+
+.card-formulario{
+    width: 100%;
+    background-color: #1A1A1A;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.header-formulario{
+    margin-bottom: 30px;
+}
+
+.header-formulario h2{
+    color: white;
+    font-size: 25px;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+.header-formulario span{
+    font-weight: 700;
+}
+
+.header-formulario p{
+    color: #8A8F98;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.form-despesas{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.campo-form{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.campo-form label{
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.campo-form input{
+    width: 100%;
+    background-color: #2A2A2A;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 15px;
+    color: #8A8F98;
+    font-size: 14px;
+}
+
+.campo-form input:focus{
+    outline: 2px solid #6366F1;
+}
+
+.botoes-form{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-remover{
+    background-color: #DC2626;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.btn-remover:hover{
+    background-color: #B91C1C;
+}
+
+.btn-editar{
+    background-color: #14B8A6;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.btn-editar:hover{
+    background-color: #0D9488;
+}
+
+.btn-adicionar{
+    background-color: white;
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.btn-adicionar:hover{
+    background-color: #f0f0f0;
+}

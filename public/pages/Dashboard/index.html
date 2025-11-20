@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="../../css/Dashboard/header.css">
     <link rel="stylesheet" href="../../css/Dashboard/sidebarMenu.css">
     <link rel="stylesheet" href="../../css/Dashboard/cardKpis.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.j  sdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -34,19 +34,19 @@
         <div class="sidebar-menu">
             <div class="itens-menu">
                 <div class="item-menu telaAtual">
-                    <img src="../../assets/layers 5.svg" alt="">
+                    <a href=""> <img src="../../assets/layers 5.svg" alt=""></a>
                 </div>
                 <div class="item-menu">
-                    <img src="../../assets/layers 2.svg" alt="">
+                    <a href="../Expenses/"><img src="../../assets/layers 2.svg" alt=""></a>
                 </div>
                 <div class="item-menu">
-                    <img src="../../assets/In Transit.svg" alt="">
+                    <a href=""><img src="../../assets/In Transit.svg" alt=""></a>
                 </div>
                 <div class="item-menu">
-                    <img src="../../assets/layers 6.svg" alt="">
+                    <a href=""><img src="../../assets/layers 6.svg" alt=""></a>
                 </div>
                 <div class="item-menu">
-                    <img src="../../assets/exit.svg" alt="">
+                    <a href="../../index.html"><img src="../../assets/exit.svg" alt=""></a>
                 </div>
             </div>
         </div>
@@ -87,10 +87,9 @@
                                     <h3>Despesas mensais<br>por tipo (em %)</h3>
 
                                     <div class="item"><span class="cor diesel"></span> Diesel</div>
-                                    <div class="item"><span class="cor manut"></span> Manutenção</div>
+                                    <div class="item"><span class="cor manut"></span> Outro</div>
                                     <div class="item"><span class="cor pedagio"></span> Pedágio</div>
                                     <div class="item"><span class="cor alim"></span> Alimentação</div>
-                                    <div class="item"><span class="cor outros"></span> Outros</div>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +105,7 @@
                         </div>
                         <div class="conteudo-calendario">
                             <p>Confira as coletas e entregas referentes a semana atual, <br>
-                            para mais detalhes e gerenciamento, entre na tela de gerenciamento de fretes
+                                para mais detalhes e gerenciamento, entre na tela de gerenciamento de fretes
                             </p>
                             <div>
                                 <div id="listaAgenda" class="lista-fretes"></div>
@@ -199,6 +198,7 @@
             .then(function (resposta) {
                 resposta.json()
                     .then(function (respostaConversaoDados) {
+                        console.log(respostaConversaoDados)
                         LucroLiquido.innerHTML = `
                         <div class="header-card">
                             <div>
@@ -208,7 +208,7 @@
                             <span class="porcentagem-mini positivo">↗ 5%</span>
                         </div>
                         <div class="conteudo-card">
-                            <h2>${respostaConversaoDados}</h2>
+                            <h2>R$ ${respostaConversaoDados}</h2>
                         </div>
                         <p class="descricao-card">Cálculo baseado na margem dos custos fixos e variáveis no mês anterior.</p>
 `;
@@ -284,8 +284,8 @@
                                 <h2>${respostaConversao}</h2>
                                 <span class="unidade-km">KMs</span>
                             </div>
-                            <p class="descricao-revisao">Baseado no gerenciamento e o intervalo de kms para esta manutenção.</p>
-                            <p class="info-revisao">Gerenciamento baseado no tempo médio e última manutenção feita. Ajuste estimado baseado na sua distância, podendo variar.</p>
+                            <p class="descricao-revisao">Baseado no intervalo de KMs informado pelo usuário</p>
+                            <p class="info-revisao">Gerenciamento baseado na quilometragem rodada de acordo com os fretes cadastrados na plataforma. Ajuste estimado baseado na sua distância, podendo variar.</p>
 `;
                     }).catch(function (erro) {
                         console.log(`ERRO CONVERSAO: ${erro}`)
@@ -334,18 +334,7 @@
                                 scales: { y: { beginAtZero: true } },
                                 responsive: true,
                                 maintainAspectRatio: false,
-                                barPercentage: 0.60,
-                                plugins: {
-                                    legend: {
-                                        labels: {
-                                            font: {
-                                                size: 22
-                                            }
-                                        }
-                                    }
-
-                                }
-
+                                barPercentage: 0.40,
                             }
                         });
                     })
@@ -382,10 +371,11 @@
                                 datasets: [{
                                     data: valores,
                                     backgroundColor: [
-                                        '#1BAFA9',
+                                        '#FFFFFF',
                                         '#636363',
                                         '#FFAE00',
-                                        '#7B20E2'
+                                        '#7B20E2',
+                                        '#1BAFA9'
                                     ],
                                     borderWidth: 1,
                                 }]

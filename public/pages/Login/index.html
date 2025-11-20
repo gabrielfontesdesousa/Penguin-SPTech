@@ -97,9 +97,8 @@
         resposta.json().then(json => {
           console.log(json);
           var nome = json[1].resultadoAutenticar[0].nomeCompleto;
-          nome = sessionStorage("NOME_DO_LOGADO", nome)
-          console.log(nome);
-          NOMESESSAO = sessionStorage.setItem("NOME_DO_LOGADO", nome)
+          console.log(`${nome} NOME LOGIN`);
+          nome = sessionStorage.setItem("NOME_DO_LOGADO", nome)
           console.log('redireciona ai')
           window.location.href = "../Dashboard/index.html";
         });
