@@ -3,7 +3,7 @@
 }
 .container-delivery{
     width: 100%;
-    height: 100vh;
+    height: 120vh;
     display: flex;
     background-image: url(../../assets/BGALL.svg);
     background-position: center;
@@ -13,16 +13,19 @@
 
 
 .container-principal{
-    width: calc(100% - 70px);
-    height: 100vh;
+    width: 100%;
+    height: 120vh;
     display: flex;
     flex-direction: column;
 }
 
 .container-tabela{
-    width: calc(100% - 180px);
-    height: 40%;
+    width: 98%;
+    height: 50%;
     padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .text-header h1{
     font-size: 48px;

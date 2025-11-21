@@ -342,7 +342,7 @@ AND f.statusFrete = 'Marcado';
 -- DROP VIEW VW_LUCRO_LIQUIDO;
 
 CREATE VIEW VW_DESPESAS_MENSAIS AS
- 
+
 
 SELECT *
 FROM VW_DESPESAS_MENSAIS
@@ -370,7 +370,7 @@ GROUP BY
     YEAR(d.dataDesp);
 
 CREATE OR REPLACE VIEW VW_FRETES AS
-SELECT 
+SELECT
 	f.idFrete 	AS ID_Fretes,
 	f.cliente 	AS CLIENTE,
     f.dtSaida 	AS DT_SAIDA,
@@ -381,11 +381,11 @@ SELECT
     f.statusFrete AS STATUS_FRETES,
     f.dtConclusao AS DT_CONCLUSAO,
     u.idUsuario  AS ID_Usuario,
-    u.email 	
+    u.email
 	FROM Frete f
     JOIN Usuario u
     ON u.idUsuario = f.fkUsuario;
-    
+
 SELECT *
 FROM VW_FRETES
 WHERE ID_Usuario = (SELECT idUsuario FROM Usuario WHERE email = 'teste1@email.com');

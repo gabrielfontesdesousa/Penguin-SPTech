@@ -177,7 +177,7 @@
                         <tr onclick="preencherFormulario('${respostaConversao[i].CATEGORIA}', '${respostaConversao[i].VALOR}', '${respostaConversao[i].DATA_FORMATADA}', '${respostaConversao[i].DESCRICAO}')">
                             <td>${respostaConversao[i].CATEGORIA}</td>
                             <td>R$ ${respostaConversao[i].VALOR}</td>
-                            <td>${respostaConversao[i].DATA_FORMATADA}</td>
+                            <td>${respostaConversao[i].DTDESPESA}</td>
                             <td>${respostaConversao[i].DESCRICAO}</td>
                         </tr>
                         `;
@@ -202,6 +202,7 @@
             .then(function (resposta) {
                 resposta.json()
                     .then(function (respostaConversao) {
+                        console.log(respostaConversao)
                         document.getElementById("kpi_total").innerText = `
                              R$ ${respostaConversao[0].TOTAL_DESPESAS_MES}`;
                         document.getElementById("kpi_alimentacao").innerText = `

@@ -16,13 +16,13 @@
 }
 
 .sub-container-laptop{
-    width: 40%;
+    width: 50%;
     height: 100vh;
     display: flex;
     background-image: url(../../assets/lapTopLanding.png);
     background-position: left center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     position: relative;
 }
 
@@ -87,3 +87,6 @@
     color: #3B3B3B;
 }
 
+.container-h1 span{
+    color: white;
+}

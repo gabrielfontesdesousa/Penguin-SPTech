@@ -1,7 +1,6 @@
 .card-formulario{
     width: 80%;
     background-color: #1D1D1D;
-    padding: 30px;
 }
 
 .card-tabela{
@@ -13,10 +12,10 @@
 }
 
 .container-table{
-    width: 100%;
     height: 100%;
     border-radius: 30px;
     margin-top: 30px;
+    margin-bottom: 50px;
     overflow-y: auto;
 }
 
@@ -29,14 +28,13 @@
 
 .tabela-despesas thead{
     background-color: #7B20E2;
-    position: sticky;
-    top: 0; 
+    top: 0;
 }
 
 .tabela-despesas thead th{
-    padding: 25px 40px;
+    padding: 16px;
     color: white;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
     text-align: center;
 }
@@ -47,7 +45,7 @@
 
 .tabela-despesas tbody tr{
     cursor: pointer;
-    border-bottom: 1px solid #252525; 
+    border-bottom: 1px solid #252525;
 }
 
 .tabela-despesas tbody tr:hover{
@@ -57,7 +55,6 @@
 .tabela-despesas tbody td{
     color: white;
     font-size: 16px;
-    padding: 25px 40px; 
+    padding: 22px ;
     text-align: center;
-    vertical-align: middle; 
 }

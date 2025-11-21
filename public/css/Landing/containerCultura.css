@@ -43,18 +43,20 @@
     height: 50%;
 }
 .sub-text-container-inspiracao h1{
-    padding-top: 50px;
+    padding: 0px 50px 50px;
     color: #3B3B3B;
-    font-size: 70px;
+    font-size: 80px;
 }
 .sub-text-container-cultura h1{
-    padding-top: 50px;
+    padding: 0px 50px 50px;
     color: #3B3B3B;
-    font-size: 70px;
+    font-size: 80px;
+    font-weight: 700;
+
 }
 .sub-container-cultura p{
     font-size: 20px;
-    padding-top: 30px;
+    padding: 0px 50px 50px;
     color: #989898;
     line-height: 1.4;
 }

@@ -1,0 +1,128 @@
+.card-formulario{
+    width: 95%;
+    padding-top: 100px;
+    background-color: #1A1A1A;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.header-formulario{
+    margin-bottom: 30px;
+}
+
+.header-formulario h2{
+    color: white;
+    font-size: 25px;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+.header-formulario span{
+    font-weight: 700;
+}
+
+.header-formulario p{
+    color: #8A8F98;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.form-caminhoes{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.coluna-form{
+    width: 33.33%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.campo-form{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo-form label{
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.campo-form input{
+    width: 70%;
+    background-color: #2A2A2A;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 15px;
+    color: #8A8F98;
+    font-size: 14px;
+}
+
+.campo-form input:focus{
+    outline: 2px solid #6366F1;
+}
+
+.botoes-form{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+.btn-coletas{
+    background-color: #7B20E2;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+}
+.btn-remover{
+    background-color: #DC2626;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.btn-remover:hover{
+    background-color: #B91C1C;
+}
+
+.btn-editar{
+    background-color: #14B8A6;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.btn-editar:hover{
+    background-color: #0D9488;
+}
+
+.btn-adicionar{
+    background-color: white;
+    color: #000;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.btn-adicionar:hover{
+    background-color: #f0f0f0;
+}
