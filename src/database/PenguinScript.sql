@@ -1,4 +1,4 @@
-DROP DATABASE Penguin;
+DROP DATABASE IF EXISTS Penguin;
 CREATE DATABASE IF NOT EXISTS Penguin;
 USE Penguin;
 
@@ -341,7 +341,23 @@ AND f.statusFrete = 'Marcado';
 
 -- DROP VIEW VW_LUCRO_LIQUIDO;
 
-CREATE VIEW VW_DESPESAS_MENSAIS AS
+
+CREATE OR REPLACE VIEW VW_DESPESAS_MENSAIS AS
+SELECT
+    u.idUsuario AS ID_Usuario,
+    d.idDespesa AS ID_DESPESA,
+    d.categoria AS CATEGORIA,
+    d.valor AS VALOR,
+    DATE_FORMAT(d.dataDesp, '%d/%m/%Y') AS DATA_FORMATADA,
+    d.dataDesp AS DATA,
+    d.descricao AS DESCRICAO,
+    MONTH(d.dataDesp) AS MES,
+    YEAR(d.dataDesp) AS ANO
+FROM Despesa d
+JOIN Motorista m ON d.fkMotorista = m.idMotorista
+JOIN Usuario u ON u.idUsuario = m.fkUsuario
+ORDER BY d.dataDesp DESC;
+
 
 
 SELECT *
@@ -391,6 +407,7 @@ FROM VW_FRETES
 WHERE ID_Usuario = (SELECT idUsuario FROM Usuario WHERE email = 'teste1@email.com');
 
 -- DROP VIEW VW_RESUMO_DESPESAS_MENSAIS;
+
 SELECT *
 FROM VW_RESUMO_DESPESAS_MENSAIS
 WHERE ID_Usuario = (SELECT idUsuario FROM Usuario WHERE email = 'teste1@email.com');

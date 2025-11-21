@@ -16,7 +16,14 @@ function obterDadosDespesasTipo(email){
     `
     return database.executar(instrucao)
 }
+// function atualizarDadosDespesas(id){
+//     var instrucao = `
+    
+//     `;
+//     return database.executar(instrucao)
+// }
 module.exports = {
     obterDadosDespesas,
-    obterDadosDespesasTipo
+    obterDadosDespesasTipo,
+    // atualizarDadosDespesas
 }
