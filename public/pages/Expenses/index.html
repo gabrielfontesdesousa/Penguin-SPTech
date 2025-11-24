@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="../../css/Expenses/tabelaContainer.css">
     <link rel="stylesheet" href="../../css/Expenses/cardsContainer.css">
 </head>
-
 <body>
     <div class="container-despesas">
         <div class="sidebar-menu">
@@ -51,32 +50,28 @@
                             <p>Selecione o caminhão que deseja editar na tabela acima clicando no desejado, caso queira
                                 adicionar, preencha os campos e clique em "Adicionar".</p>
                         </div>
-
                         <div class="form-despesas">
                             <div class="campo-form">
                                 <label>Categoria</label>
                                 <input type="text" id="categoriaInput" placeholder="EX: 4 KM/Litro">
                             </div>
-
                             <div class="campo-form">
                                 <label>Valor</label>
                                 <input type="text" id="valorInput" placeholder="EX: 357.000KM">
                             </div>
-
                             <div class="campo-form">
                                 <label>Data</label>
                                 <input type="text" id="dataInput" placeholder="EX: 60.000">
                             </div>
-
                             <div class="campo-form">
                                 <label>Descrição</label>
                                 <input type="text" id="descricaoInput" placeholder="EX: Jantar">
                             </div>
 
                             <div class="botoes-form">
-                                <button class="btn-remover">Remover</button>
-                                <button class="btn-editar">Editar</button>
-                                <button class="btn-adicionar">Adicionar</button>
+                                <button class="btn-remover" onclick="removerDespesa()">Remover</button>
+                                <button id="editarColeta" onclick="editarDespesa()" class="btn-editar">Editar</button>
+                                <button class="btn-adicionar" onclick="adicionarDespesa()">Adicionar</button>
                             </div>
                         </div>
                     </div>
@@ -174,7 +169,7 @@
                         tabelaDespesas.innerHTML = '';
                         for (let i = 0; i < respostaConversao.length; i++) {
                             tabelaDespesas.innerHTML += `
-                        <tr onclick="preencherFormulario('${respostaConversao[i].CATEGORIA}', '${respostaConversao[i].VALOR}', '${respostaConversao[i].DATA_FORMATADA}', '${respostaConversao[i].DESCRICAO}')">
+                        <tr onclick="preencherFormulario('${respostaConversao[i].CATEGORIA}', '${respostaConversao[i].VALOR}', '${respostaConversao[i].DATA_FORMATADA}', '${respostaConversao[i].DESCRICAO}', '${respostaConversao[i].ID_DESPESA}')">
                             <td>${respostaConversao[i].CATEGORIA}</td>
                             <td>R$ ${respostaConversao[i].VALOR}</td>
                             <td>${respostaConversao[i].DTDESPESA}</td>
@@ -230,9 +225,8 @@
     sessionStorage.setItem("ID_DESPESA_EDITAR", id);
 }
     window.onload =
-        preencherTabelaDespesas()
+    preencherTabelaDespesas()
     preencherKpisDespesas()
 
 </script>
-
 </html>

@@ -5,4 +5,10 @@ var coletaController = require('../controllers/coletaController');
 router.post('/cadastrar', function (req, res) {
     coletaController.InserirDadosColeta(req, res)
 })
+router.post('/consultar', function (req, res) {
+    coletaController.ConsultarDadosColeta(req, res)
+})
+router.put('/editar/:idColeta', function (req, res) {
+    coletaController.EditarDadosColeta(req, res)
+})
 module.exports = router;

@@ -81,144 +81,66 @@
                                 <td>19/01/2026</td>
                                 <td>Status</td>
                             </tr>
-                            <tr>
-                                <td>Cliente</td>
-                                <td>Data Saida</td>
-                                <td>Valor</td>
-                                <td>Peso (kg)</td>
-                                <td>Pedágio</td>
-                                <td>Ajudantes</td>
-                                <td>19/01/2026</td>
-                                <td>Status</td>
-                            </tr>
-                            <tr>
-                                <td>Cliente</td>
-                                <td>Data Saida</td>
-                                <td>Valor</td>
-                                <td>Peso (kg)</td>
-                                <td>Pedágio</td>
-                                <td>Ajudantes</td>
-                                <td>19/01/2026</td>
-                                <td>Status</td>
-                            </tr>
-                            <tr>
-                                <td>Cliente</td>
-                                <td>Data Saida</td>
-                                <td>Valor</td>
-                                <td>Peso (kg)</td>
-                                <td>Pedágio</td>
-                                <td>Ajudantes</td>
-                                <td>19/01/2026</td>
-                                <td>Status</td>
-                            </tr>
-                            <tr>
-                                <td>Cliente</td>
-                                <td>Data Saida</td>
-                                <td>Valor</td>
-                                <td>Peso (kg)</td>
-                                <td>Pedágio</td>
-                                <td>Ajudantes</td>
-                                <td>19/01/2026</td>
-                                <td>Status</td>
-                            </tr>
-                            <tr>
-                                <td>Cliente</td>
-                                <td>Data Saida</td>
-                                <td>Valor</td>
-                                <td>Peso (kg)</td>
-                                <td>Pedágio</td>
-                                <td>Ajudantes</td>
-                                <td>19/01/2026</td>
-                                <td>Status</td>
-                            </tr>
-                            <tr>
-                                <td>Cliente</td>
-                                <td>Data Saida</td>
-                                <td>Valor</td>
-                                <td>Peso (kg)</td>
-                                <td>Pedágio</td>
-                                <td>Ajudantes</td>
-                                <td>19/01/2026</td>
-                                <td>Status</td>
-                            </tr>
-                            <tr>
-                                <td>Cliente</td>
-                                <td>Data Saida</td>
-                                <td>Valor</td>
-                                <td>Peso (kg)</td>
-                                <td>Pedágio</td>
-                                <td>Ajudantes</td>
-                                <td>19/01/2026</td>
-                                <td>Status</td>
-                            </tr>
-                            <tr>
-                                <td>Cliente</td>
-                                <td>Data Saida</td>
-                                <td>Valor</td>
-                                <td>Peso (kg)</td>
-                                <td>Pedágio</td>
-                                <td>Ajudantes</td>
-                                <td>19/01/2026</td>
-                                <td>Status</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="card-formulario">
                 <div class="header-formulario">
-                    <h2>Adicione <span>Despesas</span> no seu planejamento aqui</h2>
-                    <p>Selecione o caminhão que deseja editar na tabela acima clicando no desejado, caso queira
-                        adicionar, preencha os campos e clique em "Adicionar".</p>
+                    <h2>Gerencia seus <span>Fretes</span< /h2>
+                            <br><br>
+                            <p>Selecione o frete que deseja editar ou deletar na tabela acima clicando no desejado, caso
+                                queira
+                                adicionar, preencha os campos e clique em "Adicionar".</p>
                 </div>
 
                 <div class="form-caminhoes">
                     <div class="coluna-form">
                         <div class="campo-form">
                             <label>Cliente</label>
-                            <input type="text" placeholder="EX: Nome do cliente">
+                            <input id="clienteInputFrete" type="text" placeholder="EX: Nome do cliente">
                         </div>
                         <div class="campo-form">
                             <label>Data Saida</label>
-                            <input type="text" placeholder="EX: 10/02/2025">
+                            <input id="dataSaidaInputFrete" type="text" placeholder="EX: 10/02/2025">
                         </div>
                         <div class="campo-form">
                             <label>Valor</label>
-                            <input type="text" placeholder="EX: 1500.00">
+                            <input id="valorInputFrete" type="text" placeholder="EX: 1500.00">
                         </div>
                     </div>
 
                     <div class="coluna-form">
                         <div class="campo-form">
                             <label>Peso(kg)</label>
-                            <input type="text" placeholder="EX: 1500KG">
+                            <input id="pesoInputFrete" type="text" placeholder="EX: 1500KG">
                         </div>
                         <div class="campo-form">
                             <label>Pedágio</label>
-                            <input type="text" placeholder="EX: 120.00">
+                            <input id="pedagioInputFrete" type="text" placeholder="EX: 120.00">
                         </div>
                         <div class="campo-form">
                             <label>Ajudantes</label>
-                            <input type="text" placeholder="EX: 1">
+                            <input id="ajudantesInputFrete" type="text" placeholder="EX: 1">
                         </div>
                     </div>
 
                     <div class="coluna-form">
                         <div class="campo-form">
                             <label>Data</label>
-                            <input type="text" placeholder="EX: 12/02/2025">
+                            <input id="dataInputFrete" type="text" placeholder="EX: 12/02/2025">
                         </div>
                         <div class="campo-form">
                             <label>Status</label>
-                            <input type="text" placeholder="EX: Concluído">
+                            <input id="statusInputFrete" type="text" placeholder="EX: Concluído">
                         </div>
                     </div>
                 </div>
 
                 <div class="botoes-form">
                     <div>
-                        <button class="btn-adicionar">Adicionar</button>
-                        <button class="btn-editar">Editar</button>
+                        <button class="btn-adicionar" onclick="adicionarFrete()">Adicionar</button>
+                        <button class="btn-editar" onclick="editarFrete()">Editar</button>
                         <button class="btn-remover">Remover</button>
                     </div>
                     <div>
@@ -228,43 +150,43 @@
             </div>
             <div class="modal-overlay" id="modalOverlay" onclick="fecharModal()">
                 <div class="modal" onclick="event.stopPropagation()">
-                    <h1>Gerencie suas <span>Coletas e Entregas</span></h1>
+                    <h1>Gerencie seus <span>Coletas e Entregas</span></h1>
 
                     <button class="btn-ver-entregas">Ver Entregas</button>
                     <div class="filtros">
                         <div class="linha-filtros">
                             <div class="filtro">
                                 <label>Cliente</label>
-                                <input type="text" value="EX Gabriel Fontes de Sousa">
+                                <input id="clienteInput" type="text" value="EX Gabriel Fontes de Sousa">
                             </div>
                             <div class="filtro">
                                 <label>Distância</label>
-                                <input type="text" value="700km">
+                                <input id="distanciaInput" type="text" value="700km">
                             </div>
                             <div class="filtro">
                                 <label>CEP</label>
-                                <input type="text" value="EX 099x1-280">
+                                <input id="cepInput" type="text" value="EX 099x1-280">
                             </div>
                         </div>
                         <div class="linha-filtros">
                             <div class="filtro">
                                 <label>Estado</label>
-                                <input type="text" value="SP">
+                                <input id="estadoInput" type="text" value="SP">
 
                             </div>
                             <div class="filtro">
                                 <label>Bairro</label>
-                                <input type="text" value="Canhema">
+                                <input id="bairroInput" type="text" value="Canhema">
                             </div>
                             <div class="filtro">
                                 <label>Complemento</label>
-                                <input type="text" value="EX Casa 1">
+                                <input id="complementoInput" type="text" value="EX Casa 1">
                             </div>
                         </div>
                         <div class="linha-filtros num">
                             <div class="filtro">
                                 <label>Número</label>
-                                <input type="text" value="EX 432">
+                                <input id="numeroInput" type="text" value="EX 432">
                             </div>
                         </div>
                     </div>
@@ -272,7 +194,7 @@
                     <div class="container-table">
                         <div class="container-tabela-coleta">
 
-                            <table class="tabela-coleta">
+                            <table id="tabelaColeta" class="tabela-coleta">
                                 <thead>
                                     <tr>
                                         <th>Cliente</th>
@@ -296,156 +218,6 @@
                                         <td>19/01/2026</td>
                                         <td>Status</td>
                                     </tr>
-                                    <tr>
-                                        <td>Cliente</td>
-                                        <td>Data Saida</td>
-                                        <td>Valor</td>
-                                        <td>Peso (kg)</td>
-                                        <td>Pedágio</td>
-                                        <td>Ajudantes</td>
-                                        <td>19/01/2026</td>
-                                        <td>Status</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cliente</td>
-                                        <td>Data Saida</td>
-                                        <td>Valor</td>
-                                        <td>Peso (kg)</td>
-                                        <td>Pedágio</td>
-                                        <td>Ajudantes</td>
-                                        <td>19/01/2026</td>
-                                        <td>Status</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cliente</td>
-                                        <td>Data Saida</td>
-                                        <td>Valor</td>
-                                        <td>Peso (kg)</td>
-                                        <td>Pedágio</td>
-                                        <td>Ajudantes</td>
-                                        <td>19/01/2026</td>
-                                        <td>Status</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cliente</td>
-                                        <td>Data Saida</td>
-                                        <td>Valor</td>
-                                        <td>Peso (kg)</td>
-                                        <td>Pedágio</td>
-                                        <td>Ajudantes</td>
-                                        <td>19/01/2026</td>
-                                        <td>Status</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cliente</td>
-                                        <td>Data Saida</td>
-                                        <td>Valor</td>
-                                        <td>Peso (kg)</td>
-                                        <td>Pedágio</td>
-                                        <td>Ajudantes</td>
-                                        <td>19/01/2026</td>
-                                        <td>Status</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cliente</td>
-                                        <td>Data Saida</td>
-                                        <td>Valor</td>
-                                        <td>Peso (kg)</td>
-                                        <td>Pedágio</td>
-                                        <td>Ajudantes</td>
-                                        <td>19/01/2026</td>
-                                        <td>Status</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cliente</td>
-                                        <td>Data Saida</td>
-                                        <td>Valor</td>
-                                        <td>Peso (kg)</td>
-                                        <td>Pedágio</td>
-                                        <td>Ajudantes</td>
-                                        <td>19/01/2026</td>
-                                        <td>Status</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cliente</td>
-                                        <td>Data Saida</td>
-                                        <td>Valor</td>
-                                        <td>Peso (kg)</td>
-                                        <td>Pedágio</td>
-                                        <td>Ajudantes</td>
-                                        <td>19/01/2026</td>
-                                        <td>Status</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cliente</td>
-                                        <td>Data Saida</td>
-                                        <td>Valor</td>
-                                        <td>Peso (kg)</td>
-                                        <td>Pedágio</td>
-                                        <td>Ajudantes</td>
-                                        <td>19/01/2026</td>
-                                        <td>Status</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cliente</td>
-                                        <td>Data Saida</td>
-                                        <td>Valor</td>
-                                        <td>Peso (kg)</td>
-                                        <td>Pedágio</td>
-                                        <td>Ajudantes</td>
-                                        <td>19/01/2026</td>
-                                        <td>Status</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cliente</td>
-                                        <td>Data Saida</td>
-                                        <td>Valor</td>
-                                        <td>Peso (kg)</td>
-                                        <td>Pedágio</td>
-                                        <td>Ajudantes</td>
-                                        <td>19/01/2026</td>
-                                        <td>Status</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cliente</td>
-                                        <td>Data Saida</td>
-                                        <td>Valor</td>
-                                        <td>Peso (kg)</td>
-                                        <td>Pedágio</td>
-                                        <td>Ajudantes</td>
-                                        <td>19/01/2026</td>
-                                        <td>Status</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cliente</td>
-                                        <td>Data Saida</td>
-                                        <td>Valor</td>
-                                        <td>Peso (kg)</td>
-                                        <td>Pedágio</td>
-                                        <td>Ajudantes</td>
-                                        <td>19/01/2026</td>
-                                        <td>Status</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cliente</td>
-                                        <td>Data Saida</td>
-                                        <td>Valor</td>
-                                        <td>Peso (kg)</td>
-                                        <td>Pedágio</td>
-                                        <td>Ajudantes</td>
-                                        <td>19/01/2026</td>
-                                        <td>Status</td>
-                                    </tr>
-                                      <tr>
-                                        <td>Cliente</td>
-                                        <td>Data Saida</td>
-                                        <td>Valor</td>
-                                        <td>Peso (kg)</td>
-                                        <td>Pedágio</td>
-                                        <td>Ajudantes</td>
-                                        <td>19/01/2026</td>
-                                        <td>Status</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -453,9 +225,9 @@
 
                     <div class="botoes-acao">
                         <div>
-                            <button class="btn-editar">Editar</button>
-                            <button class="btn-adicionar">Adicionar</button>
-                            <button class="btn-remover">Remover</button>
+                            <button class="btn-editar" onclick="editarColeta()">Editar</button>
+                            <button class="btn-adicionar" onclick="editarAdicionar()">Adicionar</button>
+                            <button class="btn-remover" onclick="editarRemover()">Remover</button>
                         </div>
                         <div>
                             <button class="btn-concluir" onclick="fecharModal()">Concluir</button>
@@ -465,17 +237,16 @@
                 </div>
             </div>
 
-    </div>
+        </div>
 
 </body>
 <script>
-     function abrirModal() {
-            document.getElementById('modalOverlay').style.display = 'block';
-        }
-
-        function fecharModal() {
-            document.getElementById('modalOverlay').style.display = 'none';
-        }
+    function abrirModal() {
+        document.getElementById('modalOverlay').style.display = 'block';
+    }
+    function fecharModal() {
+        document.getElementById('modalOverlay').style.display = 'none';
+    }
     function preencherTabelaFretes() {
         var email = sessionStorage.getItem("EMAIL_DO_LOGADO")
         fetch('/fretes/consultar', {
@@ -495,7 +266,7 @@
                         tabelaFrete.innerHTML = ``
                         for (let i = 0; i < respostaConversao.length; i++) {
                             tabelaFrete.innerHTML += `
-                            <tr>
+                            <tr onclick="preencherFormularioFrete('${respostaConversao[i].CLIENTE}', '${respostaConversao[i].DT_SAIDA}', '${respostaConversao[i].VALOR}', '${respostaConversao[i].PESO_KG}', '${respostaConversao[i].VALOR_PEDAGIO}', '${respostaConversao[i].QTD_AJUDANTE}', '${respostaConversao[i].DT_CONCLUSAO}', '${respostaConversao[i].STATUS_FRETES}', '${respostaConversao[i].ID_Fretes}')">
                                 <td>${respostaConversao[i].CLIENTE}</td>
                                 <td>${respostaConversao[i].DT_SAIDA}</td>
                                 <td>${respostaConversao[i].VALOR}</td>
@@ -515,16 +286,210 @@
                 console.log(erro)
             })
     }
-    function preencherFormulario(categoria, valor, data, descricao, id) {
-        document.getElementById("categoriaInput").value = categoria;
-        document.getElementById("valorInput").value = valor;
-        document.getElementById("dataInput").value = data;
-        document.getElementById("descricaoInput").value = descricao;
-        sessionStorage.setItem("ID_DESPESA_EDITAR", id);
+    function preencherTabelaColetas() {
+        var email = sessionStorage.getItem("EMAIL_DO_LOGADO")
+        fetch('/coleta/consultar', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body:
+                JSON.stringify({
+                    emailServer: email
+                })
+        })
+            .then(function (resposta) {
+                resposta.json()
+                    .then(function (respostaConversao) {
+                        console.log(respostaConversao)
+                        tabelaColeta.innerHTML = ``
+                        for (let i = 0; i < respostaConversao.length; i++) {
+                            tabelaColeta.innerHTML += `
+                            <tr onclick="preencherFormularioColeta('${respostaConversao[i].CEP_COLETA}', '${respostaConversao[i].NUMERO_COLETA}', '${respostaConversao[i].BAIRRO_COLETA}', '${respostaConversao[i].ESTADO_COLETA}', '${respostaConversao[i].CLIENTE_COLETA}', '${respostaConversao[i].COMPLEMENTO_COLETA}', '${respostaConversao[i].DISTANCIA_KM_COLETA}', '${respostaConversao[i].ID_COLETA}')">
+                                <td>${respostaConversao[i].CEP_COLETA}</td>
+                                <td>${respostaConversao[i].NUMERO_COLETA}</td>
+                                <td>${respostaConversao[i].BAIRRO_COLETA}</td>
+                                <td>${respostaConversao[i].ESTADO_COLETA}</td>
+                                <td>${respostaConversao[i].CLIENTE_COLETA}</td>
+                                <td>${respostaConversao[i].COMPLEMENTO_COLETA}</td>
+                                <td>${respostaConversao[i].DISTANCIA_KM_COLETA}</td>
+                            </tr>
+                            `;
+                        }
+                    }).catch(function (erroConversao) {
+                        console.log(erroConversao)
+                    })
+            }).catch(function (erro) {
+                console.log(erro)
+            })
     }
-    window.onload =
-        preencherTabelaFretes
+    function preencherFormularioFrete(cliente, dtsaida, valor, peso, pedagio, ajudantes, data, status, id) {
+        document.getElementById("clienteInputFrete").value = cliente;
+        document.getElementById("dataSaidaInputFrete").value = dtsaida;
+        document.getElementById("valorInputFrete").value = valor;
+        document.getElementById("pesoInputFrete").value = peso;
+        document.getElementById("pedagioInputFrete").value = pedagio;
+        document.getElementById("ajudantesInputFrete").value = ajudantes;
+        document.getElementById("dataInputFrete").value = data;
+        document.getElementById("statusInputFrete").value = status;
+        sessionStorage.setItem("ID_FRETE_EDITAR", id);
+    }
+    function preencherFormularioColeta(clienteInputFrete, distancia, cep, estado, bairro, complemento, data, id) {
+        document.getElementById("clienteInput").value = clienteInputFrete;
+        document.getElementById("distanciaInput").value = distancia;
+        document.getElementById("cepInput").value = cep;
+        document.getElementById("estadoInput").value = estado;
+        document.getElementById("bairroInput").value = bairro;
+        document.getElementById("complementoInput").value = complemento;
+        document.getElementById("numeroInput").value = data;
+        sessionStorage.setItem("ID_COLETA_EDITAR", id);
+    }
+    function adicionarColeta() {
+        fetch('/coleta/cadastrar', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body:
+                JSON.stringify({
+                    clienteServer: clienteInputFrete.value,
+                    dtSaidaServer: dataSaidaInputFrete.value,
+                    valorServer: valorInputFrete.value,
+                    pesoKGServer: pesoInputFrete.value,
+                    vlPedagioServer: pedagioInputFrete.value,
+                    qtdAjudanteServer: ajudantesInputFrete.value,
+                    fkUsuarioServer: sessionStorage.getItem("ID_USUARIO"),
+                    dtConclusaoServer: dataInputFrete.value,
+                    statusFreteServer: StatusInputFrete.value
+                })
+        })
+            .then(function (resposta) {
+                console.log(reposta)
+            })
+    }
+    function adicionarFrete() {
+        var cliente = clienteInputFrete.value
+        var data = dataInputFrete.value
+        var valor = valorInputFrete.value
+        var peso = pesoInputFrete.value
+        var pedagio = pedagioInputFrete.value
+        var ajudante = ajudantesInputFrete.value
+        var fkusuario = sessionStorage.getItem("ID_USUARIO")
+        var fkcaminhao = sessionStorage.getItem("FK_CAMINHAO")
+        var status = statusInputFrete.value
+        var dataConclusao = dataInputFrete.valuevalue
 
+        fetch('/fretes/cadastrar', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body:
+                JSON.stringify({
+                    clienteServer: cliente,
+                    dtSaidaServer: data,
+                    valorServer: valor,
+                    pesoKGServer: peso,
+                    vlPedagioServer: pedagio,
+                    qtdAjudanteServer: ajudante,
+                    fkUsuarioServer: fkusuario,
+                    fkCaminhaoServer: fkcaminhao,
+                    statusFreteServer: status,
+                    dtConclusaoServer: dataConclusao
+                })
+        })
+            .then(function (resposta) {
+                console.log(resposta)
+            }).catch(function (Erro) {
+                console.log(Erro)
+            })
+    }
+    function editarFrete() {
+        var cliente = document.getElementById("clienteInputFrete").value;
+        var dataSaida = document.getElementById("dataSaidaInputFrete").value;
+        dataSaida = dataSaida.substring(0, 10);
+        var valor = document.getElementById("valorInputFrete").value;
+        var peso = document.getElementById("pesoInputFrete").value;
+        var pedagio = document.getElementById("pedagioInputFrete").value;
+        var ajudantes = document.getElementById("ajudantesInputFrete").value;
+        var data = document.getElementById("dataInputFrete").value;
+        var status = document.getElementById("statusInputFrete").value;
+        var idCaminhao = sessionStorage.getItem("ID_CAMINHAO")
+        var idFrete = sessionStorage.getItem("ID_FRETE_EDITAR")
+        fetch(`/fretes/editar/${idFrete}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body:
+                JSON.stringify({
+                    clienteServer: cliente,
+                    dtSaidaServer: dataSaida,
+                    valorServer: valor,
+                    pesoKGServer: peso,
+                    vlPedagioServer: pedagio,
+                    qtdAjudanteServer: ajudantes,
+                    fkCaminhaoServer: idCaminhao,
+                    statusFreteServer: status,
+                    dtConclusaoServer: data
+                })
+        })
+            .then(function (resposta) {
+                resposta.json()
+                    .then(function (respostaConversao) {
+                        console.log(respostaConversao)
+                        alert(`Frete do cliente: ${cliente}, editado com suceso!`)
+                        window.location.reload(true);
+                    }).catch(function (erroConversao) {
+                        console.log(erroConversao)
+                    })
+            }).catch(function (erro) {
+
+            })
+    }
+    function editarColeta() {
+        var cliente = document.getElementById("clienteInput").value;
+        var distancia = document.getElementById("distanciaInput").value;
+        var cep = document.getElementById("cepInput").value;
+        var estado = document.getElementById("estadoInput").value;
+        var bairro = document.getElementById("bairroInput").value;
+        var complemento = document.getElementById("complementoInput").value;
+        var numero = document.getElementById("numeroInput").value;
+        var idEntrega = sessionStorage.getItem("ID_ENTREGA_EDITAR");
+        fetch(`/coleta/editar/${idEntrega}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                clienteServer: cliente,
+                distanciaServer: distancia,
+                cepServer: cep,
+                estadoServer: estado,
+                bairroServer: bairro,
+                complementoServer: complemento,
+                numeroServer: numero
+            })
+        })
+            .then(function (resposta) {
+                resposta.json()
+                    .then(function (retorno) {
+                        console.log(retorno);
+                        alert(`Entrega de ${cliente} editada com sucesso!`);
+                        window.location.reload(true);
+                    })
+                    .catch(function (erroConversao) {
+                        console.log(erroConversao);
+                    });
+            })
+            .catch(function (erro) {
+                console.log(erro);
+            });
+    }
+
+    window.onload =
+        preencherTabelaFretes(),
+        preencherTabelaColetas()
 </script>
 
 </html>
