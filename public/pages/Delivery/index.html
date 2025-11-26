@@ -41,7 +41,7 @@
                     <a href="../Delivery/"><img src="../../assets/In Transit.svg" alt=""></a>
                 </div>
                 <div class="item-menu">
-                    <a href=""><img src="../../assets/layers 6.svg" alt=""></a>
+                    <a href="../Simulator/index.html"><img src="../../assets/layers 6.svg" alt=""></a>
                 </div>
                 <div class="item-menu">
                     <a href="../../index.html"><img src="../../assets/exit.svg" alt=""></a>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="container-table">
-                    <table class="tabela-despesas">
+                    <table class="tabela-frete">
                         <thead>
                             <tr>
                                 <th>Cliente</th>
@@ -66,7 +66,6 @@
                                 <th>Peso (kg)</th>
                                 <th>Pedágio</th>
                                 <th>Ajudantes</th>
-                                <th>Data</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -157,7 +156,7 @@
                         <div class="linha-filtros">
                             <div class="filtro">
                                 <label>Cliente</label>
-                                <input id="clienteInput" type="text" value="EX Gabriel Fontes de Sousa">
+                                <input id="clienteInput" type="text" value="EX: Gabriel Fontes de Sousa">
                             </div>
                             <div class="filtro">
                                 <label>Distância</label>
@@ -268,12 +267,11 @@
                             tabelaFrete.innerHTML += `
                             <tr onclick="preencherFormularioFrete('${respostaConversao[i].CLIENTE}', '${respostaConversao[i].DT_SAIDA}', '${respostaConversao[i].VALOR}', '${respostaConversao[i].PESO_KG}', '${respostaConversao[i].VALOR_PEDAGIO}', '${respostaConversao[i].QTD_AJUDANTE}', '${respostaConversao[i].DT_CONCLUSAO}', '${respostaConversao[i].STATUS_FRETES}', '${respostaConversao[i].ID_Fretes}')">
                                 <td>${respostaConversao[i].CLIENTE}</td>
-                                <td>${respostaConversao[i].DT_SAIDA}</td>
+                                <td>${respostaConversao[i].DT_SAIDA.slice(0, 10)}</td>
                                 <td>${respostaConversao[i].VALOR}</td>
                                 <td>${respostaConversao[i].PESO_KG}</td>
                                 <td>${respostaConversao[i].VALOR_PEDAGIO}</td>
                                 <td>${respostaConversao[i].QTD_AJUDANTE}</td>
-                                <td>${respostaConversao[i].DT_CONCLUSAO}</td>
                                 <td>${respostaConversao[i].STATUS_FRETES}</td>
 
                             </tr>

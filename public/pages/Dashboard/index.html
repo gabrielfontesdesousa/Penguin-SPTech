@@ -43,7 +43,7 @@
                     <a href="../Delivery/"><img src="../../assets/In Transit.svg" alt=""></a>
                 </div>
                 <div class="item-menu">
-                    <a href=""><img src="../../assets/layers 6.svg" alt=""></a>
+                    <a href="../Simulator/index.html"><img src="../../assets/layers 6.svg" alt=""></a>
                 </div>
                 <div class="item-menu">
                     <a href="../../index.html"><img src="../../assets/exit.svg" alt=""></a>
@@ -415,7 +415,7 @@
                         for (let i = 0; i < respostaConversao.length; i++) {
                             listaAgenda.innerHTML += `
                                 <div class="item-agenda">
-                                    <strong>${respostaConversao[i].DATA_SAIDA}</strong> - ${respostaConversao[i].NOME_CLIENTE} - ${respostaConversao[i].BAIRRO}, ${respostaConversao[i].ESTADO}
+                                    <strong>${respostaConversao[i].DATA_SAIDA.slice(0, 10)}</strong> - ${respostaConversao[i].NOME_CLIENTE} - ${respostaConversao[i].BAIRRO}, ${respostaConversao[i].ESTADO}
                                 </div>
                               `;
                         }

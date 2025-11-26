@@ -19,19 +19,19 @@
     overflow-y: auto;
 }
 
-.tabela-despesas{
+.tabela-frete{
     width: 100%;
     border-collapse: collapse;
     height: 100%;
     scrollbar-color: #1d1d1d;
 }
 
-.tabela-despesas thead{
+.tabela-frete thead{
     background-color: #7B20E2;
     top: 0;
 }
 
-.tabela-despesas thead th{
+.tabela-frete thead th{
     padding: 16px;
     color: white;
     font-size: 20px;
@@ -39,20 +39,21 @@
     text-align: center;
 }
 
-.tabela-despesas tbody{
+.tabela-frete tbody{
     background-color: #1D1D1D;
 }
 
-.tabela-despesas tbody tr{
+.tabela-frete tbody tr{
+    width: calc(100% / 7);
     cursor: pointer;
     border-bottom: 1px solid #252525;
 }
 
-.tabela-despesas tbody tr:hover{
+.tabela-frete tbody tr:hover{
     background-color: #252525;
 }
 
-.tabela-despesas tbody td{
+.tabela-frete tbody td{
     color: white;
     font-size: 16px;
     padding: 22px ;

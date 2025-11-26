@@ -27,7 +27,7 @@
                     <a href="../Delivery/"><img src="../../assets/In Transit.svg" alt=""></a>
                 </div>
                 <div class="item-menu">
-                    <a href=""><img src="../../assets/layers 6.svg" alt=""></a>
+                    <a href="../Simulator/index.html"><img src="../../assets/layers 6.svg" alt=""></a>
                 </div>
                 <div class="item-menu">
                     <a href="../../index.html"><img src="../../assets/exit.svg" alt=""></a>
@@ -169,10 +169,10 @@
                         tabelaDespesas.innerHTML = '';
                         for (let i = 0; i < respostaConversao.length; i++) {
                             tabelaDespesas.innerHTML += `
-                        <tr onclick="preencherFormulario('${respostaConversao[i].CATEGORIA}', '${respostaConversao[i].VALOR}', '${respostaConversao[i].DATA_FORMATADA}', '${respostaConversao[i].DESCRICAO}', '${respostaConversao[i].ID_DESPESA}')">
+                        <tr onclick="preencherFormulario('${respostaConversao[i].CATEGORIA}', '${respostaConversao[i].VALOR}', '${respostaConversao[i].DATA}', '${respostaConversao[i].DESCRICAO}', '${respostaConversao[i].ID_DESPESA}')">
                             <td>${respostaConversao[i].CATEGORIA}</td>
                             <td>R$ ${respostaConversao[i].VALOR}</td>
-                            <td>${respostaConversao[i].DTDESPESA}</td>
+                            <td>${respostaConversao[i].DATA.slice(0, 10)}</td>
                             <td>${respostaConversao[i].DESCRICAO}</td>
                         </tr>
                         `;
