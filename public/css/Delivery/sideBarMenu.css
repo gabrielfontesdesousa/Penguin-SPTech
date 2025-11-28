@@ -1,6 +1,6 @@
 .sidebar-menu{
-    width: 110px;
-    height: 80%;
+    width: 120px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -25,21 +25,22 @@ function InserirDadosColeta(req, res) {
 }
 
 function ConsultarDadosColeta(req, res) {
-    email = req.body.emailServer
-      coletaModel
-        .consultarDadosColeta(email)
-        .then(function (resposta) {
-          res.status(200).send(resposta);
-        })
-        .catch(function (erro) {
-          res.status(500).send(erro);
-        });
-    }
-function EditarDadosColeta(req, res) {
-  var id = req.params.idColeta;
-  var dados = req.body;
+  email = req.body.emailServer;
   coletaModel
-    .editarDadosColeta(id, dados)
+    .consultarDadosColeta(email)
+    .then(function (resposta) {
+      res.status(200).send(resposta);
+    })
+    .catch(function (erro) {
+      res.status(500).send(erro);
+    });
+}
+function atualizarDadosColeta(req, res) {
+  var idColeta = req.params.id;
+  var dadosAtualizados = req.body;
+
+  coletaModel
+    .atualizarDadosColeta(idColeta, dadosAtualizados)
     .then(function (resposta) {
       res.status(200).send(resposta);
     })
@@ -48,8 +49,9 @@ function EditarDadosColeta(req, res) {
       res.status(500).send(erro);
     });
 }
+
 module.exports = {
   InserirDadosColeta,
   ConsultarDadosColeta,
-  EditarDadosColeta
+  atualizarDadosColeta,
 };

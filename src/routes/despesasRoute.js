@@ -7,7 +7,7 @@ router.post('/tabela', function(req, res){
 router.post('/tipo', function(req, res){
     despesasController.exibirDadosMensaisTotais(req, res)
 })
-// router.put('/atualizar'. function(req, res){
-//     despesasController.
-// })
+router.put('/atualizar/:idServer', function(req, res){
+     despesasController.atualizarDadosDespesas(req, res)
+})
 module.exports = router

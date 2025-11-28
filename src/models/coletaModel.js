@@ -1,47 +1,55 @@
-var database = require('../database/config')
+var database = require('../database/config');
 
-function InserirDadosColeta(CEP, numero, bairro, estado, cliente, complemento, distanciaKM, fkFrete){
-    var instrucao = `
+function InserirDadosColeta(
+  CEP,
+  numero,
+  bairro,
+  estado,
+  cliente,
+  complemento,
+  distanciaKM,
+  fkFrete
+) {
+  var instrucao = `
         INSERT INTO Coleta (CEP, numero, bairro, estado, cliente, complemento, distanciaKM, fkFrete)
         VALUES ('${CEP}', '${numero}', '${bairro}', '${estado}', '${cliente}', '${complemento}', ${distanciaKM}, ${fkFrete});
-    `
-    return database.executar(instrucao);
+    `;
+  return database.executar(instrucao);
 }
-function consultarDadosColeta(email){
-    var instrucao = `
+function consultarDadosColeta(email) {
+  var instrucao = `
         SELECT
-            CEP_COLETA,
-            NUMERO_COLETA,
-            BAIRRO_COLETA,
-            ESTADO_COLETA,
             CLIENTE_COLETA,
-            COMPLEMENTO_COLETA,
+            ESTADO_COLETA,
+            NUMERO_COLETA,
             DISTANCIA_KM_COLETA,
+            BAIRRO_COLETA,
+            CEP_COLETA,
+            COMPLEMENTO_COLETA,
             ID_COLETA
         FROM VW_CONSULTA_COLETAS
         WHERE ID_USUARIO = (SELECT idUsuario FROM Usuario WHERE email = '${email}');
-  `
-    return database.executar(instrucao);
+  `;
+  return database.executar(instrucao);
 }
-function editarDadosColeta(id, dados){
-    var instrucao = `
-        UPDATE Coleta SET
-            CEP = '${dados.cepServer}',
-            numero = '${dados.numeroServer}',
-            bairro = '${dados.bairroServer}',
+function atualizarDadosColeta(id, dados) {
+  var instrucao = `
+      UPDATE Coleta
+      SET cliente = '${dados.clienteServer}',
             estado = '${dados.estadoServer}',
-            cliente = '${dados.clienteServer}',
-            complemento = '${dados.complementoServer}',
-            distanciaKM = ${dados.distanciaServer},
-            fkFrete = ${dados.fkFreteServer}
-        WHERE idColeta = ${id};
-  `
-    return database.executar(instrucao);
-}
+          distanciaKM = '${dados.distanciaServer}',
+          CEP = '${dados.cepServer}',
+          bairro = '${dados.bairroServer}',
+          complemento = '${dados.complementoServer}',
+          numero = '${dados.numeroServer}'
+      WHERE idColeta = ${id};
+    `;
 
+  return database.executar(instrucao);
+}
 
 module.exports = {
-    InserirDadosColeta,
-    consultarDadosColeta,
-    editarDadosColeta
-}
+  InserirDadosColeta,
+  consultarDadosColeta,
+  atualizarDadosColeta,
+};

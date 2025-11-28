@@ -1,4 +1,4 @@
-var express = require('express')
+var express = require('express');
 var router = express();
 var coletaController = require('../controllers/coletaController');
 
@@ -8,7 +8,7 @@ router.post('/cadastrar', function (req, res) {
 router.post('/consultar', function (req, res) {
     coletaController.ConsultarDadosColeta(req, res)
 })
-router.put('/editar/:idColeta', function (req, res) {
-    coletaController.EditarDadosColeta(req, res)
-})
+router.put('/atualizar/:id', function (req, res) {
+    coletaController.atualizarDadosColeta(req, res);
+  });
 module.exports = router;

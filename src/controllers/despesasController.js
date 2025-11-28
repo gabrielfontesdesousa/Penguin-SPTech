@@ -19,12 +19,20 @@ function exibirDadosMensaisTotais(req, res) {
         res.send(erro).status(500)
     })
 }
-// function atualizarDadosMensaisTotais(req, res){
-//     var idDespesa = Number(req.params.id)
-//     var DespesasAtualizado = req.body
-//     despesasModel.
-// }
+ function atualizarDadosDespesas(req, res){
+     var idDespesa = req.params.idServer
+     var DespesasAtualizado = req.body
+     despesasModel.atualizarDadosDespesas(idDespesa, DespesasAtualizado)
+     .then(function (resposta) {
+        res.status(200).send(resposta);
+      })
+      .catch(function (erro) {
+        console.log(erro);
+        res.status(500).send(erro);
+      });
+ }
 module.exports = {
     exibirDadosTabela,
-    exibirDadosMensaisTotais
+    exibirDadosMensaisTotais,
+    atualizarDadosDespesas
 }
