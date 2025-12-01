@@ -1,0 +1,63 @@
+.container-form{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-resultados{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sub-container-form{
+    width: 60%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+}
+.sub-container-form input{
+    border-radius: 20px;
+    height: 50px;
+    outline: none;
+    text-indent: 20px;
+    margin-bottom: 30px;
+}
+.sub-container-resultados{
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    background-color: #7B20E2;
+    border-radius: 30px;
+}
+.sub-container-form button{
+    border: none;
+    background-color: #7B20E2;
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 15px 20px;
+}
+.header-resultados{
+    width: 100%;
+    height: 13%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-resultados h3{
+    font-family: 'Montserrat';
+    font-size: 30px;
+    font-weight: 400;
+    text-align: center;
+    color: white;
+}
+.texto-resultados{
+    width: 100%;
+    height: 96.3%;
+}

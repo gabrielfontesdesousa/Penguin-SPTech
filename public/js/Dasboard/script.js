@@ -29,7 +29,7 @@ function ConsultaKpiFretes() {
                             </div>
                             <div class="conteudo-card">
                                 <h2>${respostaConversao[0].TOTAL_FRETES_REALIZADOS}</h2>
-                                <span class="porcentagem positivo">↗ 17%</span>
+                                <span class="porcentagem positivo"></span>
                             </div>
                             <p class="descricao-card">Viagens realizadas na jornada do último mês</p>
 `;
@@ -70,7 +70,7 @@ function ConsultaKpiLucroLiquido() {
                             <h3>Lucro Líquido</h3>
                             <h3>Mensal</h3>
                         </div>
-                        <span class="porcentagem-mini positivo">↗ 5%</span>
+                        <span class="porcentagem-mini positivo"></span>
                     </div>
                     <div class="conteudo-card">
                         <h2>R$ ${respostaConversaoDados}</h2>
@@ -115,7 +115,7 @@ function ConsultaKpiDistancia() {
                     <div class="conteudo-card">
                         <h2>${respostaConversao[0].TOTAL_DE_KM}</h2>
                         <span class="unidade">KM</span>
-                        <span class="porcentagem positivo">↗ 12%</span>
+                        <span class="porcentagem positivo"></span>
                     </div>
                     <p class="descricao-card">Porcentagem relativa ao período anterior.</p>
                 `;

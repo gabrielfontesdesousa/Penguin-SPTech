@@ -16,11 +16,9 @@ function preencherTabelaDespesas() {
           tabelaDespesas.innerHTML = '';
           for (let i = 0; i < respostaConversao.length; i++) {
             tabelaDespesas.innerHTML += `
-                    <tr onclick="preencherFormulario('${respostaConversao[i].CATEGORIA}', '${
-              respostaConversao[i].VALOR
-            }', '${respostaConversao[i].DATA}', '${respostaConversao[i].DESCRICAO}', '${
-              respostaConversao[i].ID_DESPESA
-            }')">
+                    <tr onclick="preencherFormulario('${respostaConversao[i].CATEGORIA}', '${respostaConversao[i].VALOR
+              }', '${respostaConversao[i].DATA}', '${respostaConversao[i].DESCRICAO}', '${respostaConversao[i].ID_DESPESA
+              }')">
                         <td>${respostaConversao[i].CATEGORIA}</td>
                         <td>R$ ${respostaConversao[i].VALOR}</td>
                         <td>${respostaConversao[i].DATA.slice(0, 10)}</td>

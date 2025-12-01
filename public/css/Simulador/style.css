@@ -3,7 +3,7 @@
 }
 .container-simulador{
     width: 100%;
-    height: 110vh;
+    height: 100vh;
     display: flex;
     background-image: url(../../assets/BGALL2.svg);
     background-position: center;
@@ -14,45 +14,16 @@
 
 .container-principal{
     width: calc(100% - 70px);
-    height: 110vh;
-}
-
-.layout-grid{
-    width: 100%;
-    display: flex;
-    gap: 40px;
-}
-
-.coluna-esquerda{
-    width: 90%;
-    height: 80%;
-    display: flex;
-    padding: 40px 0px 0px 0px;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.coluna-direita{
-    width: 30%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding-right: 40px;
 }
-
-.container-kpis{
+        
+.sub-container-calculadora{
     width: 100%;
+    height: 100%;
     display: flex;
-    gap: 20px;
-}
-
-
-
-.container-graficos-bottom{
-    width: 100%;
-    height: 35%;
-    display: flex;
-    gap: 20px;
+    flex-direction: row;
 }
 
 
