@@ -133,3 +133,5 @@ function editarColeta() {
       console.log(erro);
     });
 }
+window.onload =
+    preencherTabelaColetas();

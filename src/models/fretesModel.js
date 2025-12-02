@@ -1,25 +1,32 @@
 var database = require('../database/config');
 
 function InserirDadosFrete(
-  cliente,
-  dtSaida,
-  valor,
-  pesoKG,
-  vlPedagio,
-  qtdAjudante,
-  fkCaminhao,
-  fkUsuario,
-  statusFrete,
-  dtConclusao
-) {
-  var instrucao = `
-    INSERT INTO Frete(cliente, dtSaida, valor, pesoKG, vlPedagio, qtdAjudante, fkCaminhao, fkUsuario, statusFrete, dtConclusao)
-    VALUES
-    ('${cliente}','${dtSaida}',${valor},${pesoKG},${vlPedagio},${qtdAjudante},${fkCaminhao},${fkUsuario},'${statusFrete}','${dtConclusao}');
-
+    cliente,
+    dtSaida,
+    valor,
+    pesoKG,
+    vlPedagio,
+    qtdAjudante,
+    statusFrete,
+    dtConclusao,
+    email
+  ) {
+    console.log(`ESTOU TENTANDO INSERIR DADOS FRETE\n \n\t\t >> `);
+    var instrucao = `
+      INSERT INTO Frete(cliente, dtSaida, valor, pesoKG, vlPedagio, qtdAjudante, fkCaminhao, fkUsuario, statusFrete)
+      VALUES
+      ('${cliente}',
+       '${dtSaida}',
+       ${valor},
+       ${pesoKG},
+       ${vlPedagio},
+       ${qtdAjudante},
+       (SELECT idCaminhao FROM Caminhao WHERE fkUsuario = (SELECT idUsuario FROM Usuario WHERE email = '${email}')),
+       (SELECT idUsuario FROM Usuario WHERE email = '${email}'),
+       '${statusFrete}'; 
     `;
-  return database.executar(instrucao);
-}
+    return database.executar(instrucao);
+  }
 
 function ExibirDadosFretes(email) {
   console.log(`ESTOU TENTANDO CONSULTAR DADOS FRETES\n \n\t\t >> `);
@@ -47,8 +54,35 @@ function EditarDadosFretes(id, dados) {
     `;
   return database.executar(instrucao);
 }
+function DeletarDadosFrete(id) {
+    console.log(`ESTOU TENTANDO DELETAR DADOS FRETE\n \n\t\t >> `);
+
+    var instrucaoEntrega = `
+      DELETE FROM Entrega
+      WHERE fkFrete = ${id};
+    `;
+
+    var instrucaoColeta = `
+      DELETE FROM Coleta
+      WHERE fkFrete = ${id};
+    `;
+
+    var instrucaoFrete = `
+      DELETE FROM Frete
+      WHERE idFrete = ${id};
+    `;
+
+    return database.executar(instrucaoEntrega)
+      .then(function() {
+        return database.executar(instrucaoColeta);
+      })
+      .then(function() {
+        return database.executar(instrucaoFrete);
+      });
+  }
 module.exports = {
   InserirDadosFrete,
   ExibirDadosFretes,
   EditarDadosFretes,
+  DeletarDadosFrete
 };

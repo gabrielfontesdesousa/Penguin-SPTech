@@ -21,6 +21,25 @@ function exibirDadosMensaisTotais(req, res) {
             res.send(erro).status(500)
         })
 }
+function InserirDadosDespesa(req, res) {
+    var descricao = req.body.descricaoServer;
+    var valor = req.body.valorServer;
+    var categoria = req.body.categoriaServer;
+    var dataDesp = req.body.dataServer;
+    var email = req.body.emailServer;
+
+    despesasModel
+      .InserirDadosDespesa(descricao, valor, categoria, dataDesp, email)
+      .then(function (resposta) {
+        console.log(resposta);
+        res.status(200).send(resposta);
+      })
+      .catch(function (erro) {
+        console.log(erro);
+        res.status(500).send(erro);
+      });
+  }
+
 function atualizarDadosDespesas(req, res) {
     var idDespesa = req.params.idServer
     var DespesasAtualizado = req.body
@@ -33,8 +52,24 @@ function atualizarDadosDespesas(req, res) {
             res.status(500).send(erro);
         });
 }
+function DeletarDadosDespesa(req, res) {
+    var id = req.params.idDespesa;
+
+    despesasModel
+      .DeletarDadosDespesa(id)
+      .then(function (resposta) {
+        res.status(200).send(resposta);
+      })
+      .catch(function (erro) {
+        console.log(erro);
+        res.status(500).send(erro);
+      });
+  }
+
 module.exports = {
     exibirDadosTabela,
     exibirDadosMensaisTotais,
-    atualizarDadosDespesas
+    DeletarDadosDespesa,
+    atualizarDadosDespesas,
+    InserirDadosDespesa
 }

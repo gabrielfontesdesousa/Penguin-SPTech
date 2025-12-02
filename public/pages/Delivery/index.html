@@ -126,10 +126,6 @@
 
                     <div class="coluna-form">
                         <div class="campo-form">
-                            <label>Data</label>
-                            <input id="dataInputFrete" type="text" placeholder="EX: 12/02/2025">
-                        </div>
-                        <div class="campo-form">
                             <label>Status</label>
                             <input id="statusInputFrete" type="text" placeholder="EX: Concluído">
                         </div>
@@ -140,7 +136,7 @@
                     <div>
                         <button class="btn-adicionar" onclick="adicionarFrete()">Adicionar</button>
                         <button class="btn-editar" onclick="editarFrete()">Editar</button>
-                        <button class="btn-remover">Remover</button>
+                        <button class="btn-remover" onclick="removerFrete()">Remover</button>
                     </div>
                     <div>
                         <button class="btn-coletas" onclick="abrirModal()" id="abrirBotao">Coletas e Entregas</button>
@@ -211,8 +207,8 @@
                     <div class="botoes-acao">
                         <div>
                             <button class="btn-editar" onclick="editarColeta()">Editar</button>
-                            <button class="btn-adicionar" onclick="editarAdicionar()">Adicionar</button>
-                            <button class="btn-remover" onclick="editarRemover()">Remover</button>
+                            <button class="btn-adicionar" onclick="adicionarColeta()">Adicionar</button>
+                            <button class="btn-remover" onclick="Remover()">Remover</button>
                         </div>
                         <div>
                             <button class="btn-concluir" onclick="fecharModal()">Concluir</button>

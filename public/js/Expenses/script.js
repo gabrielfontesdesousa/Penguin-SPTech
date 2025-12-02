@@ -110,5 +110,57 @@ function editarDespesa() {
       console.log(erro);
     });
 }
+function removerDespesa() {
+    var idDespesa = sessionStorage.getItem("ID_DESPESA_EDITAR");
+
+    fetch(`/despesas/deletar/${idDespesa}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(function (resposta) {
+            resposta.json()
+                .then(function (respostaConversao) {
+                    console.log(respostaConversao);
+                    alert("Despesa removida com sucesso!");
+                    window.location.reload(true);
+                }).catch(function (erroConversao) {
+                    console.log(erroConversao);
+                })
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+}
+
+function adicionarDespesa() {
+    var categoria = categoriaInput.value;
+    var valor = valorInput.value;
+    var data = dataInput.value;
+    var descricao = descricaoInput.value;
+    var email = sessionStorage.getItem("EMAIL_DO_LOGADO");
+
+    fetch('/despesas/cadastrar', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body:
+            JSON.stringify({
+                categoriaServer: categoria,
+                valorServer: valor,
+                dataServer: data,
+                descricaoServer: descricao,
+                emailServer: email
+            })
+    })
+        .then(function (resposta) {
+            console.log(resposta);
+            alert("Despesa cadastrada com sucesso!");
+            window.location.reload(true);
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+}
 window.onload = preencherTabelaDespesas();
 preencherKpisDespesas();

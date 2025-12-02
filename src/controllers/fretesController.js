@@ -1,5 +1,6 @@
 var fretesModel = require('../models/fretesModel');
 var freteValidation = require('../validations/freteValidation');
+
 function InserirDadosFrete(req, res) {
   var cliente = req.body.clienteServer;
   var dtSaida = req.body.dtSaidaServer;
@@ -7,10 +8,10 @@ function InserirDadosFrete(req, res) {
   var pesoKG = req.body.pesoKGServer;
   var vlPedagio = req.body.vlPedagioServer;
   var qtdAjudante = req.body.qtdAjudanteServer;
-  var fkUsuario = req.body.fkUsuarioServer;
-  var fkCaminhao = req.body.fkCaminhaoServer;
   var statusFrete = req.body.statusFreteServer;
   var dtConclusao = req.body.dtConclusaoServer;
+  var email = req.body.emailServer;
+
   fretesModel
     .InserirDadosFrete(
       cliente,
@@ -19,10 +20,8 @@ function InserirDadosFrete(req, res) {
       pesoKG,
       vlPedagio,
       qtdAjudante,
-      fkCaminhao,
-      fkUsuario,
       statusFrete,
-      dtConclusao
+      email
     )
     .then(function (resposta) {
       console.log(resposta);
@@ -58,8 +57,22 @@ function EditarDadosFretes(req, res) {
       res.status(500).send(erro);
     });
 }
+function DeletarDadosFrete(req, res) {
+    var id = req.params.idFrete;
+
+    fretesModel
+      .DeletarDadosFrete(id)
+      .then(function (resposta) {
+        res.status(200).send(resposta);
+      })
+      .catch(function (erro) {
+        console.log(erro);
+        res.status(500).send(erro);
+      });
+  }
 module.exports = {
   InserirDadosFrete,
   ConsultaDadosFretes,
   EditarDadosFretes,
+  DeletarDadosFrete
 };

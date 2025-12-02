@@ -4,6 +4,42 @@ function abrirModal() {
 function fecharModal() {
     document.getElementById('modalOverlay').style.display = 'none';
 }
+
+var modoAtual = "coleta";
+
+function abrirModal() {
+    document.getElementById('modalOverlay').style.display = 'block';
+}
+
+function fecharModal() {
+    document.getElementById('modalOverlay').style.display = 'none';
+}
+
+function alternarTabelaColetaEntrega() {
+    var containerColeta = document.getElementById("containerColeta");
+    var containerEntrega = document.getElementById("containerEntrega");
+    var btnAlternar = document.getElementById("btnAlternar");
+    var tituloModal = document.getElementById("tituloModal");
+    var campoDestinatario = document.getElementById("campoDestinatario");
+
+    if (modoAtual === "coleta") {
+        containerColeta.style.display = "none";
+        containerEntrega.style.display = "block";
+        btnAlternar.innerHTML = "Ver Coletas";
+        tituloModal.innerHTML = "Entregas";
+        campoDestinatario.style.display = "block";
+        modoAtual = "entrega";
+        preencherTabelaEntregas();
+    } else {
+        containerColeta.style.display = "block";
+        containerEntrega.style.display = "none";
+        btnAlternar.innerHTML = "Ver Entregas";
+        tituloModal.innerHTML = "Coletas";
+        campoDestinatario.style.display = "none";
+        modoAtual = "coleta";
+        preencherTabelaColetas();
+    }
+}
 function preencherTabelaFretes() {
     var email = sessionStorage.getItem("EMAIL_DO_LOGADO")
     fetch('/fretes/consultar', {
@@ -54,16 +90,15 @@ function preencherFormularioFrete(cliente, dtsaida, valor, peso, pedagio, ajudan
 }
 
 function adicionarFrete() {
-    var cliente = clienteInputFrete.value
-    var data = dataInputFrete.value
-    var valor = valorInputFrete.value
-    var peso = pesoInputFrete.value
-    var pedagio = pedagioInputFrete.value
-    var ajudante = ajudantesInputFrete.value
-    var fkusuario = sessionStorage.getItem("ID_USUARIO")
-    var fkcaminhao = sessionStorage.getItem("FK_CAMINHAO")
-    var status = statusInputFrete.value
-    var dataConclusao = dataInputFrete.valuevalue
+    var cliente = clienteInputFrete.value;
+    var data = dataInputFrete.value;
+    var valor = valorInputFrete.value;
+    var peso = pesoInputFrete.value;
+    var pedagio = pedagioInputFrete.value;
+    var ajudante = ajudantesInputFrete.value;
+    var status = statusInputFrete.value;
+    var dataConclusao = dataInputFrete.value;
+    var email = sessionStorage.getItem("EMAIL_DO_LOGADO");
 
     fetch('/fretes/cadastrar', {
         method: "POST",
@@ -78,16 +113,17 @@ function adicionarFrete() {
                 pesoKGServer: peso,
                 vlPedagioServer: pedagio,
                 qtdAjudanteServer: ajudante,
-                fkUsuarioServer: fkusuario,
-                fkCaminhaoServer: fkcaminhao,
                 statusFreteServer: status,
-                dtConclusaoServer: dataConclusao
+                dtConclusaoServer: dataConclusao,
+                emailServer: email
             })
     })
         .then(function (resposta) {
-            console.log(resposta)
+            console.log(resposta);
+            alert("Frete cadastrado com sucesso!");
+            window.location.reload(true);
         }).catch(function (Erro) {
-            console.log(Erro)
+            console.log(Erro);
         })
 }
 function editarFrete() {
@@ -133,7 +169,28 @@ function editarFrete() {
 
         })
 }
+function removerFrete() {
+    var idFrete = sessionStorage.getItem("ID_FRETE_EDITAR");
 
+    fetch(`/fretes/deletar/${idFrete}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(function (resposta) {
+            resposta.json()
+                .then(function (respostaConversao) {
+                    console.log(respostaConversao);
+                    alert("Frete removido com sucesso!");
+                    window.location.reload(true);
+                }).catch(function (erroConversao) {
+                    console.log(erroConversao);
+                })
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+}
 window.onload =
     preencherTabelaFretes(),
-    preencherTabelaColetas()
+    preencherTabelaColetas(),
