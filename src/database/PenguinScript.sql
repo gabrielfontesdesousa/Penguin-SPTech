@@ -59,7 +59,6 @@ qtdAjudante int,
 fkCaminhao int NOT NULL,
 fkUsuario int NOT NULL,
 statusFrete varchar(45),
-dtConclusao timestamp NULL DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (idFrete),
 KEY fkCaminhao (fkCaminhao),
 KEY fkUsuario (fkUsuario),
@@ -69,18 +68,18 @@ CONSTRAINT CHK_STATUS_FRETE CHECK (statusFrete in ('Realizado','Orçado','Marcad
 );
 
 INSERT INTO Frete VALUES
-(1,'CLIENTE A','2025-05-10',1800.00,9000,110.50,1,1,1,'Realizado','2025-05-12 03:00:00'),
-(2,'CLIENTE B','2025-06-14',2100.00,9500,120.00,1,1,1,'Realizado','2025-06-16 03:00:00'),
-(3,'CLIENTE C','2025-07-03',1950.00,8700,98.90,2,1,1,'Realizado','2025-07-05 03:00:00'),
-(4,'CLIENTE D','2025-08-22',2400.00,11000,150.10,1,1,1,'Realizado','2025-08-24 03:00:00'),
-(5,'CLIENTE E','2025-09-11',1750.00,7600,85.70,1,1,1,'Realizado','2025-09-13 03:00:00'),
-(6,'CLIENTE F','2025-10-05',2600.00,12000,160.40,2,1,1,'Realizado','2025-10-07 03:00:00'),
-(7,'Super Logística','2025-11-11',2200.00,8500,90.50,1,1,1,'Marcado','2025-11-17 03:43:04');
-INSERT INTO Frete (idFrete, cliente, dtSaida, valor, pesoKG, vlPedagio, qtdAjudante, fkCaminhao, fkUsuario, statusFrete)
-VALUES
-(8,'Log Brasil','2025-11-24',2100.00,8200,88.50,1,1,1,'Marcado'),
-(9,'TransMoraes','2025-11-25',2500.00,9100,95.20,1,1,1,'Marcado'),
-(10,'Mega Cargas','2025-11-26',2300.00,8700,92.10,2,1,1,'Marcado');
+(1,'CLIENTE A','2025-05-10',1800.00,9000,110.50,1,1,1,'Realizado'),
+(2,'CLIENTE B','2025-06-14',2100.00,9500,120.00,1,1,1,'Realizado'),
+(3,'CLIENTE C','2025-07-03',1950.00,8700,98.90,2,1,1,'Realizado'),
+(4,'CLIENTE D','2025-08-22',2400.00,11000,150.10,1,1,1,'Realizado'),
+(5,'CLIENTE E','2025-09-11',1750.00,7600,85.70,1,1,1,'Realizado'),
+(6,'CLIENTE F','2025-10-05',2600.00,12000,160.40,2,1,1,'Realizado'),
+(7,'Super Logística','2025-11-11',2200.00,8500,90.50,1,1,1,'Marcado'),
+(8,'Transvale Cargas','2025-12-01',1950.00,7800,88.20,1,1,1,'Marcado'),
+(9,'Rota Express','2025-12-01',2500.00,9200,91.10,1,1,1,'Marcado'),
+(10,'ViaSul Transportes','2025-12-01',2100.00,8100,89.75,1,1,1,'Marcado'),
+(11,'Cargas União','2025-12-01',2300.00,8600,87.95,1,1,1,'Marcado'),
+(12,'LogiMax','2025-12-01',1750.00,7300,92.40,1,1,1,'Marcado');
 
 DROP TABLE IF EXISTS Coleta;
 CREATE TABLE Coleta (
@@ -151,19 +150,19 @@ CONSTRAINT CHECK_CATEGORIA CHECK (categoria in ('Alimentação','Outro','Pedági
 INSERT INTO Despesa VALUES
 (default, 'Almoço no posto',32.50,'Alimentação','2025-11-12',1),
 (default,'Jantar na estrada',45.00,'Alimentação','2025-11-14',1),
-(default,'Pedágio - Bandeirantes',168.90,'Pedágio','2025-11-15',1),
-(default,'Documentos do veículo',400.00,'Documentos','2025-11-20',1),
-(default,'Lavagem do caminhão',35.00,'Outro','2025-01-21',1),
-(default,'Almoço no posto',32.50,'Alimentação','2025-11-12',1),
-(default,'Jantar na estrada',45.00,'Alimentação','2025-11-14',1),
-(default,'Pedágio - Bandeirantes',120.90,'Pedágio','2025-11-15',1),
-(default,'Documentos do veículo',500.00,'Documentos','2025-11-20',1),
-(default,'Posto',735.00,'Combústivel','2025-01-21',1),
-(default,'Posto',322.50,'Combústivel','2025-11-12',1),
-(default,'Posto',454.00,'Combústivel','2025-11-14',1),
-(default,'Posto - Bandeirantes',185.90,'Combústivel','2025-11-15',1),
-(default,'Posto',1290.00,'Combústivel','2025-11-20',1),
-(default,'Posto',1000.00,'Combústivel','2025-01-21',1);
+(default,'Pedágio - Bandeirantes',168.90,'Pedágio','2025-12-15',1),
+(default,'Documentos do veículo',400.00,'Documentos','2025-12-20',1),
+(default,'Lavagem do caminhão',35.00,'Outro','2025-12-21',1),
+(default,'Almoço no posto',32.50,'Alimentação','2025-12-12',1),
+(default,'Jantar na estrada',45.00,'Alimentação','2025-12-14',1),
+(default,'Pedágio - Bandeirantes',120.90,'Pedágio','2025-12-15',1),
+(default,'Documentos do veículo',500.00,'Documentos','2025-12-20',1),
+(default,'Posto',735.00,'Combústivel','2025-12-21',1),
+(default,'Posto',322.50,'Combústivel','2025-12-12',1),
+(default,'Posto',454.00,'Combústivel','2025-12-14',1),
+(default,'Posto - Bandeirantes',185.90,'Combústivel','2025-12-15',1),
+(default,'Posto',1290.00,'Combústivel','2025-12-20',1),
+(default,'Posto',1000.00,'Combústivel','2025-12-21',1);
 
 DROP TABLE IF EXISTS Entrega;
 CREATE TABLE Entrega (
@@ -215,12 +214,12 @@ INSERT INTO Manutencao VALUES
 CREATE VIEW VW_DADOS_BRUTOS_FATURAMENTO_SEMESTRE AS
 SELECT
 u.idUsuario AS ID_Usuario,
-DATE_FORMAT(f.dtConclusao, '%Y-%m') AS mes,
+DATE_FORMAT(f.dtSaida, '%Y-%m') AS mes,
 SUM(f.valor) AS faturamento
 FROM Frete f
 JOIN Usuario u ON u.idUsuario = f.fkUsuario
 WHERE f.statusFrete = 'Realizado'
-GROUP BY DATE_FORMAT(f.dtConclusao, '%Y-%m'), u.idUsuario
+GROUP BY DATE_FORMAT(f.dtSaida, '%Y-%m'), u.idUsuario
 ORDER BY mes;
 
 SELECT *
@@ -265,14 +264,14 @@ SELECT
 f.idFrete AS idFrete,
 u.idUsuario AS ID_Usuario,
 f.cliente AS CLIENTE,
-f.dtConclusao AS DATA_CONCLUSAO,
+f.dtSaida AS DATA_CONCLUSAO,
 (SELECT COUNT(*)
 FROM Frete
 WHERE fkUsuario = u.idUsuario AND statusFrete = 'Realizado') AS TOTAL_FRETES_REALIZADOS
 FROM Frete f
 JOIN Usuario u ON u.idUsuario = f.fkUsuario
 WHERE f.statusFrete = 'Realizado'
-ORDER BY f.dtConclusao DESC;
+ORDER BY f.dtSaida DESC;
 
 SELECT TOTAL_FRETES_REALIZADOS
 FROM VW_KPI_TOTAL_FRETES_REALIZADOS
@@ -307,8 +306,8 @@ CREATE OR REPLACE VIEW VW_LUCRO_LIQUIDO AS
             SELECT SUM(f.valor)
             FROM Frete f
             WHERE f.fkUsuario = u.idUsuario
-            AND MONTH(f.dtConclusao) = MONTH(CURDATE())
-            AND YEAR(f.dtConclusao) = YEAR(CURDATE())
+            AND MONTH(f.dtSaida) = MONTH(CURDATE())
+            AND YEAR(f.dtSaida) = YEAR(CURDATE())
         ) AS TOTAL_FRETES,
 
         (
@@ -389,13 +388,12 @@ CREATE OR REPLACE VIEW VW_FRETES AS
 SELECT
 	f.idFrete 	AS ID_Fretes,
 	f.cliente 	AS CLIENTE,
-    f.dtSaida 	AS DT_SAIDA,
     f.valor 	AS VALOR,
     f.pesoKG  	AS PESO_KG,
     f.vlPedagio	AS VALOR_PEDAGIO,
     f.qtdAjudante AS QTD_AJUDANTE,
     f.statusFrete AS STATUS_FRETES,
-    f.dtConclusao AS DT_CONCLUSAO,
+    f.dtSaida AS DT_CONCLUSAO,
     u.idUsuario  AS ID_Usuario,
     u.email
 	FROM Frete f
