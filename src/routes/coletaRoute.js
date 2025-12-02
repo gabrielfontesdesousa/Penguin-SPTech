@@ -11,4 +11,7 @@ router.post('/consultar', function (req, res) {
 router.put('/atualizar/:id', function (req, res) {
     coletaController.atualizarDadosColeta(req, res);
   });
+  router.delete('deletar/:id', function (req, res){
+    coletaController.
+  })
 module.exports = router;

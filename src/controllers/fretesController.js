@@ -9,9 +9,8 @@ function InserirDadosFrete(req, res) {
   var vlPedagio = req.body.vlPedagioServer;
   var qtdAjudante = req.body.qtdAjudanteServer;
   var statusFrete = req.body.statusFreteServer;
-  var dtConclusao = req.body.dtConclusaoServer;
   var email = req.body.emailServer;
-
+  console.log("aaaaaaaaaaaaa", dtSaida)
   fretesModel
     .InserirDadosFrete(
       cliente,

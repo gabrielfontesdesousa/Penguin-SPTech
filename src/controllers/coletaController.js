@@ -49,9 +49,20 @@ function atualizarDadosColeta(req, res) {
       res.status(500).send(erro);
     });
 }
+function RemoverColeta(req, res){
+  var id = req.params.idColeta
 
+  coletaModel.DeletarDadosColeta(id)
+  .then(function (resposta){
+    res.status(200).send(resposta)
+  })
+  .catch(function(erro){
+    res.status(500).send(erro)
+  })
+}
 module.exports = {
   InserirDadosColeta,
   ConsultarDadosColeta,
   atualizarDadosColeta,
+  RemoverColeta
 };

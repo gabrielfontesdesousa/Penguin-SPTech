@@ -1,3 +1,4 @@
+const cli = require('nodemon/lib/cli');
 var database = require('../database/config');
 
 function InserirDadosFrete(
@@ -8,32 +9,27 @@ function InserirDadosFrete(
     vlPedagio,
     qtdAjudante,
     statusFrete,
-    dtConclusao,
     email
   ) {
     console.log(`ESTOU TENTANDO INSERIR DADOS FRETE\n \n\t\t >> `);
     var instrucao = `
+              
       INSERT INTO Frete(cliente, dtSaida, valor, pesoKG, vlPedagio, qtdAjudante, fkCaminhao, fkUsuario, statusFrete)
       VALUES
-      ('${cliente}',
-       '${dtSaida}',
-       ${valor},
-       ${pesoKG},
-       ${vlPedagio},
-       ${qtdAjudante},
-       (SELECT idCaminhao FROM Caminhao WHERE fkUsuario = (SELECT idUsuario FROM Usuario WHERE email = '${email}')),
-       (SELECT idUsuario FROM Usuario WHERE email = '${email}'),
-       '${statusFrete}'; 
-    `;
-    return database.executar(instrucao);
-  }
+        ('${cliente}','${dtSaida}',${valor},${pesoKG},${vlPedagio},${qtdAjudante},
+        (SELECT idCaminhao FROM Caminhao WHERE fkUsuario = (SELECT idUsuario FROM Usuario WHERE email = '${email}')),
+        (SELECT idUsuario FROM Usuario WHERE email = '${email}'),
+        '${statusFrete}');
+      `;
+      return database.executar(instrucao);
+    }
 
-function ExibirDadosFretes(email) {
-  console.log(`ESTOU TENTANDO CONSULTAR DADOS FRETES\n \n\t\t >> `);
-  var instrucao = `
-     SELECT *
-      FROM VW_FRETES
-      WHERE ID_Usuario = (SELECT idUsuario FROM Usuario WHERE email = '${email}');
+  function ExibirDadosFretes(email) {
+    console.log(`ESTOU TENTANDO CONSULTAR DADOS FRETES\n \n\t\t >> `);
+    var instrucao = `
+      SELECT *
+        FROM VW_FRETES
+        WHERE ID_Usuario = (SELECT idUsuario FROM Usuario WHERE email = '${email}');
 
     `;
   return database.executar(instrucao);
@@ -51,7 +47,7 @@ function EditarDadosFretes(id, dados) {
             fkCaminhao = ${dados.fkCaminhaoServer},
             statusFrete = '${dados.statusFreteServer}'
         WHERE idFrete = ${id};
-    `;
+    `;  
   return database.executar(instrucao);
 }
 function DeletarDadosFrete(id) {

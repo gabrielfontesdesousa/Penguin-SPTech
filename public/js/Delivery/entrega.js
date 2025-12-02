@@ -1,5 +1,5 @@
 
-function preencherTabelaColetas() {
+function preencherTabelaEntrega() {
     var email = sessionStorage.getItem("EMAIL_DO_LOGADO");
     fetch('/coleta/consultar', {
         method: "POST",
@@ -37,7 +37,7 @@ function preencherTabelaColetas() {
         })
 }
 
-function preencherFormularioColeta(cliente, estado, numero, distancia, bairro, cep, complemento, id) {
+function preencherFormularioEntrega(cliente, estado, numero, distancia, bairro, cep, complemento, id) {
     document.getElementById("clienteInput").value = cliente;
     document.getElementById("estadoInput").value = estado;
     document.getElementById("numeroInput").value = numero;
@@ -48,7 +48,7 @@ function preencherFormularioColeta(cliente, estado, numero, distancia, bairro, c
     sessionStorage.setItem("ID_COLETA_EDITAR", id);
 }
 
-function adicionarColeta() {
+function adicionarEntrega() {
     var cliente = clienteInput.value;
     var estado = estadoInput.value;
     var numero = numeroInput.value;
@@ -84,7 +84,7 @@ function adicionarColeta() {
         })
 }
 
-function editarColeta() {
+function editarEntrega() {
     var cliente = document.getElementById("clienteInput").value;
     var estado = document.getElementById("estadoInput").value;
     var numero = document.getElementById("numeroInput").value;
@@ -124,7 +124,7 @@ function editarColeta() {
         })
 }
 
-function removerColeta() {
+function removerEntrega() {
     var idColeta = sessionStorage.getItem("ID_COLETA_EDITAR");
 
     fetch(`/coleta/deletar/${idColeta}`, {
@@ -147,5 +147,6 @@ function removerColeta() {
         })
 }
 
-window.onload =
-    preencherTabelaEntregas();
+
+window.onload = 
+PreencherTabelaEntrega()

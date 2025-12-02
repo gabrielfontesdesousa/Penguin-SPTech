@@ -1,20 +1,6 @@
-const { consultarDadosColeta } = require('../../../src/models/coletaModel');
 
 function preencherTabelaColetas() {
-  tabelaColeta.innerHTML = `
-     <thead>
-        <tr>
-            <th>Cliente</th>
-            <th>Estado</th>
-            <th>Numero</th>
-            <th>Distancia (KM)</th>
-            <th>Bairro</th>
-            <th>CEP</th>
-            <th>Complemento</th>
-        </tr>
-    </thead>
-    `;
-  var email = sessionStorage.getItem('EMAIL_DO_LOGADO');
+var email = sessionStorage.getItem('EMAIL_DO_LOGADO');
   fetch('/coleta/consultar', {
     method: 'POST',
     headers: {
@@ -77,15 +63,14 @@ function adicionarColeta() {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      clienteServer: clienteInputFrete.value,
-      dtSaidaServer: dataSaidaInputFrete.value,
-      valorServer: valorInputFrete.value,
-      pesoKGServer: pesoInputFrete.value,
-      vlPedagioServer: pedagioInputFrete.value,
-      qtdAjudanteServer: ajudantesInputFrete.value,
-      fkUsuarioServer: sessionStorage.getItem('ID_USUARIO'),
-      dtConclusaoServer: dataInputFrete.value,
-      statusFreteServer: StatusInputFrete.value,
+      clienteServer: pedagioInputFrete.value,
+      distanciaKM: distanciaInput.value,
+      cepColeta: cepInput.value,
+      estadoServer: estadoInput.value,
+      bairroServer: bairroInput.value,
+      complementoServer: complementoInput.value,
+      numeroServer: numeroInput.value,
+      fkFrete: sessionStorage.getItem("ID_DO_FRETE"),
     }),
   }).then(function (resposta) {
     console.log(resposta);
@@ -133,5 +118,28 @@ function editarColeta() {
       console.log(erro);
     });
 }
+function removerColeta() {
+    var idFrete = sessionStorage.getItem("ID_FRETE_EDITAR");
+
+    fetch(`/coleta/deletar/${idFrete}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(function (resposta) {
+            resposta.json()
+                .then(function (respostaConversao) {
+                    console.log(respostaConversao);
+                    alert("Frete removido com sucesso!");
+                    window.location.reload(true);
+                }).catch(function (erroConversao) {
+                    console.log(erroConversao);
+                })
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+}
 window.onload =
-    preencherTabelaColetas();
+    preencherTabelaColetas()
+

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +24,10 @@
     <link rel="stylesheet" href="../../css/Delivery/headerDelivery.css">
     <link rel="stylesheet" href="../../css/Delivery/formContainer.css">
     <link rel="stylesheet" href="../../css/Delivery/modalColeta.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../js/Delivery/coleta.js"></script>
+    <script src="../../js/Delivery/script.js"></script>
+    <script src="../../js/Delivery/entrega.js"></script>
+
 </head>
 
 <body>
@@ -86,11 +88,11 @@
             </div>
             <div class="card-formulario">
                 <div class="header-formulario">
-                    <h2>Gerencia seus <span>Fretes</span< /h2>
-                            <br><br>
-                            <p>Selecione o frete que deseja editar ou deletar na tabela acima clicando no desejado, caso
-                                queira
-                                adicionar, preencha os campos e clique em "Adicionar".</p>
+                    <h2>Gerencia seus <span>Fretes</span></h2>
+                    <br><br>
+                    <p>Selecione o frete que deseja editar ou deletar na tabela acima clicando no desejado, caso
+                        queira
+                        adicionar, preencha os campos e clique em "Adicionar".</p>
                 </div>
 
                 <div class="form-caminhoes">
@@ -125,6 +127,10 @@
                     </div>
 
                     <div class="coluna-form">
+                        <div class="campo-form">
+                            <label>Data</label>
+                            <input id="dataInputFrete" type="text" placeholder="EX: 12/02/2025">
+                        </div>
                         <div class="campo-form">
                             <label>Status</label>
                             <input id="statusInputFrete" type="text" placeholder="EX: Concluído">
@@ -186,7 +192,7 @@
                         </div>
                     </div>
 
-                    <div class="container-table">
+                      <div class="container-table">
                         <div class="container-tabela-coleta">
                             <table id="tabelaColeta" class="tabela-coleta">
                                 <thead>
@@ -208,7 +214,7 @@
                         <div>
                             <button class="btn-editar" onclick="editarColeta()">Editar</button>
                             <button class="btn-adicionar" onclick="adicionarColeta()">Adicionar</button>
-                            <button class="btn-remover" onclick="Remover()">Remover</button>
+                            <button class="btn-remover" onclick="removerColeta()">Remover</button>
                         </div>
                         <div>
                             <button class="btn-concluir" onclick="fecharModal()">Concluir</button>
@@ -221,7 +227,6 @@
         </div>
 
 </body>
-<script src="../../js/Delivery/script.js"></script>
 
 </html>
 

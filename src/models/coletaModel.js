@@ -47,9 +47,18 @@ function atualizarDadosColeta(id, dados) {
 
   return database.executar(instrucao);
 }
+function DeletarDadosColeta(id) {
+    console.log(`ESTOU TENTANDO DELETAR DADOS COLETA\n \n\t\t >> `);
 
+    var instrucao = `
+      DELETE FROM Coleta
+      WHERE fkFrete = ${id};
+    `;
+    return database.executar(instrucao)
+  }
 module.exports = {
   InserirDadosColeta,
   consultarDadosColeta,
   atualizarDadosColeta,
+  DeletarDadosColeta
 };

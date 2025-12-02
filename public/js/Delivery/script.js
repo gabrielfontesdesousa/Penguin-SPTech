@@ -59,9 +59,9 @@ function preencherTabelaFretes() {
                     tabelaFrete.innerHTML = ``
                     for (let i = 0; i < respostaConversao.length; i++) {
                         tabelaFrete.innerHTML += `
-                        <tr onclick="preencherFormularioFrete('${respostaConversao[i].CLIENTE}', '${respostaConversao[i].DT_SAIDA}', '${respostaConversao[i].VALOR}', '${respostaConversao[i].PESO_KG}', '${respostaConversao[i].VALOR_PEDAGIO}', '${respostaConversao[i].QTD_AJUDANTE}', '${respostaConversao[i].DT_CONCLUSAO}', '${respostaConversao[i].STATUS_FRETES}', '${respostaConversao[i].ID_Fretes}')">
+                        <tr onclick="preencherFormularioFrete('${respostaConversao[i].CLIENTE}', '${respostaConversao[i].DT_SAIDA}', '${respostaConversao[i].VALOR}', '${respostaConversao[i].PESO_KG}', '${respostaConversao[i].VALOR_PEDAGIO}', '${respostaConversao[i].QTD_AJUDANTE}', '${respostaConversao[i].STATUS_FRETES}', '${respostaConversao[i].ID_Fretes}')">
                             <td>${respostaConversao[i].CLIENTE}</td>
-                            <td>${respostaConversao[i].DT_SAIDA.slice(0, 10)}</td>
+                            <td>${respostaConversao[i].DT_SAIDA}</td>
                             <td>${respostaConversao[i].VALOR}</td>
                             <td>${respostaConversao[i].PESO_KG}</td>
                             <td>${respostaConversao[i].VALOR_PEDAGIO}</td>
@@ -69,6 +69,7 @@ function preencherTabelaFretes() {
                             <td>${respostaConversao[i].STATUS_FRETES}</td>
                         </tr>
                         `;
+                        console.log(respostaConversao.DT_SAIDA)
                     }
                 }).catch(function (erroConversao) {
                     console.log(erroConversao)
@@ -77,21 +78,21 @@ function preencherTabelaFretes() {
             console.log(erro)
         })
 }
-function preencherFormularioFrete(cliente, dtsaida, valor, peso, pedagio, ajudantes, data, status, id) {
+function preencherFormularioFrete(cliente, dtsaida, valor, peso, pedagio, ajudantes, status, id) {
     document.getElementById("clienteInputFrete").value = cliente;
-    document.getElementById("dataSaidaInputFrete").value = dtsaida;
+    document.getElementById("dataSaidaInputFrete").value = dtsaida.slice(0,10);
+    console.log(document.getElementById("dataSaidaInputFrete").value)
     document.getElementById("valorInputFrete").value = valor;
     document.getElementById("pesoInputFrete").value = peso;
     document.getElementById("pedagioInputFrete").value = pedagio;
     document.getElementById("ajudantesInputFrete").value = ajudantes;
-    document.getElementById("dataInputFrete").value = data;
     document.getElementById("statusInputFrete").value = status;
     sessionStorage.setItem("ID_FRETE_EDITAR", id);
 }
 
 function adicionarFrete() {
     var cliente = clienteInputFrete.value;
-    var data = dataInputFrete.value;
+    var data = dataSaidaInputFrete.value;
     var valor = valorInputFrete.value;
     var peso = pesoInputFrete.value;
     var pedagio = pedagioInputFrete.value;
@@ -129,7 +130,7 @@ function adicionarFrete() {
 function editarFrete() {
     var cliente = document.getElementById("clienteInputFrete").value;
     var dataSaida = document.getElementById("dataSaidaInputFrete").value;
-    dataSaida = dataSaida.substring(0, 10);
+    dataSaida = dataSaida.slice(0, 10);
     var valor = document.getElementById("valorInputFrete").value;
     var peso = document.getElementById("pesoInputFrete").value;
     var pedagio = document.getElementById("pedagioInputFrete").value;
@@ -192,5 +193,4 @@ function removerFrete() {
         })
 }
 window.onload =
-    preencherTabelaFretes(),
-    preencherTabelaColetas(),
+    preencherTabelaFretes()
