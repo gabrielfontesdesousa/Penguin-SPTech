@@ -152,7 +152,7 @@ function removerColeta() {
         .then(function (respostaConversao) {
           console.log(respostaConversao);
           alert('Frete removido com sucesso!');
-          window.location.reload(true);
+          preencherTabelaColetas();
         })
         .catch(function (erroConversao) {
           console.log(erroConversao);

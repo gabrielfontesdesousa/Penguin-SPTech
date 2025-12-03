@@ -23,7 +23,7 @@
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+        "Campos em branco";
 
       finalizarAguardar();
       return false;

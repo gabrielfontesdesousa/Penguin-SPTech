@@ -101,7 +101,7 @@ function editarDespesa() {
         .json()
         .then(function (respostaConversao) {
           console.log(respostaConversao);
-          //alert(`Despesa editada com suceso!`);
+          alert(`Despesa editada com suceso!`);
           preencherTabelaDespesas();
         })
         .catch(function (erroConversao) {
@@ -161,8 +161,9 @@ function adicionarDespesa() {
   })
     .then(function (resposta) {
       console.log(resposta);
-      //alert('Despesa cadastrada com sucesso!');
+      alert('Despesa cadastrada com sucesso!');
       preencherTabelaDespesas();
+      preencherKpisDespesas
     })
     .catch(function (erro) {
       console.log(erro);

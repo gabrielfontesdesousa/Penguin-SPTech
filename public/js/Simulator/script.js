@@ -1,11 +1,10 @@
 function calcular() {
 
-    if (input_distancia.value === "" ||
-        input_litro_km.value === "" ||
-        input_preco_litro.value === "") {
+    if (input_distancia.value == "" ||
+        input_litro_km.value == "" ||
+        input_preco_litro.value == "") {
 
         resultado_final.innerHTML = `<br>Preencha todos os campos para calcular.`;
-        return;
     }
 
     var distancia = Number(input_distancia.value);

@@ -91,7 +91,7 @@ function adicionarEntrega() {
   })
     .then(function (resposta) {
       console.log(resposta);
-      //alert('Entrega cadastrada com sucesso!');
+      alert('Entrega cadastrada com sucesso!');
       preencherTabelaEntregas();
     })
     .catch(function (erro) {

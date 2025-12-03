@@ -22,12 +22,15 @@
     font-size: 13px;
     line-height: 1.4;
 }
-
+.card-simulador a{
+    width: 100%;
+    white-space: nowrap;
+}
 .btn-simular{
     background-color: #7B20E2;
     color: white;
     border: none;
-    padding: 12px 30px;
+    padding: 12px 120px;
     border-radius: 14px;
     font-size: 16px;
     font-weight: 300;
