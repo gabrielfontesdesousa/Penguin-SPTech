@@ -35,7 +35,7 @@ function obterDadosDespesasTipo(email){
     `;
     return database.executar(instrucao);
   }
-  function InserirDadosDespesa(descricao, valor, categoria, dataDesp, fkMotorista) {
+  function InserirDadosDespesa(descricao, valor, categoria, dataDesp, email) {
     console.log(`ESTOU TENTANDO INSERIR DADOS DESPESA\n \n\t\t >> `);
     var instrucao = `
        INSERT INTO Despesa(descricao, valor, categoria, dataDesp, fkMotorista)

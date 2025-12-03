@@ -1,12 +1,13 @@
 var coletaModel = require('../models/coletaModel');
 function InserirDadosColeta(req, res) {
+var cliente = req.body.clienteServer;
+console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAA", cliente)
+var distanciaKM = req.body.distanciaKMServer;
   var CEP = req.body.CEPServer;
-  var numero = req.body.numeroServer;
-  var bairro = req.body.bairroServer;
   var estado = req.body.estadoServer;
-  var cliente = req.body.clienteServer;
+  var bairro = req.body.bairroServer;
   var complemento = req.body.complementoServer;
-  var distanciaKM = req.body.distanciaKMServer;
+  var numero = req.body.numeroServer;
   var fkFrete = req.body.fkFreteServer;
   var coletaValidation = require('../validations/coletaValidation');
   var erro = coletaValidation.ValidarColeta(req.body);
@@ -16,6 +17,7 @@ function InserirDadosColeta(req, res) {
     coletaModel
       .InserirDadosColeta(CEP, numero, bairro, estado, cliente, complemento, distanciaKM, fkFrete)
       .then(function (resposta) {
+        console.log(resposta)
         res.status(200).send(resposta);
       })
       .catch(function (erro) {
@@ -50,7 +52,7 @@ function atualizarDadosColeta(req, res) {
     });
 }
 function RemoverColeta(req, res){
-  var id = req.params.idColeta
+  var id = req.params.id
 
   coletaModel.DeletarDadosColeta(id)
   .then(function (resposta){

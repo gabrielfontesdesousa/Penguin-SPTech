@@ -1,3 +1,8 @@
+var modoAtual = "coleta";
+
+var btnAdicionar = document.getElementById("btnAdicionar");
+var btnEditar = document.getElementById("btnEditar");
+var btnRemover = document.getElementById("btnRemover");
 function abrirModal() {
     document.getElementById('modalOverlay').style.display = 'block';
 }
@@ -29,6 +34,11 @@ function alternarTabelaColetaEntrega() {
         tituloModal.innerHTML = "Entregas";
         campoDestinatario.style.display = "block";
         modoAtual = "entrega";
+
+        btnAdicionar.onclick = adicionarEntrega;
+        btnEditar.onclick = editarEntrega;
+        btnRemover.onclick = removerEntrega;
+
         preencherTabelaEntregas();
     } else {
         containerColeta.style.display = "block";
@@ -37,6 +47,10 @@ function alternarTabelaColetaEntrega() {
         tituloModal.innerHTML = "Coletas";
         campoDestinatario.style.display = "none";
         modoAtual = "coleta";
+        btnAdicionar.onclick = adicionarColeta;
+        btnEditar.onclick = editarColeta;
+        btnRemover.onclick = removerColeta;
+
         preencherTabelaColetas();
     }
 }
@@ -61,7 +75,7 @@ function preencherTabelaFretes() {
                         tabelaFrete.innerHTML += `
                         <tr onclick="preencherFormularioFrete('${respostaConversao[i].CLIENTE}', '${respostaConversao[i].DT_SAIDA}', '${respostaConversao[i].VALOR}', '${respostaConversao[i].PESO_KG}', '${respostaConversao[i].VALOR_PEDAGIO}', '${respostaConversao[i].QTD_AJUDANTE}', '${respostaConversao[i].STATUS_FRETES}', '${respostaConversao[i].ID_Fretes}')">
                             <td>${respostaConversao[i].CLIENTE}</td>
-                            <td>${respostaConversao[i].DT_SAIDA}</td>
+                            <td>${respostaConversao[i].DT_SAIDA.slice(0, 10)}</td>
                             <td>${respostaConversao[i].VALOR}</td>
                             <td>${respostaConversao[i].PESO_KG}</td>
                             <td>${respostaConversao[i].VALOR_PEDAGIO}</td>
@@ -69,7 +83,6 @@ function preencherTabelaFretes() {
                             <td>${respostaConversao[i].STATUS_FRETES}</td>
                         </tr>
                         `;
-                        console.log(respostaConversao.DT_SAIDA)
                     }
                 }).catch(function (erroConversao) {
                     console.log(erroConversao)
@@ -98,7 +111,6 @@ function adicionarFrete() {
     var pedagio = pedagioInputFrete.value;
     var ajudante = ajudantesInputFrete.value;
     var status = statusInputFrete.value;
-    var dataConclusao = dataInputFrete.value;
     var email = sessionStorage.getItem("EMAIL_DO_LOGADO");
 
     fetch('/fretes/cadastrar', {
@@ -115,16 +127,16 @@ function adicionarFrete() {
                 vlPedagioServer: pedagio,
                 qtdAjudanteServer: ajudante,
                 statusFreteServer: status,
-                dtConclusaoServer: dataConclusao,
                 emailServer: email
             })
     })
         .then(function (resposta) {
             console.log(resposta);
             alert("Frete cadastrado com sucesso!");
-            window.location.reload(true);
+            preencherTabelaFretes()
         }).catch(function (Erro) {
             console.log(Erro);
+            alert(`Preencha os campos corretamente: ${erro}`)
         })
 }
 function editarFrete() {
@@ -135,9 +147,7 @@ function editarFrete() {
     var peso = document.getElementById("pesoInputFrete").value;
     var pedagio = document.getElementById("pedagioInputFrete").value;
     var ajudantes = document.getElementById("ajudantesInputFrete").value;
-    var data = document.getElementById("dataInputFrete").value;
     var status = document.getElementById("statusInputFrete").value;
-    var idCaminhao = sessionStorage.getItem("ID_CAMINHAO")
     var idFrete = sessionStorage.getItem("ID_FRETE_EDITAR")
     fetch(`/fretes/editar/${idFrete}`, {
         method: "PUT",
@@ -152,9 +162,7 @@ function editarFrete() {
                 pesoKGServer: peso,
                 vlPedagioServer: pedagio,
                 qtdAjudanteServer: ajudantes,
-                fkCaminhaoServer: idCaminhao,
                 statusFreteServer: status,
-                dtConclusaoServer: data
             })
     })
         .then(function (resposta) {
@@ -162,12 +170,14 @@ function editarFrete() {
                 .then(function (respostaConversao) {
                     console.log(respostaConversao)
                     alert(`Frete do cliente: ${cliente}, editado com suceso!`)
-                    window.location.reload(true);
+                    preencherTabelaFretes()
                 }).catch(function (erroConversao) {
                     console.log(erroConversao)
+                    alert(`Preencha os campos corretamente: ${erro}`)
                 })
         }).catch(function (erro) {
-
+            console.log(erro)
+            alert(`Preencha os campos corretamente: ${erro}`)
         })
 }
 function removerFrete() {
@@ -184,7 +194,7 @@ function removerFrete() {
                 .then(function (respostaConversao) {
                     console.log(respostaConversao);
                     alert("Frete removido com sucesso!");
-                    window.location.reload(true);
+                    preencherTabelaFretes()
                 }).catch(function (erroConversao) {
                     console.log(erroConversao);
                 })
@@ -192,5 +202,9 @@ function removerFrete() {
             console.log(erro);
         })
 }
-window.onload =
-    preencherTabelaFretes()
+window.onload = function() {
+    preencherTabelaFretes();
+    btnAdicionar.onclick = adicionarColeta;
+    btnEditar.onclick = editarColeta;
+    btnRemover.onclick = removerColeta;
+};

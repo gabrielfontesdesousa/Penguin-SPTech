@@ -16,9 +16,11 @@ function preencherTabelaDespesas() {
           tabelaDespesas.innerHTML = '';
           for (let i = 0; i < respostaConversao.length; i++) {
             tabelaDespesas.innerHTML += `
-                    <tr onclick="preencherFormulario('${respostaConversao[i].CATEGORIA}', '${respostaConversao[i].VALOR
-              }', '${respostaConversao[i].DATA}', '${respostaConversao[i].DESCRICAO}', '${respostaConversao[i].ID_DESPESA
-              }')">
+                    <tr onclick="preencherFormulario('${respostaConversao[i].CATEGORIA}', '${
+              respostaConversao[i].VALOR
+            }', '${respostaConversao[i].DATA}', '${respostaConversao[i].DESCRICAO}', '${
+              respostaConversao[i].ID_DESPESA
+            }')">
                         <td>${respostaConversao[i].CATEGORIA}</td>
                         <td>R$ ${respostaConversao[i].VALOR}</td>
                         <td>${respostaConversao[i].DATA.slice(0, 10)}</td>
@@ -26,7 +28,6 @@ function preencherTabelaDespesas() {
                     </tr>
                     `;
           }
-
         })
         .catch(function (erroConversao) {
           console.log(erroConversao);
@@ -78,7 +79,7 @@ function preencherFormulario(categoria, valor, data, descricao, id) {
 
 function editarDespesa() {
   var idServer = sessionStorage.getItem('ID_DESPESA_EDITAR');
-  console.log(idServer)
+  console.log(idServer);
   var valor = document.getElementById('valorInput').value;
   var descricao = document.getElementById('descricaoInput').value;
   var categoria = document.getElementById('categoriaInput').value;
@@ -100,9 +101,8 @@ function editarDespesa() {
         .json()
         .then(function (respostaConversao) {
           console.log(respostaConversao);
-          alert(`Despesa editada com suceso!`);
-          window.location.reload(true)
-          //window.location.reload(true);
+          //alert(`Despesa editada com suceso!`);
+          preencherTabelaDespesas();
         })
         .catch(function (erroConversao) {
           console.log(erroConversao);
@@ -113,56 +113,60 @@ function editarDespesa() {
     });
 }
 function removerDespesa() {
-  var idDespesa = sessionStorage.getItem("ID_DESPESA_EDITAR");
+  var idDespesa = sessionStorage.getItem('ID_DESPESA_EDITAR');
 
   fetch(`/despesas/deletar/${idDespesa}`, {
-    method: "DELETE",
+    method: 'DELETE',
     headers: {
-      "Content-Type": "application/json"
-    }
+      'Content-Type': 'application/json',
+    },
   })
     .then(function (resposta) {
-      resposta.json()
+      resposta
+        .json()
         .then(function (respostaConversao) {
           console.log(respostaConversao);
-          alert("Despesa removida com sucesso!");
-          window.location.reload(true);
-        }).catch(function (erroConversao) {
-          console.log(erroConversao);
+          alert('Despesa removida com sucesso!');
+          preencherTabelaDespesas();
         })
-    }).catch(function (erro) {
-      console.log(erro);
+        .catch(function (erroConversao) {
+          console.log(erroConversao);
+        });
     })
+    .catch(function (erro) {
+      console.log(erro);
+    });
 }
 
 function adicionarDespesa() {
   var categoria = categoriaInput.value;
   var valor = valorInput.value;
   var data = dataInput.value;
+  console.log(data)
   var descricao = descricaoInput.value;
-  var email = sessionStorage.getItem("EMAIL_DO_LOGADO");
+  var email = sessionStorage.getItem('EMAIL_DO_LOGADO');
 
   fetch('/despesas/cadastrar', {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json',
     },
-    body:
-      JSON.stringify({
-        categoriaServer: categoria,
-        valorServer: valor,
-        dataServer: data,
-        descricaoServer: descricao,
-        emailServer: email
-      })
+    body: JSON.stringify({
+      categoriaServer: categoria,
+      valorServer: valor,
+      dataDespServer: data,
+      descricaoServer: descricao,
+      emailServer: email,
+    }),
   })
     .then(function (resposta) {
       console.log(resposta);
-      alert("Despesa cadastrada com sucesso!");
-      window.location.reload(true);
-    }).catch(function (erro) {
-      console.log(erro);
+      //alert('Despesa cadastrada com sucesso!');
+      preencherTabelaDespesas();
     })
+    .catch(function (erro) {
+      console.log(erro);
+    });
 }
 window.onload = preencherTabelaDespesas();
 preencherKpisDespesas();

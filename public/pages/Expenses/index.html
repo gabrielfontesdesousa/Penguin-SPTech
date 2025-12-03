@@ -54,7 +54,15 @@
                         <div class="form-despesas">
                             <div class="campo-form">
                                 <label>Categoria</label>
-                                <input type="text" id="categoriaInput" placeholder="EX: 4 KM/Litro">
+                                <select class="select-categoria" name="" id="categoriaInput">
+                                    <option value="Alimentacao">Alimentação</option>
+                                    <option value="Outro">Outro</option>
+                                    <option value="Pedagio">Pedágio</option>
+                                    <option value="Documentos">Documentos</option>
+                                    <option value="Combústivel">Combústivel</option>
+                                    <option value="Manutencao">Manutencao</option>
+
+                                </select>
                             </div>
                             <div class="campo-form">
                                 <label>Valor</label>
@@ -62,7 +70,7 @@
                             </div>
                             <div class="campo-form">
                                 <label>Data</label>
-                                <input type="text" id="dataInput" placeholder="EX: 60.000">
+                                <input type="date" id="dataInput" placeholder="EX: 60.000">
                             </div>
                             <div class="campo-form">
                                 <label>Descrição</label>

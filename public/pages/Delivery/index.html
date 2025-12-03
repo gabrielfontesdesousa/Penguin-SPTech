@@ -1,16 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penguin Dahboard</title>
-    <link rel="stylesheet" href="../../css/reset.css">
-    <link rel="stylesheet" href="../../css/Dashboard/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../../js/Delivery/coleta.js"></script>
-</head>
-
-<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -25,9 +13,7 @@
     <link rel="stylesheet" href="../../css/Delivery/formContainer.css">
     <link rel="stylesheet" href="../../css/Delivery/modalColeta.css">
     <script src="../../js/Delivery/coleta.js"></script>
-    <script src="../../js/Delivery/script.js"></script>
     <script src="../../js/Delivery/entrega.js"></script>
-
 </head>
 
 <body>
@@ -79,7 +65,6 @@
                                 <td>Peso (kg)</td>
                                 <td>Pedágio</td>
                                 <td>Ajudantes</td>
-                                <td>19/01/2026</td>
                                 <td>Status</td>
                             </tr>
                         </tbody>
@@ -103,7 +88,7 @@
                         </div>
                         <div class="campo-form">
                             <label>Data Saida</label>
-                            <input id="dataSaidaInputFrete" type="text" placeholder="EX: 10/02/2025">
+                            <input id="dataSaidaInputFrete" type="date">
                         </div>
                         <div class="campo-form">
                             <label>Valor</label>
@@ -128,12 +113,12 @@
 
                     <div class="coluna-form">
                         <div class="campo-form">
-                            <label>Data</label>
-                            <input id="dataInputFrete" type="text" placeholder="EX: 12/02/2025">
-                        </div>
-                        <div class="campo-form">
                             <label>Status</label>
-                            <input id="statusInputFrete" type="text" placeholder="EX: Concluído">
+                            <select class="select-status" name="" id="statusInputFrete">
+                                <option value="Marcado">Marcado</option>
+                                <option value="Realizado">Realizado</option>
+                                <option value="Orçado">Orçado</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -149,11 +134,13 @@
                     </div>
                 </div>
             </div>
+
             <div class="modal-overlay" id="modalOverlay" onclick="fecharModal()">
                 <div class="modal" onclick="event.stopPropagation()">
-                    <h1>Gerencie seus <span>Coletas e Entregas</span></h1>
+                    <h1>Gerencie seus <span id="tituloModal">Coletas</span></h1>
 
-                    <button class="btn-ver-entregas">Ver Entregas</button>
+                    <button class="btn-ver-entregas" id="btnAlternar" onclick="alternarTabelaColetaEntrega()">Ver Entregas</button>
+
                     <div class="filtros">
                         <div class="linha-filtros">
                             <div class="filtro">
@@ -173,7 +160,6 @@
                             <div class="filtro">
                                 <label>Estado</label>
                                 <input id="estadoInput" type="text" placeholder="SP">
-
                             </div>
                             <div class="filtro">
                                 <label>Bairro</label>
@@ -189,12 +175,16 @@
                                 <label>Número</label>
                                 <input id="numeroInput" type="text" placeholder="EX 432">
                             </div>
+                            <div class="filtro" id="campoDestinatario" style="display: none;">
+                                <label>Destinatário</label>
+                                <input id="destinatarioInput" type="text" placeholder="EX: João Silva">
+                            </div>
                         </div>
                     </div>
 
-                      <div class="container-table">
-                        <div class="container-tabela-coleta">
-                            <table id="tabelaColeta" class="tabela-coleta">
+                    <div class="container-table">
+                        <div class="container-tabela-coleta" id="containerColeta">
+                            <table class="tabela-coleta">
                                 <thead>
                                     <tr>
                                         <th>Cliente</th>
@@ -206,15 +196,36 @@
                                         <th>Complemento</th>
                                     </tr>
                                 </thead>
+                                <tbody id="tabelaColeta">
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="container-tabela-coleta" id="containerEntrega" style="display: none;">
+                            <table class="tabela-coleta">
+                                <thead>
+                                    <tr>
+                                        <th>Cliente</th>
+                                        <th>Estado</th>
+                                        <th>Numero</th>
+                                        <th>Distancia (KM)</th>
+                                        <th>Bairro</th>
+                                        <th>CEP</th>
+                                        <th>Complemento</th>
+                                        <th>Destinatário</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabelaEntrega">
+                                </tbody>
                             </table>
                         </div>
                     </div>
 
                     <div class="botoes-acao">
                         <div>
-                            <button class="btn-editar" onclick="editarColeta()">Editar</button>
-                            <button class="btn-adicionar" onclick="adicionarColeta()">Adicionar</button>
-                            <button class="btn-remover" onclick="removerColeta()">Remover</button>
+                            <button class="btn-editar" id="btnEditar" >Editar</button>
+                            <button class="btn-adicionar" id="btnAdicionar">Adicionar</button>
+                            <button class="btn-remover" id="btnRemover">Remover</button>
                         </div>
                         <div>
                             <button class="btn-concluir" onclick="fecharModal()">Concluir</button>
@@ -225,9 +236,8 @@
             </div>
 
         </div>
-
+    </div>
 </body>
-
-</html>
+<script src="../../js/Delivery/script.js"></script>
 
 </html>

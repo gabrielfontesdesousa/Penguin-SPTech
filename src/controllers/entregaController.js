@@ -35,7 +35,6 @@ function InserirDadosEntrega(req, res) {
 
 function ConsultaDadosEntregas(req, res) {
   var email = req.body.emailServer;
-
   entregaModel
     .ExibirDadosEntregas(email)
     .then(function (resposta) {
@@ -49,7 +48,6 @@ function ConsultaDadosEntregas(req, res) {
 function EditarDadosEntrega(req, res) {
   var id = req.params.idEntrega;
   var dados = req.body;
-
   entregaModel
     .EditarDadosEntrega(id, dados)
     .then(function (resposta) {

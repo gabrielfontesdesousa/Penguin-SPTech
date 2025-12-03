@@ -1,6 +1,5 @@
-
 function preencherTabelaColetas() {
-var email = sessionStorage.getItem('EMAIL_DO_LOGADO');
+  var email = sessionStorage.getItem('EMAIL_DO_LOGADO');
   fetch('/coleta/consultar', {
     method: 'POST',
     headers: {
@@ -15,18 +14,25 @@ var email = sessionStorage.getItem('EMAIL_DO_LOGADO');
         .json()
         .then(function (respostaConversao) {
           console.log(respostaConversao);
+          tabelaColeta.innerHTML = ``;
           for (let i = 0; i < respostaConversao.length; i++) {
+            var complemento = ""
+            if (!respostaConversao[i].COMPLEMENTO_COLETA) {
+                complemento = "-"
+            }  else {
+                complemento = respostaConversao[i].COMPLEMENTO_COLETA
+            }
             tabelaColeta.innerHTML += `
-                        <tr onclick="preencherFormularioColeta('${respostaConversao[i].CLIENTE_COLETA}','${respostaConversao[i].ESTADO_COLETA}','${respostaConversao[i].NUMERO_COLETA}','${respostaConversao[i].DISTANCIA_KM_COLETA}','${respostaConversao[i].BAIRRO_COLETA}','${respostaConversao[i].CEP_COLETA}','${respostaConversao[i].COMPLEMENTO_COLETA}','${respostaConversao[i].ID_COLETA}')">
-                            <td>${respostaConversao[i].CLIENTE_COLETA}</td>
-                            <td>${respostaConversao[i].ESTADO_COLETA}</td>
-                            <td>${respostaConversao[i].NUMERO_COLETA}</td>
-                            <td>${respostaConversao[i].DISTANCIA_KM_COLETA}</td>
-                            <td>${respostaConversao[i].BAIRRO_COLETA}</td>
-                            <td>${respostaConversao[i].CEP_COLETA}</td>
-                            <td>${respostaConversao[i].COMPLEMENTO_COLETA}</td>
-                        </tr>
-                        `;
+              <tr onclick="preencherFormularioColeta('${respostaConversao[i].CLIENTE_COLETA}','${respostaConversao[i].ESTADO_COLETA}','${respostaConversao[i].NUMERO_COLETA}','${respostaConversao[i].DISTANCIA_KM_COLETA}','${respostaConversao[i].BAIRRO_COLETA}','${respostaConversao[i].CEP_COLETA}','${respostaConversao[i].COMPLEMENTO_COLETA}','${respostaConversao[i].ID_COLETA}')">
+                  <td>${respostaConversao[i].CLIENTE_COLETA}</td>
+                  <td>${respostaConversao[i].ESTADO_COLETA}</td>
+                  <td>${respostaConversao[i].NUMERO_COLETA}</td>
+                  <td>${respostaConversao[i].DISTANCIA_KM_COLETA}</td>
+                  <td>${respostaConversao[i].BAIRRO_COLETA}</td>
+                  <td>${respostaConversao[i].CEP_COLETA}</td>
+                  <td>${complemento}</td>
+              </tr>
+            `;
           }
         })
         .catch(function (erroConversao) {
@@ -37,6 +43,7 @@ var email = sessionStorage.getItem('EMAIL_DO_LOGADO');
       console.log(erro);
     });
 }
+
 function preencherFormularioColeta(
   cliente,
   estado,
@@ -55,6 +62,7 @@ function preencherFormularioColeta(
   document.getElementById('complementoInput').value = complemento;
   document.getElementById('numeroInput').value = numero;
   sessionStorage.setItem('ID_COLETA_EDITAR', id);
+  console.log(sessionStorage.getItem('ID_COLETA_EDITAR'));
 }
 function adicionarColeta() {
   fetch('/coleta/cadastrar', {
@@ -63,17 +71,28 @@ function adicionarColeta() {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      clienteServer: pedagioInputFrete.value,
-      distanciaKM: distanciaInput.value,
-      cepColeta: cepInput.value,
-      estadoServer: estadoInput.value,
-      bairroServer: bairroInput.value,
-      complementoServer: complementoInput.value,
-      numeroServer: numeroInput.value,
-      fkFrete: sessionStorage.getItem("ID_DO_FRETE"),
+        clienteServer: clienteInput.value,
+        distanciaKMServer: distanciaInput.value,
+        CEPServer: cepInput.value,
+        estadoServer: estadoInput.value,
+        bairroServer: bairroInput.value,
+        complementoServer: complementoInput.value,
+        numeroServer: numeroInput.value,
+        fkFreteServer: sessionStorage.getItem('ID_COLETA_EDITAR'),
     }),
   }).then(function (resposta) {
-    console.log(resposta);
+    resposta.json()
+    .then(function (respostaConversao){
+        console.log(respostaConversao);
+        alert("Coleta cadastrada com sucesso!")
+        preencherTabelaColetas()
+    }).catch(function (erro) {
+        console.log(erro)
+    })
+  }).catch(function(erro){
+    console.log(erro)
+    alert(`Preencha os campos corretamente: ${erro}`)
+
   });
 }
 function editarColeta() {
@@ -116,30 +135,31 @@ function editarColeta() {
     })
     .catch(function (erro) {
       console.log(erro);
+      alert(`Preencha os campos corretamente: ${erro}`)
     });
 }
 function removerColeta() {
-    var idFrete = sessionStorage.getItem("ID_FRETE_EDITAR");
-
-    fetch(`/coleta/deletar/${idFrete}`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-        .then(function (resposta) {
-            resposta.json()
-                .then(function (respostaConversao) {
-                    console.log(respostaConversao);
-                    alert("Frete removido com sucesso!");
-                    window.location.reload(true);
-                }).catch(function (erroConversao) {
-                    console.log(erroConversao);
-                })
-        }).catch(function (erro) {
-            console.log(erro);
+  var idFrete = sessionStorage.getItem('ID_COLETA_EDITAR');
+  fetch(`/coleta/deletar/${idFrete}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(function (resposta) {
+      resposta
+        .json()
+        .then(function (respostaConversao) {
+          console.log(respostaConversao);
+          alert('Frete removido com sucesso!');
+          window.location.reload(true);
         })
+        .catch(function (erroConversao) {
+          console.log(erroConversao);
+        });
+    })
+    .catch(function (erro) {
+      console.log(erro);
+    });
 }
-window.onload =
-    preencherTabelaColetas()
-
+window.onload = preencherTabelaColetas();

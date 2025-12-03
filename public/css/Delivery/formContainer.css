@@ -126,3 +126,12 @@
 .btn-adicionar:hover{
     background-color: #f0f0f0;
 }
+.select-status{
+    width: 70%;
+    background-color: #2A2A2A;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 15px;
+    color: #8A8F98;
+    font-size: 14px;
+}

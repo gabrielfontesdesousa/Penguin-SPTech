@@ -13,7 +13,7 @@ function InserirDadosFrete(
   ) {
     console.log(`ESTOU TENTANDO INSERIR DADOS FRETE\n \n\t\t >> `);
     var instrucao = `
-              
+
       INSERT INTO Frete(cliente, dtSaida, valor, pesoKG, vlPedagio, qtdAjudante, fkCaminhao, fkUsuario, statusFrete)
       VALUES
         ('${cliente}','${dtSaida}',${valor},${pesoKG},${vlPedagio},${qtdAjudante},
@@ -44,10 +44,10 @@ function EditarDadosFretes(id, dados) {
             pesoKG = ${dados.pesoKGServer},
             vlPedagio = ${dados.vlPedagioServer},
             qtdAjudante = ${dados.qtdAjudanteServer},
-            fkCaminhao = ${dados.fkCaminhaoServer},
+            fkCaminhao = (SELECT idCaminhao FROM Caminhao WHERE fkUsuario = (SELECT idUsuario FROM Usuario WHERE email = '${email}')),
             statusFrete = '${dados.statusFreteServer}'
         WHERE idFrete = ${id};
-    `;  
+    `;
   return database.executar(instrucao);
 }
 function DeletarDadosFrete(id) {

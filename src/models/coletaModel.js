@@ -49,7 +49,7 @@ function atualizarDadosColeta(id, dados) {
 }
 function DeletarDadosColeta(id) {
     console.log(`ESTOU TENTANDO DELETAR DADOS COLETA\n \n\t\t >> `);
-
+    
     var instrucao = `
       DELETE FROM Coleta
       WHERE fkFrete = ${id};

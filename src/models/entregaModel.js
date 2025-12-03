@@ -17,6 +17,7 @@ function InserirDadosEntrega(
     VALUES
     ('${CEP}', '${numero}', '${bairro}', '${estado}', '${cliente}', '${complemento}', '${destinatario}', ${distanciaKM}, ${fkFrete});
   `;
+  console.log(instrucao)
   return database.executar(instrucao);
 }
 
